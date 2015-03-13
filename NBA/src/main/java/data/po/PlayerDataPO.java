@@ -74,16 +74,6 @@ public class PlayerDataPO {
 	
 	double UseEff;//使用率
 
-	int Double;//两双
-	
-	public int getDouble(){
-		return Double;
-	}
-	
-	public void setDouble(int d){
-		Double = d;
-	}
-	
 	public String getName() {
 		return Name;
 	}
