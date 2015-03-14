@@ -1,8 +1,13 @@
 package data.po;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MatchDataPO {
+public class MatchDataPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String date;
 	String firstteam;
 	String secondteam;

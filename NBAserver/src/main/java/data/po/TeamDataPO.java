@@ -493,5 +493,4 @@ public class TeamDataPO implements Serializable{
 	public void setAssistEff(double assistEff) {
 		AssistEff = assistEff;
 	}
-	
 }

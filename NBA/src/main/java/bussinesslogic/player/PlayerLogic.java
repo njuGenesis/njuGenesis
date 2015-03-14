@@ -2,6 +2,7 @@ package bussinesslogic.player;
 
 import java.io.File;
 
+import rmiLink.PlayerRmi;
 import assistance.GetFileData;
 import bslogicService.PlayerInfoService;
 import data.po.MatchDataPO;
@@ -10,6 +11,7 @@ import data.po.PlayerDataPO;
 public class PlayerLogic implements PlayerInfoService{
 	GetFileData g = new GetFileData();
 	PlayerDataPO AllInfo = new PlayerDataPO();
+	PlayerRmi p = new PlayerRmi();
 	public void analysData(String name) {
 		// TODO Auto-generated method stub
 		String filepath = "D:/学习/软工3/CSEIII data/迭代一数据/players/info/" + name;
@@ -430,8 +432,27 @@ public class PlayerLogic implements PlayerInfoService{
 		AllInfo.setTotalThreeGoal(TotalThreeGoal);
 		AllInfo.setFT(FT);
 		AllInfo.setTotalFT(TotalFT);
+		
+		//
+		p.addInfo(AllInfo);
 	}
 	public PlayerDataPO getpo(){
 		return AllInfo;
+	}
+	public PlayerDataPO getInfo(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void setOrder(String orderName) {
+		// TODO Auto-generated method stub
+		
+	}
+	public PlayerDataPO[] getAllInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public PlayerDataPO[] getFirstFifty(String orderName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

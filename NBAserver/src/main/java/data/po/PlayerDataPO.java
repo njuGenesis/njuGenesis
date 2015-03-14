@@ -521,6 +521,4 @@ public class PlayerDataPO implements Serializable{
 	public void setUseEff(double useEff) {
 		UseEff = useEff;
 	}
-
-	
 }
