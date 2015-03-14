@@ -76,6 +76,63 @@ public class PlayerDataPO {
 
 	int Double;//两双
 	
+	int FieldGoal;//投篮命中数
+	int TotalFieldGoal;//总出手数
+	
+	int ThreeGoal;//三分
+	int TotalThreeGoal;
+	
+	int FT;//罚球
+	int TotalFT;
+	
+	public int getFieldGoal() {
+		return FieldGoal;
+	}
+
+	public void setFieldGoal(int fieldGoal) {
+		FieldGoal = fieldGoal;
+	}
+
+	public int getTotalFieldGoal() {
+		return TotalFieldGoal;
+	}
+
+	public void setTotalFieldGoal(int totalFieldGoal) {
+		TotalFieldGoal = totalFieldGoal;
+	}
+
+	public int getThreeGoal() {
+		return ThreeGoal;
+	}
+
+	public void setThreeGoal(int threeGoal) {
+		ThreeGoal = threeGoal;
+	}
+
+	public int getTotalThreeGoal() {
+		return TotalThreeGoal;
+	}
+
+	public void setTotalThreeGoal(int totalThreeGoal) {
+		TotalThreeGoal = totalThreeGoal;
+	}
+
+	public int getFT() {
+		return FT;
+	}
+
+	public void setFT(int fT) {
+		FT = fT;
+	}
+
+	public int getTotalFT() {
+		return TotalFT;
+	}
+
+	public void setTotalFT(int totalFT) {
+		TotalFT = totalFT;
+	}
+
 	public int getDouble(){
 		return Double;
 	}
@@ -83,7 +140,6 @@ public class PlayerDataPO {
 	public void setDouble(int d){
 		Double = d;
 	}
-	
 	public String getName() {
 		return Name;
 	}

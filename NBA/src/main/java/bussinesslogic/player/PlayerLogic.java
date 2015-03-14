@@ -28,105 +28,105 @@ public class PlayerLogic implements PlayerInfoService{
 	public void getAllMatch(String filepath,String name){
 		
 		
-		int GP = 0;//比赛场数
-		int GS = 0;//先发场数
+		int GP = 0;//姣旇禌鍦烘暟
+		int GS = 0;//鍏堝彂鍦烘暟
 		
-		int totalb = 0;//球队总篮板
-		int totalbother = 0;//对方球队总篮板
-		int Offb = 0;//进攻篮板
+		int totalb = 0;//鐞冮槦鎬荤鏉�
+		int totalbother = 0;//瀵规柟鐞冮槦鎬荤鏉�
+		int Offb = 0;//杩涙敾绡澘
 		int Defb = 0;
-		int backboard = 0;//总篮板
-		double BPG;//场均篮板
+		int backboard = 0;//鎬荤鏉�
+		double BPG;//鍦哄潎绡澘
 		
-		int assist = 0;//助攻数
-		double APG;// 场均助攻
+		int assist = 0;//鍔╂敾鏁�
+		double APG;// 鍦哄潎鍔╂敾
 		
-		double totalminute = 0;//球队总上场时间
-		double MinutesOnField = 0;//在场时间
-		double MPG = 0;//场均时间
+		double totalminute = 0;//鐞冮槦鎬讳笂鍦烘椂闂�
+		double MinutesOnField = 0;//鍦ㄥ満鏃堕棿
+		double MPG = 0;//鍦哄潎鏃堕棿
 		
-		int OtherTotalFieldGoal = 0;//对面球队出手次数
-		int TotalGoal = 0;//球队总出手
-		int FieldGoal = 0;//投篮命中
-		int TotalFieldGoal = 0;//投篮总数
-		double FieldGoalPercentage ;//投篮命中率
+		int OtherTotalFieldGoal = 0;//瀵归潰鐞冮槦鍑烘墜娆℃暟
+		int TotalGoal = 0;//鐞冮槦鎬诲嚭鎵�
+		int FieldGoal = 0;//鎶曠鍛戒腑
+		int TotalFieldGoal = 0;//鎶曠鎬绘暟
+		double FieldGoalPercentage ;//鎶曠鍛戒腑鐜�
 		
-		int ThreeGoal = 0;//三分命中个数
-		int TotalThreeGoal = 0;//三分总出手
-		double ThreePGPercentage ;//三分命中率
+		int ThreeGoal = 0;//涓夊垎鍛戒腑涓暟
+		int TotalThreeGoal = 0;//涓夊垎鎬诲嚭鎵�
+		double ThreePGPercentage ;//涓夊垎鍛戒腑鐜�
 		
-		int AllFT = 0;//球队罚球次数
-		int FT = 0;//罚球命中
+		int AllFT = 0;//鐞冮槦缃氱悆娆℃暟
+		int FT = 0;//缃氱悆鍛戒腑
 		int TotalFT = 0;
-		double FTPercentage ;//罚球命中率，Free Throw
+		double FTPercentage ;//缃氱悆鍛戒腑鐜囷紝Free Throw
 		
-		int TotalOffb = 0;//对手进攻次数
-		int Off = 0;//进攻数
-		double OffPG = 0;//场均
+		int TotalOffb = 0;//瀵规墜杩涙敾娆℃暟
+		int Off = 0;//杩涙敾鏁�
+		double OffPG = 0;//鍦哄潎
 		
-		int Def = 0;//防守数
-		double DefPG = 0;//场均
+		int Def = 0;//闃插畧鏁�
+		double DefPG = 0;//鍦哄潎
 		
-		int Steal = 0;//抢断数
-		double StealPG = 0;//场均抢断
+		int Steal = 0;//鎶㈡柇鏁�
+		double StealPG = 0;//鍦哄潎鎶㈡柇
 		
-		int Rejection = 0;//盖帽数
-		double RPG = 0;//场均盖帽
+		int Rejection = 0;//鐩栧附鏁�
+		double RPG = 0;//鍦哄潎鐩栧附
 		
-		int AllTo = 0;//球队总失误
-		int To = 0;//失误
-		double ToPG = 0;//场均失误
+		int AllTo = 0;//鐞冮槦鎬诲け璇�
+		int To = 0;//澶辫
+		double ToPG = 0;//鍦哄潎澶辫
 		
-		int foul = 0;//犯规
-		double foulPG = 0;//场均犯规
+		int foul = 0;//鐘
+		double foulPG = 0;//鍦哄潎鐘
 		
-		int PTS = 0;//得分
-		double PPG = 0;//场均得分
+		int PTS = 0;//寰楀垎
+		double PPG = 0;//鍦哄潎寰楀垎
 		
-		double Eff;//效率
+		double Eff;//鏁堢巼
 		
-		double Gmsc;//GMSC效率
+		double Gmsc;//GMSC鏁堢巼
 		
-		double TruePercentage;//真实命中率
+		double TruePercentage;//鐪熷疄鍛戒腑鐜�
 		
-		double ShootEff;//投篮效率，
+		double ShootEff;//鎶曠鏁堢巼锛�
 		
-		double BackboardEff;//篮板率，
+		double BackboardEff;//绡澘鐜囷紝
 		
-		double OffBEff;//进攻篮板率，
+		double OffBEff;//杩涙敾绡澘鐜囷紝
 		
-		double DefBEff;//防守篮板率，
+		double DefBEff;//闃插畧绡澘鐜囷紝
 		
-		double AssitEff;//助攻率，
+		double AssitEff;//鍔╂敾鐜囷紝
 		
-		double StealEff;//抢断率，
+		double StealEff;//鎶㈡柇鐜囷紝
 		
-		double RejectionEff;//盖帽率，
+		double RejectionEff;//鐩栧附鐜囷紝
 		
-		double ToEff;//失误率，
+		double ToEff;//澶辫鐜囷紝
 		
-		double UseEff;//使用率
+		double UseEff;//浣跨敤鐜�
 
-		int Double = 0;//两双
+		int Double = 0;//涓ゅ弻
 		
 		
 		File root = new File(filepath);
 		File[] files = root.listFiles();
 		for(File file:files){
 			MatchDataPO m = g.readMatchfile(file.getAbsolutePath());
-			int firstb = 0;//球队总篮板
-			double firsttotaltime = 0;//球队上场总时间
-			int firstGoal = 0;//球队进球次数
-			int firstFT = 0;//球队罚球次数
-			int firstOffb = 0;//球队总进攻篮板
-			int firstTo = 0;//球队总失误
-			int secondb = 0;//球队总篮板
-			double secondtotaltime = 0;//球队上场总时间
-			int secondGoal = 0;//球队进球次数
-			int secondFT = 0;//球队罚球次数
-			int secondOffb = 0;//球队总进攻篮板
-			int secondTo = 0;//球队总失误
-			for(int i = 1;i<m.firstTeamInfo.size();i++){//整个球队的数据
+			int firstb = 0;//鐞冮槦鎬荤鏉�
+			double firsttotaltime = 0;//鐞冮槦涓婂満鎬绘椂闂�
+			int firstGoal = 0;//鐞冮槦杩涚悆娆℃暟
+			int firstFT = 0;//鐞冮槦缃氱悆娆℃暟
+			int firstOffb = 0;//鐞冮槦鎬昏繘鏀荤鏉�
+			int firstTo = 0;//鐞冮槦鎬诲け璇�
+			int secondb = 0;//鐞冮槦鎬荤鏉�
+			double secondtotaltime = 0;//鐞冮槦涓婂満鎬绘椂闂�
+			int secondGoal = 0;//鐞冮槦杩涚悆娆℃暟
+			int secondFT = 0;//鐞冮槦缃氱悆娆℃暟
+			int secondOffb = 0;//鐞冮槦鎬昏繘鏀荤鏉�
+			int secondTo = 0;//鐞冮槦鎬诲け璇�
+			for(int i = 1;i<m.firstTeamInfo.size();i++){//鏁翠釜鐞冮槦鐨勬暟鎹�
 				int fminute = 0;
 				int fseconds = 0;
 				String[] temp = m.firstTeamInfo.get(i).split(";");
@@ -153,7 +153,7 @@ public class PlayerLogic implements PlayerInfoService{
 				firstTo = firstTo + Integer.valueOf(temp[15]);
 			}
 			
-			for(int i = 1;i<m.secondTeamInfo.size();i++){//整个球队的数据
+			for(int i = 1;i<m.secondTeamInfo.size();i++){//鏁翠釜鐞冮槦鐨勬暟鎹�
 				int fminute = 0;
 				int fseconds = 0;
 				
@@ -362,9 +362,9 @@ public class PlayerLogic implements PlayerInfoService{
 		FieldGoalPercentage = FieldGoal/(double)TotalFieldGoal;
 		ThreePGPercentage = ThreeGoal/(double)TotalThreeGoal;
 		FTPercentage = FT/(double)TotalFT;
-		Off = Offb;//进攻数
+		Off = Offb;//杩涙敾鏁�
 		OffPG = Off/(double)GP;
-		Def = Defb;//防守数
+		Def = Defb;//闃插畧鏁�
 		DefPG = Def/(double)GP;
 		StealPG = Steal/(double)GP;
 		RPG = Rejection/(double)GP;
@@ -375,16 +375,16 @@ public class PlayerLogic implements PlayerInfoService{
 		Gmsc = PTS+0.4*FieldGoal-0.7*TotalFieldGoal-0.4*(TotalFT-FT)+0.7*Offb+0.3*Defb+Steal+0.7*assist+0.7*Rejection
 				-0.4*foul-To; 
 		TruePercentage =  PTS/(double)(2*(TotalFieldGoal+0.44*TotalFT));
-		ShootEff = (FieldGoal+0.5*ThreeGoal)/(double)TotalFieldGoal;//投篮效率，	
-		BackboardEff = backboard*((double)totalminute/5)/(double)MinutesOnField/(totalb+totalbother) ;//篮板率，		
-		OffBEff = Offb*((double)totalminute/5)/(double)MinutesOnField/(totalb+totalbother) ;//进攻篮板率，		
-		DefBEff = Defb*((double)totalminute/5)/(double)MinutesOnField/(totalb+totalbother) ;//防守篮板率，		
-		AssitEff = assist/((double)MinutesOnField/((double)totalminute/5)*TotalGoal-TotalFieldGoal) ;//助攻率，		
-		StealEff = Steal*((double)totalminute/5)/(double)MinutesOnField/TotalOffb;//抢断率，		
-		RejectionEff = Rejection*((double)totalminute/5)/(double)MinutesOnField/OtherTotalFieldGoal;//盖帽率，		
-		ToEff = To/(double)(TotalFieldGoal-TotalThreeGoal+0.44*TotalFT+To) ;//失误率，		
+		ShootEff = (FieldGoal+0.5*ThreeGoal)/(double)TotalFieldGoal;//鎶曠鏁堢巼锛�	
+		BackboardEff = backboard*((double)totalminute/5)/(double)MinutesOnField/(totalb+totalbother) ;//绡澘鐜囷紝		
+		OffBEff = Offb*((double)totalminute/5)/(double)MinutesOnField/(totalb+totalbother) ;//杩涙敾绡澘鐜囷紝		
+		DefBEff = Defb*((double)totalminute/5)/(double)MinutesOnField/(totalb+totalbother) ;//闃插畧绡澘鐜囷紝		
+		AssitEff = assist/((double)MinutesOnField/((double)totalminute/5)*TotalGoal-TotalFieldGoal) ;//鍔╂敾鐜囷紝		
+		StealEff = Steal*((double)totalminute/5)/(double)MinutesOnField/TotalOffb;//鎶㈡柇鐜囷紝		
+		RejectionEff = Rejection*((double)totalminute/5)/(double)MinutesOnField/OtherTotalFieldGoal;//鐩栧附鐜囷紝		
+		ToEff = To/(double)(TotalFieldGoal-TotalThreeGoal+0.44*TotalFT+To) ;//澶辫鐜囷紝		
 		UseEff =  (TotalFieldGoal+0.44*TotalFT+To)*(totalminute/5)/(double)MinutesOnField/(TotalGoal+0.44*AllFT
-						+AllTo) ;//使用率
+						+AllTo) ;//浣跨敤鐜�
 		
 		AllInfo.setGP(GP);
 		AllInfo.setGS(GS);
@@ -424,6 +424,12 @@ public class PlayerLogic implements PlayerInfoService{
 		AllInfo.setToEff(ToEff);
 		AllInfo.setUseEff(UseEff);
 		AllInfo.setDouble(Double);
+		AllInfo.setFieldGoal(FieldGoal);
+		AllInfo.setTotalFieldGoal(TotalFieldGoal);
+		AllInfo.setThreeGoal(ThreeGoal);
+		AllInfo.setTotalThreeGoal(TotalThreeGoal);
+		AllInfo.setFT(FT);
+		AllInfo.setTotalFT(TotalFT);
 	}
 	public PlayerDataPO getpo(){
 		return AllInfo;

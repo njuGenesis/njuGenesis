@@ -76,5 +76,14 @@ public class PlayerDataVO {
 	
 	int Double;//两双
 	
+	int FieldGoal;//投篮命中数
+	int TotalFieldGoal;//总出手数
 	
+	int ThreeGoal;//三分
+	int TotalThreeGoal;
+	
+	int FT;//罚球
+	int TotalFT;
+	
+
 }
