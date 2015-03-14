@@ -73,4 +73,8 @@ public class PlayerDataVO {
 	double ToEff;//失误率，
 	
 	double UseEff;//使用率
+	
+	int Double;//两双
+	
+	
 }
