@@ -2,10 +2,10 @@ package bussinesslogic.player;
 
 import java.io.File;
 
-import data.po.MatchDataPO;
-import data.po.PlayerDataPO;
 import assistance.GetFileData;
 import bslogicService.PlayerInfoService;
+import data.po.MatchDataPO;
+import data.po.PlayerDataPO;
 
 public class PlayerLogic implements PlayerInfoService{
 	GetFileData g = new GetFileData();
@@ -24,7 +24,6 @@ public class PlayerLogic implements PlayerInfoService{
 		AllInfo.setAge(Integer.valueOf(tempbasic[6]));
 		AllInfo.setExp(Integer.valueOf(tempbasic[7]));
 		AllInfo.setSchool(tempbasic[8]);
-		
 	}
 	public void getAllMatch(String filepath,String name){
 		
