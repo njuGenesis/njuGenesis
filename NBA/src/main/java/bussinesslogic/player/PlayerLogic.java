@@ -17,7 +17,9 @@ public class PlayerLogic implements PlayerInfoService{
 		String filepath = "D:/学习/软工3/CSEIII data/迭代一数据/players/info/" + name;
 		String basicInfo = g.readPlayerfile(filepath);
 		String[] tempbasic = basicInfo.split("\n");
+
 		AllInfo.setName(tempbasic[0]);
+		System.out.println(AllInfo.getName());
 		AllInfo.setNumber(tempbasic[1]);
 		AllInfo.setPosition(tempbasic[2]);
 		AllInfo.setHeight(tempbasic[3]);
@@ -26,9 +28,9 @@ public class PlayerLogic implements PlayerInfoService{
 		AllInfo.setAge(Integer.valueOf(tempbasic[6]));
 		AllInfo.setExp(Integer.valueOf(tempbasic[7]));
 		AllInfo.setSchool(tempbasic[8]);
+		getAllMatch("D:/学习/软工3/CSEIII data/迭代一数据/matches",name);
 	}
 	public void getAllMatch(String filepath,String name){
-		
 		
 		int GP = 0;//姣旇禌鍦烘暟
 		int GS = 0;//鍏堝彂鍦烘暟
