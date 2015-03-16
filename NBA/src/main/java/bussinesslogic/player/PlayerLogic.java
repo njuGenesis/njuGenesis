@@ -19,7 +19,6 @@ public class PlayerLogic implements PlayerInfoService{
 		String[] tempbasic = basicInfo.split("\n");
 
 		AllInfo.setName(tempbasic[0]);
-		System.out.println(AllInfo.getName());
 		AllInfo.setNumber(tempbasic[1]);
 		AllInfo.setPosition(tempbasic[2]);
 		AllInfo.setHeight(tempbasic[3]);
@@ -443,18 +442,22 @@ public class PlayerLogic implements PlayerInfoService{
 	}
 	public PlayerDataPO getInfo(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		PlayerDataPO res = p.getInfo(name);
+		return res;
 	}
-	public void setOrder(String orderName) {
+	public void setOrder(String orderName,boolean isASC) {
 		// TODO Auto-generated method stub
-		
+		p.setOrder(orderName, isASC);
 	}
 	public PlayerDataPO[] getAllInfo() {
 		// TODO Auto-generated method stub
-		return null;
+		
+		PlayerDataPO[] res = p.getAllInfo();
+		return res ;
 	}
 	public PlayerDataPO[] getFirstFifty(String orderName) {
+		PlayerDataPO[] res = p.getFirstFifty(orderName);
 		// TODO Auto-generated method stub
-		return null;
+		return res ;
 	}
 }
