@@ -1,19 +1,14 @@
 package presentation.mainui;
 
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 import com.sun.awt.AWTUtilities;
 @SuppressWarnings("restriction")
@@ -25,19 +20,21 @@ public class LoginUI extends JFrame implements Runnable {
 	private static final long serialVersionUID = 1L;
 	
 	private LoginUI com=this;//自身
-	private JLabel label_background,label_background2,label_background3,label_background4;
-	private JLabel label_blue;
-	private JLabel label_red;
-	private JLabel label_basket;
-	private JLabel label_id;
-	private JLabel label_password;//背景图片
-	private JLabel label_Genesis;//团队名
-	private JTextField id;
-	private JPasswordField pw;
-	private int x,y;//图片移动参数
-	private int isBack;//判断是否是退出时刻
+	private GLabel label_background,label_background2,label_background3,label_background4,label_background5,label_background6;
+	private GLabel label_blue;
+	private GLabel label_red;
+	private GLabel label_basket;
+	private GLabel label_id;
+	private GLabel label_password;
+	private GLabel label_Genesis;//团队名
+	private GLabel label_backgroundS;
+	private GLabel framebg[] = new GLabel[31];
+	private GTextField id;
+	private GPasswordField pw;
+	private State state;//判断是否是退出时刻
 	private Thread thread;//线程
-	private JButton login,login2,back;//登陆按钮
+	private GButton userLogin,visitorLogin,close,login,register,back;
+	private Container newCase;
 	
 	public static void main(String[] args){
 		new LoginUI();
@@ -46,8 +43,7 @@ public class LoginUI extends JFrame implements Runnable {
 	public LoginUI(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//关闭进程
 		this.setUndecorated(true);
-		//this.setSize(698, 592);//设置大小
-		this.setSize(558, 650);//设置大小
+		this.setSize(1250, 650);//设置大小
 		AWTUtilities.setWindowOpaque(this, false);
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension screen = toolkit.getScreenSize();
@@ -56,138 +52,13 @@ public class LoginUI extends JFrame implements Runnable {
 		this.setLocation(x, y);//设置居中
 		this.setVisible(true);
 		
-		Container newCase = getContentPane();//容器
+		newCase = getContentPane();//容器
 		newCase.setLayout(null);//取消模式
 		
-		//宽249
+		componentInit();
+		backgroundInit();
 		
-		label_blue = new JLabel(new ImageIcon("img/LoginUI/NBAblue.png"));
-		label_blue.setBounds(140, 0, 231, 650);
-		newCase.add(label_blue);
-		
-		label_red = new JLabel(new ImageIcon("img/LoginUI/NBAred.png"));
-		label_red.setBounds(187, 0, 231, 650);
-		newCase.add(label_red);
-		
-		label_basket = new JLabel(new ImageIcon("img/LoginUI/basket.png"));
-		label_basket.setBounds(145, 70, 259, 181);
-		newCase.add(label_basket);
-		
-		id = new JTextField();
-		id.setBounds(250, 274, 128, 35);
-		id.setBorder(null);
-		id.setOpaque(false);
-		newCase.add(id);
-		id.setFont(new java.awt.Font("微软雅黑",0,13));
-		id.setForeground(Color.WHITE);
-		id.enableInputMethods(false);//禁用输入法
-		id.addKeyListener(new KeyAdapter() {
-			 public void keyTyped(KeyEvent e) {
-				 char k = e.getKeyChar();
-				 if((k>='a'&&k<='z')||(k>='A'&&k<='Z')||(k>='0'&&k<='9')){
-				 }else{
-					 e.consume();
-				 }
-			 }
-		});
-		label_id = new JLabel(new ImageIcon("img/LoginUI/textID.png"));
-		label_id.setBounds(173, 270, 212, 40);
-		newCase.add(label_id);
-		
-		pw = new JPasswordField();
-		pw.setBounds(250, 333, 128, 35);
-		pw.setBorder(null);
-		pw.setOpaque(false);
-		newCase.add(pw);
-		pw.setForeground(Color.WHITE);
-		pw.enableInputMethods(false);//禁用输入法
-		pw.addKeyListener(new KeyAdapter() {
-			 public void keyTyped(KeyEvent e) {
-				 char k = e.getKeyChar();
-				 if((k>='a'&&k<='z')||(k>='A'&&k<='Z')||(k>='0'&&k<='9')){
-				 }else{
-					 e.consume();
-				 }
-			 }
-		});
-		label_password = new JLabel(new ImageIcon("img/LoginUI/textPW.png"));
-		label_password.setBounds(173, 328, 212, 43);
-		newCase.add(label_password);
-		
-		label_Genesis = new JLabel(new ImageIcon("img/LoginUI/Genesis.png"));
-		label_Genesis.setBounds(357, 595, 170, 57);
-		newCase.add(label_Genesis);
-		label_Genesis.setVisible(false);
-		
-		login = new JButton(new ImageIcon("img/LoginUI/login.png"));
-		login.setBounds(221, 396, 116, 34);
-		login.setBorder(null);//去掉边框
-		login.setContentAreaFilled(false);//去掉背景色
-		newCase.add(login);
-		login.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-			}
-			public void mouseExited(MouseEvent e) {
-				login.setIcon(new ImageIcon("img/LoginUI/login.png"));
-			}
-			public void mouseEntered(MouseEvent e) {
-				login.setIcon(new ImageIcon("img/LoginUI/loginAct.png"));
-			}
-		});
-		
-		login2 = new JButton(new ImageIcon("img/LoginUI/login2.png"));
-		login2.setBounds(221, 445, 116, 34);
-		login2.setBorder(null);//去掉边框
-		login2.setContentAreaFilled(false);//去掉背景色
-		newCase.add(login2);
-		login2.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-			}
-			public void mouseExited(MouseEvent e) {
-				login2.setIcon(new ImageIcon("img/LoginUI/login2.png"));
-			}
-			public void mouseEntered(MouseEvent e) {
-				login2.setIcon(new ImageIcon("img/LoginUI/login2Act.png"));
-			}
-		});
-		
-		back = new JButton( new ImageIcon("img/LoginUI/back.png"));
-		back.setBounds(221, 494, 116, 34);
-		back.setBorder(null);//去掉边框
-		back.setContentAreaFilled(false);//去掉背景色
-		newCase.add(back);
-		back.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				Mainstart();
-			}
-			public void mouseExited(MouseEvent e) {
-				back.setIcon(new ImageIcon("img/LoginUI/back.png"));
-			}
-			public void mouseEntered(MouseEvent e) {
-				back.setIcon(new ImageIcon("img/LoginUI/backAct.png"));
-			}
-		});
-		
-		label_background = new JLabel(new ImageIcon("img/LoginUI/background.png"));
-		label_background.setBounds(140, 0, 276, 650);
-		newCase.add(label_background);
-		
-		label_background2 = new JLabel(new ImageIcon("img/LoginUI/background2.png"));
-		label_background2.setBounds(60, 0, 82, 650);
-		newCase.add(label_background2);
-		label_background2.setVisible(false);
-		
-		label_background3 = new JLabel(new ImageIcon("img/LoginUI/background3.png"));
-		label_background3.setBounds(370, 0, 99, 650);
-		newCase.add(label_background3);
-		label_background3.setVisible(false);
-		
-		label_background4 = new JLabel(new ImageIcon("img/LoginUI/background4.png"));
-		label_background4.setBounds(439, 0, 79, 650);
-		newCase.add(label_background4);
-		label_background4.setVisible(false);
-		
-		isBack = 0;
+		state = State.START;
 		Mainstart();
 		
 		MouseAdapter mouseListener = new MouseAdapter(){
@@ -215,61 +86,232 @@ public class LoginUI extends JFrame implements Runnable {
 		
 		this.repaint();
 	}
-
+	
 	public void Mainstart(){
 		thread = new Thread(com);
 		thread.start();
 	}
 
+	public void componentInit(){
+		
+		int ySpace = 19;
+		int xSpace = 43;
+		
+		Point blueLabelSize = new Point(231 , 650);
+		Point redLabelSize = new Point(156, 650);
+		Point basketLabelSize = new Point(259, 180);
+		Point GenesisLabelSize = new Point(170, 57);
+		Point backgroundSSize = new Point(210, 213);
+		Point idLabelSize = new Point(209, 40);
+		Point pwLabelSize = new Point(209, 40);
+		Point idTextSize = new Point(128, 40);
+		Point pwTextSize = new Point(128, 40);
+		Point userLoginButtonSize = new Point(113, 34);
+		Point visitorLoginButtonSize = new Point(113, 34);
+		Point loginButtonSize = new Point(34, 34);
+		Point registerButtonSize = new Point(34, 34);
+		Point backButtonSize = new Point(34, 34);
+		Point closeButtonSize = new Point(113, 34);
+		
+		Point basketLabelLocation = new Point(487, 60);
+		Point blueLabelLocation = new Point(487, 0);
+		Point redLabelLocation = new Point(607, 0);
+		Point GenesisLabelLocation = new Point(703, 595);
+		Point backgroundSLocation = new Point(512, 443);
+		Point idLabelLocation = new Point(512, 60);
+		Point pwLabelLocation = new Point(idLabelLocation.x, idLabelLocation.y+idLabelSize.y+ySpace);
+		Point idTextLocation = new Point(568, idLabelLocation.y);
+		Point pwTextLocation = new Point(568, idLabelLocation.y+idLabelSize.y+ySpace);
+		Point userLoginButtonLocation = new Point(560, 301);
+		Point visitorLoginButtonLocation = new Point(userLoginButtonLocation.x, userLoginButtonLocation.y+userLoginButtonSize.y+ySpace);
+		Point loginButtonLocation = new Point(522, 178);
+		Point registerButtonLocation = new Point(loginButtonLocation.x+loginButtonSize.x+xSpace, loginButtonLocation.y);
+		Point backButtonLocation = new Point(loginButtonLocation.x+2*loginButtonSize.x+2*xSpace, loginButtonLocation.y);
+		Point closeButtonLocation = new Point(userLoginButtonLocation.x, userLoginButtonLocation.y+3*userLoginButtonSize.y+3*ySpace);
+		
+		label_blue = new GLabel("img/LoginUI/NBAblue.png", blueLabelLocation, blueLabelSize, newCase, true);
+		label_red =new GLabel("img/LoginUI/NBAred.png", redLabelLocation, redLabelSize, newCase, true);
+		label_basket = new GLabel("img/LoginUI/basket.png", basketLabelLocation, basketLabelSize, newCase, true);
+		close = new GButton("img/LoginUI/close.png", closeButtonLocation, closeButtonSize, newCase, true);
+		label_backgroundS = new GLabel("img/LoginUI/backgroundS.png", backgroundSLocation, backgroundSSize, newCase, true);
+		label_id = new GLabel("img/LoginUI/textID.png", idLabelLocation, idLabelSize, newCase, false);
+		label_password = new GLabel("img/LoginUI/textPW.png", pwLabelLocation, pwLabelSize, newCase, false);
+		label_Genesis = new GLabel("img/LoginUI/Genesis.png", GenesisLabelLocation, GenesisLabelSize, newCase, false);
+		userLogin = new GButton("img/LoginUI/userLogin.png", userLoginButtonLocation, userLoginButtonSize, newCase, true);
+		visitorLogin = new GButton("img/LoginUI/visitorLogin.png", visitorLoginButtonLocation, visitorLoginButtonSize, newCase, true);
+		login = new GButton("img/LoginUI/login.png", loginButtonLocation, loginButtonSize, newCase, false);
+		register = new GButton("img/LoginUI/register.png", registerButtonLocation, registerButtonSize, newCase, false);
+		back = new GButton("img/LoginUI/back.png", backButtonLocation, backButtonSize, newCase, false);
+		
+		id = new GTextField(idTextLocation, idTextSize, newCase, false);
+		pw = new GPasswordField(pwTextLocation, pwTextSize, newCase, false);
+		
+		userLogin.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				state = State.USERLOGIN;
+				Mainstart();
+			}
+			public void mouseExited(MouseEvent e) {
+				userLogin.setIcon(new ImageIcon("img/LoginUI/userLogin.png"));
+			}
+			public void mouseEntered(MouseEvent e) {
+				userLogin.setIcon(new ImageIcon("img/LoginUI/userLoginAct.png"));
+			}
+		});
+		visitorLogin.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				state = State.VISITERLOGIN;
+				Mainstart();
+			}
+			public void mouseExited(MouseEvent e) {
+				visitorLogin.setIcon(new ImageIcon("img/LoginUI/visitorLogin.png"));
+			}
+			public void mouseEntered(MouseEvent e) {
+				visitorLogin.setIcon(new ImageIcon("img/LoginUI/visitorLoginAct.png"));
+			}
+		});
+		login.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+			}
+			public void mouseExited(MouseEvent e) {
+				login.setIcon(new ImageIcon("img/LoginUI/login.png"));
+			}
+			public void mouseEntered(MouseEvent e) {
+				login.setIcon(new ImageIcon("img/LoginUI/loginAct.png"));
+			}
+		});
+		register.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+			}
+			public void mouseExited(MouseEvent e) {
+				register.setIcon(new ImageIcon("img/LoginUI/register.png"));
+			}
+			public void mouseEntered(MouseEvent e) {
+				register.setIcon(new ImageIcon("img/LoginUI/registerAct.png"));
+			}
+		});
+		back.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				state = State.BACK;
+				Mainstart();
+			}
+			public void mouseExited(MouseEvent e) {
+				back.setIcon(new ImageIcon("img/LoginUI/back.png"));
+			}
+			public void mouseEntered(MouseEvent e) {
+				back.setIcon(new ImageIcon("img/LoginUI/backAct.png"));
+			}
+		});
+		close.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				state = State.CLOSE;
+				Mainstart();
+			}
+			public void mouseExited(MouseEvent e) {
+				close.setIcon(new ImageIcon("img/LoginUI/close.png"));
+			}
+			public void mouseEntered(MouseEvent e) {
+				close.setIcon(new ImageIcon("img/LoginUI/closeAct.png"));
+			}
+		});close.setVisible(true);
+	}
+	
+	public void backgroundInit(){
+		label_background = new GLabel("img/LoginUI/background.png", new Point(487, 0), new Point(276, 650), newCase, true);
+		label_background2 = new GLabel("img/LoginUI/background2.png", new Point(406, 0), new Point(100, 650), newCase, false);
+		label_background3 = new GLabel("img/LoginUI/background3.png", new Point(720, 0), new Point(60, 650), newCase, false);
+		label_background4 = new GLabel("img/LoginUI/background4.png", new Point(776, 0), new Point(30, 650), newCase, false);
+		label_background5 = new GLabel("img/LoginUI/background4.png", new Point(806, 0), new Point(30, 650), newCase, false);
+		label_background6 = new GLabel("img/LoginUI/background4.png", new Point(836, 0), new Point(30, 650), newCase, false);
+		
+		for(int i = 0;i<31;i++){
+			if(i==0){
+				framebg[i] = new GLabel("img/Framebg/framebg_"+String.valueOf(i+1)+".png", new Point(0, 0), new Point(121,650), this, false);
+			}else{
+				if(i>=1&&i<=3){
+					framebg[i] = new GLabel("img/Framebg/framebg_"+String.valueOf(i+1)+".png", new Point(121+(i-1)*121, 0), new Point(121,650), this, false);
+				}else{
+					if(i==4){
+						framebg[i] = new GLabel("img/Framebg/framebg_"+String.valueOf(i+1)+".png", new Point(484, 0), new Point(276,650), this, false);
+					}else{
+						if(i>=5&&i<=29){
+							framebg[i] = new GLabel("img/Framebg/framebg_"+String.valueOf(i+1)+".png", new Point(760+(i-5)*18, 0), new Point(18, 650), this, false);
+						}else{
+							framebg[i] = new GLabel("img/Framebg/framebg_"+String.valueOf(i+1)+".png", new Point(1210, 0), new Point(34, 650), this, false);
+						}
+					}
+				}
+			}
+		}
+	}
+
 	public void run() {
-		switch(isBack){
-		case 0:
+		
+		Point smallButtonLocation1st = new Point(522, 178);
+		Point inputLocaton1st = new Point(512, 60);
+		Point butonLocation1st = new Point(560, 301);
+		Point smallButtonSize = new Point(34, 34);
+		Point inputSize = new Point(209, 40);
+		Point buttonSize = new Point(113, 34);
+		
+		int ySpace = 19;
+		int xSpace = 43;
+		
+		int x,y,z,p,q;//图片移动参数
+		
+		switch(state){
+		case START:{
+			Loading loading = new Loading(694, 306, this);
+			loading.start();
 			try {
-				thread.sleep(1000);
+				thread.sleep(2000);
 			} catch (InterruptedException e1) {}
-			label_blue.setBounds(x=140, 0, 231, 652);//将图片重新定位到0，100
-			label_red.setBounds(y=188, 0, 231, 652);//将图片重新定位到0，100
-			while(x>0){//判断条件，x小于窗体的右边值
-				x--;//将x--
+			loading.stop();
+			label_blue.setLocation(x=487, 0);
+			label_red.setLocation(y=607, 0);
+			while(x>346){
+				x--;
 				y++;
-				if(y==290){
-					label_background4.setVisible(true);
-				}
-				if(y==240){
-					label_background3.setVisible(true);
-				}
-				if(x==40){
+				if(x==365){
 					label_background2.setVisible(true);
 				}
-				label_blue.setBounds(x, 0, 231, 652);//让图片移动
-				label_red.setBounds(y, 0, 231, 652);//让图片移动
+				switch(y){
+				case 642:label_background3.setVisible(true);break;
+				case 668:label_background4.setVisible(true);break;
+				case 700:label_background5.setVisible(true);break;
+				case 723:label_background6.setVisible(true);break;
+				default:break;
+				}
+				label_blue.setLocation(x, 0);//让图片移动
+				label_red.setLocation(y, 0);//让图片移动
 				try {
 					thread.sleep(1);//休息2
 				}
 				catch (InterruptedException e){}
 			}
-			isBack = 1;
 			label_Genesis.setVisible(true);
 			break;
-		case 1:
+		}
+		case CLOSE:{
 			label_Genesis.setVisible(false);
-			label_blue.setBounds(x=0, 0, 231, 652);//将图片重新定位到0，100
-			label_red.setBounds(y=327, 0, 231, 652);//将图片重新定位到0，100
+			label_blue.setLocation(x=346, 0);//将图片重新定位到0，100
+			label_red.setLocation(y=748, 0);//将图片重新定位到0，100
 			this.repaint();
-			while(x<140){//判断条件，x小于窗体的右边值
+			while(x<487){//判断条件，x小于窗体的右边值
 				x++;//将x--
 				y--;
-				if(y==290){
-					label_background4.setVisible(false);
-				}
-				if(y==240){
-					label_background3.setVisible(false);
-				}
-				if(x==40){
+				if(x==365){
 					label_background2.setVisible(false);
 				}
-				label_blue.setBounds(x, 0, 231, 652);//让图片移动
-				label_red.setBounds(y, 0, 231, 652);//让图片移动
+				switch(y){
+				case 642:label_background3.setVisible(false);break;
+				case 668:label_background4.setVisible(false);break;
+				case 700:label_background5.setVisible(false);break;
+				case 723:label_background6.setVisible(false);break;
+				default:break;
+				}
+				label_blue.setLocation(x, 0);//让图片移动
+				label_red.setLocation(y, 0);//让图片移动
 				try {
 					thread.sleep(1);//休息2
 				}
@@ -280,7 +322,236 @@ public class LoginUI extends JFrame implements Runnable {
 			} catch (InterruptedException e1) {}
 			this.dispose();
 			break;
-		case 2:
+		}
+		case VISITERLOGIN:{
+			label_Genesis.setVisible(false);
+			label_blue.setLocation(x=346, 0);//将图片重新定位到0，100
+			label_red.setLocation(y=748, 0);//将图片重新定位到0，100
+			this.repaint();
+			while(x<487){//判断条件，x小于窗体的右边值
+				x++;//将x--
+				y--;
+				if(x==365){
+					label_background2.setVisible(false);
+				}
+				switch(y){
+				case 642:label_background3.setVisible(false);break;
+				case 668:label_background4.setVisible(false);break;
+				case 700:label_background5.setVisible(false);break;
+				case 723:label_background6.setVisible(false);break;
+				default:break;
+				}
+				label_blue.setLocation(x, 0);//让图片移动
+				label_red.setLocation(y, 0);//让图片移动
+				try {
+					thread.sleep(1);//休息2
+				}
+				catch (InterruptedException e){}
+			}
+			Loading loading = new Loading(694, 306, this);
+			loading.start();
+			try {
+				thread.sleep(2000);
+			} catch (InterruptedException e1) {}
+			loading.stop();
+			
+			state = State.LOGIN;
+			Mainstart();
+			
+			break;
+		}
+		case USERLOGIN:{
+			
+			label_id.setVisible(true);
+			label_password.setVisible(true);
+			id.setVisible(true);
+			pw.setVisible(true);
+			login.setVisible(true);
+			register.setVisible(true);
+			back.setVisible(true);
+			
+			try {
+				thread.sleep(500);
+			} catch (InterruptedException e1) {}
+			
+			label_id.setLocation(inputLocaton1st.x, x=inputLocaton1st.y);
+			id.setLocation(568, x);
+			
+			label_password.setLocation(inputLocaton1st.x, y=inputLocaton1st.y+inputSize.y+ySpace);
+			pw.setLocation(568,y);
+			
+			login.setLocation(smallButtonLocation1st.x, z=smallButtonLocation1st.y);
+			register.setLocation(smallButtonLocation1st.x+smallButtonSize.x+xSpace, z);
+			back.setLocation(smallButtonLocation1st.x+2*smallButtonSize.x+2*xSpace, z);
+			
+			userLogin.setLocation(butonLocation1st.x, p=butonLocation1st.y);
+			
+			visitorLogin.setLocation(butonLocation1st.x, q=butonLocation1st.y+buttonSize.y+ySpace);
+			
+			while(z<388){
+				x++;
+				y++;
+				z++;
+				p++;
+				q++;
+				label_id.setLocation(inputLocaton1st.x, x);
+				id.setLocation(568, x);
+				
+				label_password.setLocation(inputLocaton1st.x, y);
+				pw.setLocation(568,y);
+				
+				login.setLocation(smallButtonLocation1st.x, z);
+				register.setLocation(smallButtonLocation1st.x+smallButtonSize.x+xSpace, z);
+				back.setLocation(smallButtonLocation1st.x+2*smallButtonSize.x+2*xSpace, z);
+				
+				userLogin.setLocation(butonLocation1st.x, p);
+				
+				visitorLogin.setLocation(butonLocation1st.x, q);
+				
+				try {
+					thread.sleep(1);//休息2
+				}
+				catch (InterruptedException e){}
+			}
+			try {
+				thread.sleep(500);
+			} catch (InterruptedException e1) {}
+			break;
+		}
+		case BACK:{
+			try {
+				thread.sleep(500);
+			} catch (InterruptedException e1) {}
+
+			int move = 388 -smallButtonLocation1st.y;
+			
+			label_id.setLocation(inputLocaton1st.x, x=inputLocaton1st.y+move);
+			id.setLocation(568, x);
+			
+			label_password.setLocation(inputLocaton1st.x, y=inputLocaton1st.y+inputSize.y+ySpace+move);
+			pw.setLocation(568,y);
+			
+			login.setLocation(smallButtonLocation1st.x, z=smallButtonLocation1st.y+move);
+			register.setLocation(smallButtonLocation1st.x+smallButtonSize.x+xSpace, z);
+			back.setLocation(smallButtonLocation1st.x+2*smallButtonSize.x+2*xSpace, z);
+			
+			userLogin.setLocation(butonLocation1st.x, p=butonLocation1st.y+move);
+			
+			visitorLogin.setLocation(butonLocation1st.x, q=butonLocation1st.y+buttonSize.y+ySpace+move);
+			
+			while(z>smallButtonLocation1st.y){
+				x--;
+				y--;
+				z--;
+				p--;
+				q--;
+				label_id.setLocation(inputLocaton1st.x, x);
+				id.setLocation(568, x);
+				
+				label_password.setLocation(inputLocaton1st.x, y);
+				pw.setLocation(568,y);
+				
+				login.setLocation(smallButtonLocation1st.x, z);
+				register.setLocation(smallButtonLocation1st.x+smallButtonSize.x+xSpace, z);
+				back.setLocation(smallButtonLocation1st.x+2*smallButtonSize.x+2*xSpace, z);
+				
+				userLogin.setLocation(butonLocation1st.x, p);
+				
+				visitorLogin.setLocation(butonLocation1st.x, q);
+				
+				try {
+					thread.sleep(1);//休息2
+				}
+				catch (InterruptedException e){}
+			}
+			try {
+				thread.sleep(500);
+			} catch (InterruptedException e1) {}
+			label_id.setVisible(false);
+			label_password.setVisible(false);
+			id.setVisible(false);
+			pw.setVisible(false);
+			login.setVisible(false);
+			register.setVisible(false);
+			back.setVisible(false);
+			
+			break;
+		}
+		case LOGIN:{
+			Loading loading = new Loading(694, 306, this);
+			loading.start();
+			try {
+				thread.sleep(2000);
+			} catch (InterruptedException e1) {}
+			loading.stop();
+			
+			label_background.setVisible(false);
+			label_basket.setVisible(false);
+			userLogin.setVisible(false);
+			visitorLogin.setVisible(false);
+			close.setVisible(false);
+			label_backgroundS.setVisible(false);
+			label_Genesis.setVisible(false);
+			
+			framebg[4].setVisible(true);
+			
+			label_blue.setLocation(x=487, 0);
+			label_red.setLocation(y=607, 0);
+			while(x>0){
+				x--;
+				y++;
+				switch(x){
+				case 359:framebg[3].setVisible(true);break;
+				case 238:framebg[2].setVisible(true);break;
+				case 117:framebg[1].setVisible(true);break; 
+				default:break;
+				}
+				switch(y){
+				case 641:framebg[5].setVisible(true);break;
+				case 641+18:framebg[6].setVisible(true);break;
+				case 641+2*18:framebg[7].setVisible(true);break;
+				case 641+3*18:framebg[8].setVisible(true);break;
+				case 641+4*18:framebg[9].setVisible(true);break;
+				case 641+5*18:framebg[10].setVisible(true);break;
+				case 641+6*18:framebg[11].setVisible(true);break;
+				case 641+7*18:framebg[12].setVisible(true);break;
+				case 641+8*18:framebg[13].setVisible(true);break;
+				case 641+9*18:framebg[14].setVisible(true);break;
+				case 641+10*18:framebg[15].setVisible(true);break;
+				case 641+11*18:framebg[16].setVisible(true);break;
+				case 641+12*18:framebg[17].setVisible(true);break;
+				case 641+13*18:framebg[18].setVisible(true);break;
+				case 641+14*18:framebg[19].setVisible(true);break;
+				case 641+15*18:framebg[20].setVisible(true);break;
+				case 641+16*18:framebg[21].setVisible(true);break;
+				case 641+17*18:framebg[22].setVisible(true);break;
+				case 641+18*18:framebg[23].setVisible(true);break;
+				case 641+19*18:framebg[24].setVisible(true);break;
+				case 641+20*18:framebg[25].setVisible(true);break;
+				case 641+21*18:framebg[26].setVisible(true);break;
+				case 641+22*18:framebg[27].setVisible(true);break;
+				case 641+23*18:framebg[28].setVisible(true);break;
+				case 641+24*18:framebg[29].setVisible(true);break;
+				default:break;
+				}
+				label_blue.setLocation(x, 0);//让图片移动
+				label_red.setLocation(y, 0);//让图片移动
+				try {
+					thread.sleep(1);//休息2
+				}
+				catch (InterruptedException e){}
+			}
+			break;
+		}
+		default:break;
 		}
 	}
+}
+enum State{
+	START,
+	USERLOGIN,
+	VISITERLOGIN,
+	CLOSE,
+	BACK,
+	LOGIN;
 }
