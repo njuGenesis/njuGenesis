@@ -1,21 +1,21 @@
 package data.po;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 
-public class TeamDataPO implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class TeamDataPO {
 	String Name;//队名
 	String ShortName; //缩写
 	String City;//城市
 	String EorW;//东西部
 	String area;//分区
 	String mainposition;//场馆
+	ArrayList<PlayerDataPO> players;  //球员
+	
 	int buildyear;//年份
 	
-	int MatchNumber;//比赛场数
+	double MatchNumber;//比赛场数
+	
+	double WinMatch; //胜场数
 	
 	int ShootNumber;//投篮数
 	double ShootNumberPG;//场均投篮
@@ -35,11 +35,14 @@ public class TeamDataPO implements Serializable{
 	int FTNumber;//罚球出手数
 	double FTNumberPG;//场均
 	
-	int OffBackBoard;//进攻篮板
+	double OffBackBoard;//进攻篮板
 	double OffBackBoardPG;//场均
 	
-	int DefBackBoard;//防守篮板
+	double DefBackBoard;//防守篮板
 	double DefBackBoradPG;//场均
+	
+	double OtherDefBoard;//对手后场篮板
+	double OtherOffBoard;//对手前场篮板
 	
 	int BackBoard;//篮板数
 	double BackBoardPG;//场均
@@ -62,6 +65,11 @@ public class TeamDataPO implements Serializable{
 	int PTS;//比赛得分，
 	double PPG;
 	
+	double LPS;//比赛失分
+	double LPG;//场均失分
+	
+	
+
 	double ShootEff;//投篮命中率，
 	
 	double TPEff;//三分命中率，
@@ -70,22 +78,65 @@ public class TeamDataPO implements Serializable{
 	
 	double WR;//胜率，
 	
-	int Off;//进攻回合，
+	double Off;//进攻回合，
 	double OffPG;
 	
-	int Def;//防守回合，
+	double Def;//防守回合，
 	double DefPG;
 	
 	double OffEff;//进攻效率，
 	
 	double DefEff;//防守效率，
 	
+	double OffBackBoardEff;//进攻篮板效率，
+	
 	double BackBoardEff;//篮板效率，
+	
+	double DefBackBoardEff;//防守篮板效率，
 	
 	double StealEff;//抢断效率，
 	
 	double AssistEff;//助攻率
 
+	
+	
+	public double getLPS() {
+		return LPS;
+	}
+
+	
+	public void setLPS(double lPS) {
+		LPS = lPS;
+	}
+
+	public double getLPG() {
+		return LPG;
+	}
+
+	
+	public void setLPG(double lPG) {
+		LPG = lPG;
+	}
+
+	
+	
+	public double getWinMatch() {
+		return WinMatch;
+	}
+
+	public void setWinMatch(double d) {
+		WinMatch = d;
+	}
+	
+	public ArrayList<PlayerDataPO> getPlayers() {
+		return players;
+	}
+
+	
+	public void setPlayers(ArrayList<PlayerDataPO> players) {
+		this.players = players;
+	}
+	
 	public String getName() {
 		return Name;
 	}
@@ -142,12 +193,12 @@ public class TeamDataPO implements Serializable{
 		this.buildyear = buildyear;
 	}
 
-	public int getMatchNumber() {
+	public double getMatchNumber() {
 		return MatchNumber;
 	}
 
-	public void setMatchNumber(int matchNumber) {
-		MatchNumber = matchNumber;
+	public void setMatchNumber(double d) {
+		MatchNumber = d;
 	}
 
 	public int getShootNumber() {
@@ -246,12 +297,12 @@ public class TeamDataPO implements Serializable{
 		FTNumberPG = fTNumberPG;
 	}
 
-	public int getOffBackBoard() {
+	public double getOffBackBoard() {
 		return OffBackBoard;
 	}
 
-	public void setOffBackBoard(int offBackBoard) {
-		OffBackBoard = offBackBoard;
+	public void setOffBackBoard(double d) {
+		OffBackBoard = d;
 	}
 
 	public double getOffBackBoardPG() {
@@ -262,19 +313,20 @@ public class TeamDataPO implements Serializable{
 		OffBackBoardPG = offBackBoardPG;
 	}
 
-	public int getDefBackBoard() {
+	public double getDefBackBoard() {
 		return DefBackBoard;
 	}
 
-	public void setDefBackBoard(int defBackBoard) {
-		DefBackBoard = defBackBoard;
+	public void setDefBackBoard(double d) {
+		DefBackBoard = d;
 	}
-
-	public double getDefBackBoradPG() {
+	
+	
+	public double getDefBackBoardPG() {
 		return DefBackBoradPG;
 	}
 
-	public void setDefBackBoradPG(double defBackBoradPG) {
+	public void setDefBackBoardPG(double defBackBoradPG) {
 		DefBackBoradPG = defBackBoradPG;
 	}
 
@@ -422,12 +474,12 @@ public class TeamDataPO implements Serializable{
 		WR = wR;
 	}
 
-	public int getOff() {
+	public double getOff() {
 		return Off;
 	}
 
-	public void setOff(int off) {
-		Off = off;
+	public void setOff(double d) {
+		Off = d;
 	}
 
 	public double getOffPG() {
@@ -438,12 +490,12 @@ public class TeamDataPO implements Serializable{
 		OffPG = offPG;
 	}
 
-	public int getDef() {
+	public double getDef() {
 		return Def;
 	}
 
-	public void setDef(int def) {
-		Def = def;
+	public void setDef(double d) {
+		Def = d;
 	}
 
 	public double getDefPG() {
@@ -477,6 +529,22 @@ public class TeamDataPO implements Serializable{
 	public void setBackBoardEff(double backBoardEff) {
 		BackBoardEff = backBoardEff;
 	}
+	
+	public double getOffBackBoardEff() {
+		return OffBackBoardEff;
+	}
+
+	public void setOffBackBoardEff(double offbackBoardEff) {
+		OffBackBoardEff = offbackBoardEff;
+	}
+	
+	public double getDefBackBoardEff() {
+		return DefBackBoardEff;
+	}
+
+	public void setDefBackBoardEff(double defbackBoardEff) {
+		DefBackBoardEff = defbackBoardEff;
+	}
 
 	public double getStealEff() {
 		return StealEff;
@@ -492,6 +560,38 @@ public class TeamDataPO implements Serializable{
 
 	public void setAssistEff(double assistEff) {
 		AssistEff = assistEff;
+	}
+
+
+	/**
+	 * @return the otherDefBoard
+	 */
+	public double getOtherDefBoard() {
+		return OtherDefBoard;
+	}
+
+
+	/**
+	 * @param otherDefBoard the otherDefBoard to set
+	 */
+	public void setOtherDefBoard(double otherDefBoard) {
+		OtherDefBoard = otherDefBoard;
+	}
+
+
+	/**
+	 * @return the otherOffBoard
+	 */
+	public double getOtherOffBoard() {
+		return OtherOffBoard;
+	}
+
+
+	/**
+	 * @param otherOffBoard the otherOffBoard to set
+	 */
+	public void setOtherOffBoard(double otherOffBoard) {
+		OtherOffBoard = otherOffBoard;
 	}
 	
 }
