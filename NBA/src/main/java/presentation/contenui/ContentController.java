@@ -16,5 +16,9 @@ public class ContentController {
 		title.add(TitlePanel.getTitle(m));
 		MainUI.getMainFrame().repaint();
 	}
+	
+	public void changeContent(){
+		
+	}
 
 }
