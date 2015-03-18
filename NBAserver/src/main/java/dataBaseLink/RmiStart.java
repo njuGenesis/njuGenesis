@@ -13,7 +13,7 @@ import dataService.PlayerDataService;
 import dataService.TeamDataService;
 
 public class RmiStart {
-	public boolean connect(String address){
+	public static boolean connect(String address){
 		String ip = "rmi://"+address+":3688/";
 		try{
 			PlayerDataService p = new PlayerDataImpl();
@@ -21,12 +21,10 @@ public class RmiStart {
 			Naming.rebind(ip + "player", p);
 			
 			TeamDataService t = new TeamDataImpl();
-			LocateRegistry.createRegistry(3688);
 			Naming.rebind(ip + "team", t);
 			
 			
 			MatchDataService m = new MatchDataImpl();
-			LocateRegistry.createRegistry(3688);
 			Naming.rebind(ip + "match", m);
 			
 			return true;
@@ -40,5 +38,9 @@ public class RmiStart {
             e.printStackTrace();
             return false;
         }
+	}
+	public static void main(String[] arg0){
+		
+		connect("127.0.0.1");
 	}
 }
