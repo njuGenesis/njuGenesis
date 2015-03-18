@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import presentation.contenui.ContentController;
+import presentation.contenui.PlayerStatsPanel;
+import presentation.contenui.TablePanel;
 import assistance.MenuItem;
 
 import com.sun.awt.AWTUtilities;
@@ -61,6 +63,11 @@ public class MainUI {
 		bg.add(title);
 		
 		initExitBt();
+		
+		
+		//表格测试！
+		PlayerStatsPanel sp = new PlayerStatsPanel("img/content/contentTitle.png");
+		
 		
 		mainFrame.setVisible(true);
 	}
@@ -145,6 +152,10 @@ public class MainUI {
 	
 	public static JPanel getTitlePanel(){
 		return title;
+	}
+	
+	public static BgPanel getBg(){
+		return bg;
 	}
 	
 	
