@@ -102,7 +102,10 @@ public class MainUI {
 			}
 
 			public void mousePressed(MouseEvent arg0) {
-				//关闭程序！！！！！！！！！！！！！！！！！
+				LoginUI login = new LoginUI();
+				login.readyClose();
+				mainFrame.dispose();
+				login.close();
 			}
 
 			public void mouseReleased(MouseEvent arg0) {

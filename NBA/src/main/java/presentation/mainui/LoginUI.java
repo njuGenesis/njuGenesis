@@ -37,9 +37,9 @@ public class LoginUI extends JFrame implements Runnable {
 	private Container newCase;
 	
 	public static void main(String[] args){
-		new LoginUI();
+		new LoginUI().start();;
 	}
-	
+
 	public LoginUI(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//关闭进程
 		this.setUndecorated(true);
@@ -51,16 +51,13 @@ public class LoginUI extends JFrame implements Runnable {
 		int y = (int)(screen.getHeight()-this.getHeight())/2-32;
 		this.setLocation(x, y);//设置居中
 		this.setVisible(true);
-		
+
 		newCase = getContentPane();//容器
 		newCase.setLayout(null);//取消模式
-		
+
 		componentInit();
 		backgroundInit();
-		
-		state = State.START;
-		Mainstart();
-		
+
 		MouseAdapter mouseListener = new MouseAdapter(){
 
 			int xOld = 0;
@@ -81,22 +78,27 @@ public class LoginUI extends JFrame implements Runnable {
 			}
 		};
 
-//		this.addMouseListener(mouseListener);
-//		this.addMouseMotionListener(mouseListener);//添加拖动监听
-		
+		//		this.addMouseListener(mouseListener);
+		//		this.addMouseMotionListener(mouseListener);//添加拖动监听
+
 		this.repaint();
 	}
 	
-	public void Mainstart(){
+	public void start(){
+		state = State.START;
+		threadRun();
+	}
+	
+	private void threadRun(){
 		thread = new Thread(com);
 		thread.start();
 	}
 
-	public void componentInit(){
-		
+	private void componentInit(){
+
 		int ySpace = 19;
 		int xSpace = 43;
-		
+
 		Point blueLabelSize = new Point(231 , 650);
 		Point redLabelSize = new Point(156, 650);
 		Point basketLabelSize = new Point(259, 180);
@@ -112,7 +114,7 @@ public class LoginUI extends JFrame implements Runnable {
 		Point registerButtonSize = new Point(34, 34);
 		Point backButtonSize = new Point(34, 34);
 		Point closeButtonSize = new Point(113, 34);
-		
+
 		Point basketLabelLocation = new Point(487, 60);
 		Point blueLabelLocation = new Point(487, 0);
 		Point redLabelLocation = new Point(607, 0);
@@ -128,28 +130,28 @@ public class LoginUI extends JFrame implements Runnable {
 		Point registerButtonLocation = new Point(loginButtonLocation.x+loginButtonSize.x+xSpace, loginButtonLocation.y);
 		Point backButtonLocation = new Point(loginButtonLocation.x+2*loginButtonSize.x+2*xSpace, loginButtonLocation.y);
 		Point closeButtonLocation = new Point(userLoginButtonLocation.x, userLoginButtonLocation.y+3*userLoginButtonSize.y+3*ySpace);
-		
-		label_blue = new GLabel("img/LoginUI/NBAblue.png", blueLabelLocation, blueLabelSize, newCase, true);
-		label_red =new GLabel("img/LoginUI/NBAred.png", redLabelLocation, redLabelSize, newCase, true);
-		label_basket = new GLabel("img/LoginUI/basket.png", basketLabelLocation, basketLabelSize, newCase, true);
-		close = new GButton("img/LoginUI/close.png", closeButtonLocation, closeButtonSize, newCase, true);
-		label_backgroundS = new GLabel("img/LoginUI/backgroundS.png", backgroundSLocation, backgroundSSize, newCase, true);
+
+		label_blue = new GLabel("img/LoginUI/NBAblue.png", blueLabelLocation, blueLabelSize, newCase, false);
+		label_red =new GLabel("img/LoginUI/NBAred.png", redLabelLocation, redLabelSize, newCase, false);
+		label_basket = new GLabel("img/LoginUI/basket.png", basketLabelLocation, basketLabelSize, newCase, false);
+		close = new GButton("img/LoginUI/close.png", closeButtonLocation, closeButtonSize, newCase, false);
+		label_backgroundS = new GLabel("img/LoginUI/backgroundS.png", backgroundSLocation, backgroundSSize, newCase, false);
 		label_id = new GLabel("img/LoginUI/textID.png", idLabelLocation, idLabelSize, newCase, false);
 		label_password = new GLabel("img/LoginUI/textPW.png", pwLabelLocation, pwLabelSize, newCase, false);
 		label_Genesis = new GLabel("img/LoginUI/Genesis.png", GenesisLabelLocation, GenesisLabelSize, newCase, false);
-		userLogin = new GButton("img/LoginUI/userLogin.png", userLoginButtonLocation, userLoginButtonSize, newCase, true);
-		visitorLogin = new GButton("img/LoginUI/visitorLogin.png", visitorLoginButtonLocation, visitorLoginButtonSize, newCase, true);
+		userLogin = new GButton("img/LoginUI/userLogin.png", userLoginButtonLocation, userLoginButtonSize, newCase, false);
+		visitorLogin = new GButton("img/LoginUI/visitorLogin.png", visitorLoginButtonLocation, visitorLoginButtonSize, newCase, false);
 		login = new GButton("img/LoginUI/login.png", loginButtonLocation, loginButtonSize, newCase, false);
 		register = new GButton("img/LoginUI/register.png", registerButtonLocation, registerButtonSize, newCase, false);
 		back = new GButton("img/LoginUI/back.png", backButtonLocation, backButtonSize, newCase, false);
-		
+
 		id = new GTextField(idTextLocation, idTextSize, newCase, false);
 		pw = new GPasswordField(pwTextLocation, pwTextSize, newCase, false);
-		
+
 		userLogin.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				state = State.USERLOGIN;
-				Mainstart();
+				threadRun();
 			}
 			public void mouseExited(MouseEvent e) {
 				userLogin.setIcon(new ImageIcon("img/LoginUI/userLogin.png"));
@@ -161,7 +163,7 @@ public class LoginUI extends JFrame implements Runnable {
 		visitorLogin.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				state = State.VISITERLOGIN;
-				Mainstart();
+				threadRun();
 			}
 			public void mouseExited(MouseEvent e) {
 				visitorLogin.setIcon(new ImageIcon("img/LoginUI/visitorLogin.png"));
@@ -193,7 +195,7 @@ public class LoginUI extends JFrame implements Runnable {
 		back.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				state = State.BACK;
-				Mainstart();
+				threadRun();
 			}
 			public void mouseExited(MouseEvent e) {
 				back.setIcon(new ImageIcon("img/LoginUI/back.png"));
@@ -205,7 +207,7 @@ public class LoginUI extends JFrame implements Runnable {
 		close.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				state = State.CLOSE;
-				Mainstart();
+				threadRun();
 			}
 			public void mouseExited(MouseEvent e) {
 				close.setIcon(new ImageIcon("img/LoginUI/close.png"));
@@ -213,17 +215,17 @@ public class LoginUI extends JFrame implements Runnable {
 			public void mouseEntered(MouseEvent e) {
 				close.setIcon(new ImageIcon("img/LoginUI/closeAct.png"));
 			}
-		});close.setVisible(true);
+		});
 	}
-	
-	public void backgroundInit(){
-		label_background = new GLabel("img/LoginUI/background.png", new Point(487, 0), new Point(276, 650), newCase, true);
+
+	private void backgroundInit(){
+		label_background = new GLabel("img/LoginUI/background.png", new Point(487, 0), new Point(276, 650), newCase, false);
 		label_background2 = new GLabel("img/LoginUI/background2.png", new Point(406, 0), new Point(100, 650), newCase, false);
 		label_background3 = new GLabel("img/LoginUI/background3.png", new Point(720, 0), new Point(60, 650), newCase, false);
 		label_background4 = new GLabel("img/LoginUI/background4.png", new Point(776, 0), new Point(30, 650), newCase, false);
 		label_background5 = new GLabel("img/LoginUI/background4.png", new Point(806, 0), new Point(30, 650), newCase, false);
 		label_background6 = new GLabel("img/LoginUI/background4.png", new Point(836, 0), new Point(30, 650), newCase, false);
-		
+
 		for(int i = 0;i<31;i++){
 			if(i==0){
 				framebg[i] = new GLabel("img/Framebg/framebg_"+String.valueOf(i+1)+".png", new Point(0, 0), new Point(121,650), this, false);
@@ -245,8 +247,9 @@ public class LoginUI extends JFrame implements Runnable {
 		}
 	}
 
+
 	public void run() {
-		
+
 		Point smallButtonLocation1st = new Point(522, 178);
 		Point inputLocaton1st = new Point(512, 60);
 		Point butonLocation1st = new Point(560, 301);
@@ -261,14 +264,22 @@ public class LoginUI extends JFrame implements Runnable {
 		
 		switch(state){
 		case START:{
+			label_blue.setVisible(true);
+			label_red.setVisible(true);
+			label_blue.setLocation(x=label_blue.getLocation().x, 0);
+			label_red.setLocation(y=label_red.getLocation().x, 0);
+			label_background.setVisible(true);
+			label_basket.setVisible(true);
+			userLogin.setVisible(true);
+			visitorLogin.setVisible(true);
+			label_backgroundS.setVisible(true);
+			close.setVisible(true);
 			Loading loading = new Loading(694, 306, this);
 			loading.start();
 			try {
 				thread.sleep(2000);
 			} catch (InterruptedException e1) {}
 			loading.stop();
-			label_blue.setLocation(x=487, 0);
-			label_red.setLocation(y=607, 0);
 			while(x>346){
 				x--;
 				y++;
@@ -278,7 +289,7 @@ public class LoginUI extends JFrame implements Runnable {
 				switch(y){
 				case 642:label_background3.setVisible(true);break;
 				case 668:label_background4.setVisible(true);break;
-				case 700:label_background5.setVisible(true);break;
+				case 698:label_background5.setVisible(true);break;
 				case 723:label_background6.setVisible(true);break;
 				default:break;
 				}
@@ -294,9 +305,8 @@ public class LoginUI extends JFrame implements Runnable {
 		}
 		case CLOSE:{
 			label_Genesis.setVisible(false);
-			label_blue.setLocation(x=346, 0);//将图片重新定位到0，100
-			label_red.setLocation(y=748, 0);//将图片重新定位到0，100
-			this.repaint();
+			label_blue.setLocation(x=label_blue.getLocation().x, 0);//将图片重新定位到0，100
+			label_red.setLocation(y=label_red.getLocation().x, 0);//将图片重新定位到0，100
 			while(x<487){//判断条件，x小于窗体的右边值
 				x++;//将x--
 				y--;
@@ -306,7 +316,7 @@ public class LoginUI extends JFrame implements Runnable {
 				switch(y){
 				case 642:label_background3.setVisible(false);break;
 				case 668:label_background4.setVisible(false);break;
-				case 700:label_background5.setVisible(false);break;
+				case 698:label_background5.setVisible(false);break;
 				case 723:label_background6.setVisible(false);break;
 				default:break;
 				}
@@ -325,8 +335,8 @@ public class LoginUI extends JFrame implements Runnable {
 		}
 		case VISITERLOGIN:{
 			label_Genesis.setVisible(false);
-			label_blue.setLocation(x=346, 0);//将图片重新定位到0，100
-			label_red.setLocation(y=748, 0);//将图片重新定位到0，100
+			label_blue.setLocation(x=label_blue.getLocation().x, 0);//将图片重新定位到0，100
+			label_red.setLocation(y=label_red.getLocation().x, 0);//将图片重新定位到0，100
 			this.repaint();
 			while(x<487){//判断条件，x小于窗体的右边值
 				x++;//将x--
@@ -337,7 +347,7 @@ public class LoginUI extends JFrame implements Runnable {
 				switch(y){
 				case 642:label_background3.setVisible(false);break;
 				case 668:label_background4.setVisible(false);break;
-				case 700:label_background5.setVisible(false);break;
+				case 698:label_background5.setVisible(false);break;
 				case 723:label_background6.setVisible(false);break;
 				default:break;
 				}
@@ -350,7 +360,7 @@ public class LoginUI extends JFrame implements Runnable {
 			}
 			
 			state = State.LOGIN;
-			Mainstart();
+			threadRun();
 			
 			break;
 		}
@@ -489,8 +499,8 @@ public class LoginUI extends JFrame implements Runnable {
 			
 			framebg[4].setVisible(true);
 			
-			label_blue.setLocation(x=487, 0);
-			label_red.setLocation(y=607, 0);
+			label_blue.setLocation(x=label_blue.getLocation().x, 0);
+			label_red.setLocation(y=label_red.getLocation().x, 0);
 			while(x>0){
 				x--;
 				y++;
@@ -539,15 +549,87 @@ public class LoginUI extends JFrame implements Runnable {
 			this.dispose();
 			break;
 		}
+		case EXIT:{
+			label_blue.setLocation(x=label_blue.getLocation().x, 0);
+			label_red.setLocation(y=label_red.getLocation().x, 0);
+			while(x<487){
+				x++;
+				y--;
+				switch(x){
+				case 119:framebg[1].setVisible(false);break; 
+				case 240:framebg[2].setVisible(false);break;
+				case 361:framebg[3].setVisible(false);break;
+				case 486:framebg[4].setVisible(false);break;
+				default:break;
+				}
+				switch(y){
+				case 641+24*18:framebg[29].setVisible(false);break;
+				case 641+23*18:framebg[28].setVisible(false);break;
+				case 641+22*18:framebg[27].setVisible(false);break;
+				case 641+21*18:framebg[26].setVisible(false);break;
+				case 641+20*18:framebg[25].setVisible(false);break;
+				case 641+19*18:framebg[24].setVisible(false);break;
+				case 641+18*18:framebg[23].setVisible(false);break;
+				case 641+17*18:framebg[22].setVisible(false);break;
+				case 641+16*18:framebg[21].setVisible(false);break;
+				case 641+15*18:framebg[20].setVisible(false);break;
+				case 641+14*18:framebg[19].setVisible(false);break;
+				case 641+13*18:framebg[18].setVisible(false);break;
+				case 641+12*18:framebg[17].setVisible(false);break;
+				case 641+11*18:framebg[16].setVisible(false);break;
+				case 641+10*18:framebg[15].setVisible(false);break;
+				case 641+9*18:framebg[14].setVisible(false);break;
+				case 641+8*18:framebg[13].setVisible(false);break;
+				case 641+7*18:framebg[12].setVisible(false);break;
+				case 641+6*18:framebg[11].setVisible(false);break;
+				case 641+5*18:framebg[10].setVisible(false);break;
+				case 641+4*18:framebg[9].setVisible(false);break;
+				case 641+3*18:framebg[8].setVisible(false);break;
+				case 641+2*18:framebg[7].setVisible(false);break;
+				case 641+1*18:framebg[6].setVisible(false);break;
+				case 641:framebg[5].setVisible(false);break;
+				default:break;
+				}
+				label_blue.setLocation(x, 0);//让图片移动
+				label_red.setLocation(y, 0);//让图片移动
+				try {
+					thread.sleep(1);//休息2
+				}
+				catch (InterruptedException e){}
+			}
+//			try {
+//				thread.sleep(500);//休息2
+//			}
+//			catch (InterruptedException e){}
+			this.dispose();
+			break;
+		}
 		default:break;
 		}
 	}
+	
+	public void readyClose(){
+		for(int i = 1; i < 30; i++){
+			framebg[i].setVisible(true);
+		}
+		label_blue.setVisible(true);
+		label_red.setVisible(true);
+		label_blue.setLocation(0, 0);
+		label_red.setLocation(1094, 0);
+	}
+	
+	public void close(){
+		state = State.EXIT;
+		threadRun();
+	}
 }
+
 enum State{
 	START,
 	USERLOGIN,
 	VISITERLOGIN,
 	CLOSE,
 	BACK,
-	LOGIN;
+	LOGIN,
+	EXIT;
 }
