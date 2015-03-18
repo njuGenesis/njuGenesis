@@ -53,6 +53,7 @@ public class MainUI {
 		int y = (int)(screen.getHeight()-mainFrame.getHeight())/2-32;
 		mainFrame.setLocation(x, y);//设置居中
 		AWTUtilities.setWindowOpaque(mainFrame,false);  //设置窗口透明
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//----------背景panel----------
 		bg = new BgPanel("img/frame/framebg.png");

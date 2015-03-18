@@ -25,7 +25,7 @@ public class PagingTableModel extends AbstractTableModel{
 	protected TableData[] data;  //表格数据
 
 	public PagingTableModel(TableData[] data){
-		this(8,data);
+		this(10,data);
 	}
 
 	public PagingTableModel(int size,TableData[] data){
