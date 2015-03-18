@@ -1,6 +1,8 @@
 package presentation.mainui;
 
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -45,6 +47,11 @@ public class MainUI {
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.setLayout(null);
 		mainFrame.setUndecorated(true);
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Dimension screen = toolkit.getScreenSize();
+		int x = (int)(screen.getWidth()-mainFrame.getWidth())/2;
+		int y = (int)(screen.getHeight()-mainFrame.getHeight())/2-32;
+		mainFrame.setLocation(x, y);//设置居中
 		AWTUtilities.setWindowOpaque(mainFrame,false);  //设置窗口透明
 		
 		//----------背景panel----------

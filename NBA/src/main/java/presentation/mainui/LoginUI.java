@@ -81,8 +81,8 @@ public class LoginUI extends JFrame implements Runnable {
 			}
 		};
 
-		this.addMouseListener(mouseListener);
-		this.addMouseMotionListener(mouseListener);//添加拖动监听
+//		this.addMouseListener(mouseListener);
+//		this.addMouseMotionListener(mouseListener);//添加拖动监听
 		
 		this.repaint();
 	}
@@ -348,12 +348,6 @@ public class LoginUI extends JFrame implements Runnable {
 				}
 				catch (InterruptedException e){}
 			}
-			Loading loading = new Loading(694, 306, this);
-			loading.start();
-			try {
-				thread.sleep(2000);
-			} catch (InterruptedException e1) {}
-			loading.stop();
 			
 			state = State.LOGIN;
 			Mainstart();
@@ -501,9 +495,9 @@ public class LoginUI extends JFrame implements Runnable {
 				x--;
 				y++;
 				switch(x){
-				case 359:framebg[3].setVisible(true);break;
-				case 238:framebg[2].setVisible(true);break;
-				case 117:framebg[1].setVisible(true);break; 
+				case 360:framebg[3].setVisible(true);break;
+				case 239:framebg[2].setVisible(true);break;
+				case 118:framebg[1].setVisible(true);break; 
 				default:break;
 				}
 				switch(y){
@@ -541,6 +535,8 @@ public class LoginUI extends JFrame implements Runnable {
 				}
 				catch (InterruptedException e){}
 			}
+			new MainUI().initMainFrame();;
+			this.dispose();
 			break;
 		}
 		default:break;
