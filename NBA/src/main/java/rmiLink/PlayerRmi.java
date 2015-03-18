@@ -40,11 +40,11 @@ public class PlayerRmi {
 			return null;
 		}
 	}
-	public void setOrder(String orderName){
+	public void setOrder(String orderName, boolean bool){
 		try{
 
 			PlayerDataService t = (PlayerDataService)Naming.lookup(ip);
-			t.setOrder(orderName);
+			t.setOrder(orderName, true);
 
 		}catch(Exception e){
 			e.printStackTrace();
