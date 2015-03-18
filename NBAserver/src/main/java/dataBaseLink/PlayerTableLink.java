@@ -30,8 +30,8 @@ public class PlayerTableLink {
 				
 			}
 			Statement st = con.createStatement();
-			String value = p.getName()+"','"+p.getNumber()+"','"+p.getPosition()+"','"+p.getHeight()+"','"+p.getWeight()+"','"+p.getBirth().replaceAll(",", "")+"','"+
-			p.getAge()+"','"+p.getExp()+"','"+p.getSchool()+"','"+p.getTeamName()+"','"+p.getGP()+"','"+p.getGS()+"','"+p.getBackboard()+"','"+p.getBPG()
+			String value = p.getName().replaceAll("'", "‘")+"','"+p.getNumber()+"','"+p.getPosition()+"','"+p.getHeight()+"','"+p.getWeight()+"','"+p.getBirth().replaceAll(",", "")+"','"+
+			p.getAge()+"','"+p.getExp()+"','"+p.getSchool().replaceAll("'", "‘")+"','"+p.getTeamName()+"','"+p.getGP()+"','"+p.getGS()+"','"+p.getBackboard()+"','"+p.getBPG()
 			+"','"+p.getAssist()+"','"+p.getAPG()+"','"+p.getMinutesOnField()+"','"+p.getMPG()+"','"+p.getFieldGoalPercentage()+"','"+p.getThreePGPercentage()
 			+"','"+p.getFTPercentage()+"','"+p.getOff()+"','"+p.getOffPG()+"','"+p.getDef()+"','"+p.getDefPG()+"','"+p.getSteal()+"','"+p.getStealPG()+"','"+
 			p.getRejection()+"','"+p.getRPG()+"','"+p.getTo()+"','"+p.getToPG()+"','"+p.getFoul()+"','"+p.getFoulPG()+"','"+p.getPTS()+"','"+p.getPPG()+"','"+

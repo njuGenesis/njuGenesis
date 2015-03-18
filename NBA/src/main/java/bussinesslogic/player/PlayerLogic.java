@@ -1,6 +1,8 @@
 package bussinesslogic.player;
 
 import java.io.File;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 import rmiLink.PlayerRmi;
 import assistance.GetFileData;
@@ -14,7 +16,8 @@ public class PlayerLogic implements PlayerInfoService{
 	PlayerRmi p = new PlayerRmi();
 	public void analysData(String name) {
 		// TODO Auto-generated method stub
-		String filepath = "D:/学习/软工3/CSEIII data/迭代一数据/players/info/" + name;
+		String filepath = "./迭代一数据/players/info/" + name;
+		//System.out.println(filepath);
 		String basicInfo = g.readPlayerfile(filepath);
 		String[] tempbasic = basicInfo.split("\n");
 
@@ -25,9 +28,15 @@ public class PlayerLogic implements PlayerInfoService{
 		AllInfo.setWeight(Double.valueOf(tempbasic[4]));
 		AllInfo.setBirth(tempbasic[5]);
 		AllInfo.setAge(Integer.valueOf(tempbasic[6]));
-		AllInfo.setExp(Integer.valueOf(tempbasic[7]));
+		if(tempbasic[7].equals("R")){
+			AllInfo.setExp(0);
+		}
+		else{
+			AllInfo.setExp(Integer.valueOf(tempbasic[7]));
+		}
+		
 		AllInfo.setSchool(tempbasic[8]);
-		getAllMatch("D:/学习/软工3/CSEIII data/迭代一数据/matches",name);
+		getAllMatch("./迭代一数据/matches",name);
 	}
 	public void getAllMatch(String filepath,String name){
 		
@@ -117,6 +126,7 @@ public class PlayerLogic implements PlayerInfoService{
 		File[] files = root.listFiles();
 		for(File file:files){
 			MatchDataPO m = g.readMatchfile(file.getAbsolutePath());
+			
 			int firstb = 0;//鐞冮槦鎬荤鏉�
 			double firsttotaltime = 0;//鐞冮槦涓婂満鎬绘椂闂�
 			int firstGoal = 0;//鐞冮槦杩涚悆娆℃暟
@@ -129,6 +139,7 @@ public class PlayerLogic implements PlayerInfoService{
 			int secondFT = 0;//鐞冮槦缃氱悆娆℃暟
 			int secondOffb = 0;//鐞冮槦鎬昏繘鏀荤鏉�
 			int secondTo = 0;//鐞冮槦鎬诲け璇�
+			try{
 			for(int i = 1;i<m.firstTeamInfo.size();i++){//鏁翠釜鐞冮槦鐨勬暟鎹�
 				int fminute = 0;
 				int fseconds = 0;
@@ -202,6 +213,7 @@ public class PlayerLogic implements PlayerInfoService{
 					AllTo = AllTo + firstTo;
 					
 					GP++;
+					//System.out.println(file.getAbsolutePath());
 					if(!temp[1].equals("")){
 						GS++;
 					}
@@ -246,9 +258,12 @@ public class PlayerLogic implements PlayerInfoService{
 					To = To + Integer.valueOf(temp[15]);
 					
 					foul = foul + Integer.valueOf(temp[16]);
+					try{
+						PTS = PTS + Integer.valueOf(temp[17]);
+					}
+					catch(Exception e){
 					
-					PTS = PTS + Integer.valueOf(temp[17]);
-					
+					}
 					int tempd = 0;
 					if(PTS>=10){
 						tempd++;
@@ -287,6 +302,7 @@ public class PlayerLogic implements PlayerInfoService{
 					AllTo = AllTo + secondTo;
 					
 					GP++;
+					//System.out.println(file.getAbsolutePath());
 					if(!temp[1].equals(null)){
 						GS++;
 					}
@@ -332,8 +348,12 @@ public class PlayerLogic implements PlayerInfoService{
 					
 					foul = foul + Integer.valueOf(temp[16]);
 					
+					try{
 					PTS = PTS + Integer.valueOf(temp[17]);
-					
+					}
+					catch(Exception e){
+						
+					}
 					int tempd = 0;
 					if(PTS>=10){
 						tempd++;
@@ -356,38 +376,81 @@ public class PlayerLogic implements PlayerInfoService{
 					break;
 				}
 			}
+			}catch(Exception e){
+				System.out.println(file.getAbsolutePath());
+			}
 			
 		}
-		
-		BPG = backboard/(double)GP;
-		APG = assist/(double)GP;
-		MPG = MinutesOnField/(double)GP;
-		FieldGoalPercentage = FieldGoal/(double)TotalFieldGoal;
-		ThreePGPercentage = ThreeGoal/(double)TotalThreeGoal;
-		FTPercentage = FT/(double)TotalFT;
-		Off = Offb;//杩涙敾鏁�
-		OffPG = Off/(double)GP;
-		Def = Defb;//闃插畧鏁�
-		DefPG = Def/(double)GP;
-		StealPG = Steal/(double)GP;
-		RPG = Rejection/(double)GP;
-		ToPG = To/(double)GP;
-		foulPG = foul/(double)GP;
-		PPG = PTS/(double)GP;
-		Eff =  (PTS+backboard+assist+Steal+Rejection)-(TotalFieldGoal-FieldGoal)-(TotalFT-FT)-To; 
-		Gmsc = PTS+0.4*FieldGoal-0.7*TotalFieldGoal-0.4*(TotalFT-FT)+0.7*Offb+0.3*Defb+Steal+0.7*assist+0.7*Rejection
+		if(GP!=0){
+			BPG = backboard/(double)GP;
+			APG = assist/(double)GP;
+			MPG = MinutesOnField/(double)GP;
+			FieldGoalPercentage = FieldGoal/(double)TotalFieldGoal;
+			if(TotalThreeGoal!=0){
+			ThreePGPercentage = ThreeGoal/(double)TotalThreeGoal;
+			}
+			else{
+				ThreePGPercentage = 0;
+			}
+			if(TotalFT!=0){
+			FTPercentage = FT/(double)TotalFT;
+			}
+			else{
+				FTPercentage = 0;
+			}
+			Off = Offb;//杩涙敾鏁�
+			OffPG = Off/(double)GP;
+			Def = Defb;//闃插畧鏁�
+			DefPG = Def/(double)GP;
+			StealPG = Steal/(double)GP;
+			RPG = Rejection/(double)GP;
+			ToPG = To/(double)GP;
+			foulPG = foul/(double)GP;
+			PPG = PTS/(double)GP;
+			Eff =  (PTS+backboard+assist+Steal+Rejection)-(TotalFieldGoal-FieldGoal)-(TotalFT-FT)-To; 
+			Gmsc = PTS+0.4*FieldGoal-0.7*TotalFieldGoal-0.4*(TotalFT-FT)+0.7*Offb+0.3*Defb+Steal+0.7*assist+0.7*Rejection
 				-0.4*foul-To; 
-		TruePercentage =  PTS/(double)(2*(TotalFieldGoal+0.44*TotalFT));
-		ShootEff = (FieldGoal+0.5*ThreeGoal)/(double)TotalFieldGoal;//鎶曠鏁堢巼锛�	
-		BackboardEff = backboard*((double)totalminute/5)/(double)MinutesOnField/(totalb+totalbother) ;//绡澘鐜囷紝		
-		OffBEff = Offb*((double)totalminute/5)/(double)MinutesOnField/(totalb+totalbother) ;//杩涙敾绡澘鐜囷紝		
-		DefBEff = Defb*((double)totalminute/5)/(double)MinutesOnField/(totalb+totalbother) ;//闃插畧绡澘鐜囷紝		
-		AssitEff = assist/((double)MinutesOnField/((double)totalminute/5)*TotalGoal-TotalFieldGoal) ;//鍔╂敾鐜囷紝		
-		StealEff = Steal*((double)totalminute/5)/(double)MinutesOnField/TotalOffb;//鎶㈡柇鐜囷紝		
-		RejectionEff = Rejection*((double)totalminute/5)/(double)MinutesOnField/OtherTotalFieldGoal;//鐩栧附鐜囷紝		
-		ToEff = To/(double)(TotalFieldGoal-TotalThreeGoal+0.44*TotalFT+To) ;//澶辫鐜囷紝		
-		UseEff =  (TotalFieldGoal+0.44*TotalFT+To)*(totalminute/5)/(double)MinutesOnField/(TotalGoal+0.44*AllFT
+			TruePercentage =  PTS/(double)(2*(TotalFieldGoal+0.44*TotalFT));
+			ShootEff = (FieldGoal+0.5*ThreeGoal)/(double)TotalFieldGoal;//鎶曠鏁堢巼锛�	
+			BackboardEff = backboard*((double)totalminute/5)/(double)MinutesOnField/(totalb+totalbother) ;//绡澘鐜囷紝		
+			OffBEff = Offb*((double)totalminute/5)/(double)MinutesOnField/(totalb+totalbother) ;//杩涙敾绡澘鐜囷紝		
+			DefBEff = Defb*((double)totalminute/5)/(double)MinutesOnField/(totalb+totalbother) ;//闃插畧绡澘鐜囷紝		
+			AssitEff = assist/((double)MinutesOnField/((double)totalminute/5)*TotalGoal-TotalFieldGoal) ;//鍔╂敾鐜囷紝		
+			StealEff = Steal*((double)totalminute/5)/(double)MinutesOnField/TotalOffb;//鎶㈡柇鐜囷紝		
+			RejectionEff = Rejection*((double)totalminute/5)/(double)MinutesOnField/OtherTotalFieldGoal;//鐩栧附鐜囷紝		
+			ToEff = To/(double)(TotalFieldGoal-TotalThreeGoal+0.44*TotalFT+To) ;//澶辫鐜囷紝		
+			UseEff =  (TotalFieldGoal+0.44*TotalFT+To)*(totalminute/5)/(double)MinutesOnField/(TotalGoal+0.44*AllFT
 						+AllTo) ;//浣跨敤鐜�
+		}
+		else{
+			BPG = 0;
+			APG = 0;
+			MPG = 0;
+			FieldGoalPercentage = 0;
+			ThreePGPercentage = 0;
+			FTPercentage = 0;
+			Off = 0;//杩涙敾鏁�
+			OffPG = 0;
+			Def = 0;//闃插畧鏁�
+			DefPG = 0;
+			StealPG =0;
+			RPG = 0;
+			ToPG = 0;
+			foulPG =0;
+			PPG = 0;
+			Eff =  0; 
+			Gmsc = 0; 
+			TruePercentage =  0;
+			ShootEff = 0;//鎶曠鏁堢巼锛�	
+			BackboardEff = 0;//绡澘鐜囷紝		
+			OffBEff = 0;//杩涙敾绡澘鐜囷紝		
+			DefBEff = 0;//闃插畧绡澘鐜囷紝		
+			AssitEff = 0;//鍔╂敾鐜囷紝		
+			StealEff = 0;//鎶㈡柇鐜囷紝		
+			RejectionEff = 0;//鐩栧附鐜囷紝		
+			ToEff =0 ;//澶辫鐜囷紝		
+			UseEff = 0;
+		}
 		
 		AllInfo.setGP(GP);
 		AllInfo.setGS(GS);
@@ -447,7 +510,7 @@ public class PlayerLogic implements PlayerInfoService{
 	}
 	public void setOrder(String orderName,boolean isASC) {
 		// TODO Auto-generated method stub
-		p.setOrder(orderName, isASC);
+		//p.setOrder(orderName, isASC);
 	}
 	public PlayerDataPO[] getAllInfo() {
 		// TODO Auto-generated method stub
@@ -456,8 +519,17 @@ public class PlayerLogic implements PlayerInfoService{
 		return res ;
 	}
 	public PlayerDataPO[] getFirstFifty(String orderName) {
-		PlayerDataPO[] res = p.getFirstFifty(orderName);
+		//PlayerDataPO[] res = p.getFirstFifty(orderName);
 		// TODO Auto-generated method stub
-		return res ;
+		return null ;
+	}
+
+	public void initialize(String filepath){
+		File root = new File(filepath);
+		File[] files = root.listFiles();
+		for(File file:files){
+			System.out.println(file.getName());
+			analysData(file.getName());
+		}
 	}
 }

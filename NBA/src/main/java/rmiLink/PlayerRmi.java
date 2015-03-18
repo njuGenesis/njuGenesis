@@ -6,7 +6,7 @@ import dataService.PlayerDataService;
 
 
 public class PlayerRmi {
-	String ip = "rmi://127.0.0.1:3688/test";
+	String ip = "rmi://127.0.0.1:3688/player";
 	public void addInfo(PlayerDataPO p){
 		try{
 

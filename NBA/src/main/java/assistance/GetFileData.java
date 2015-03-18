@@ -10,17 +10,19 @@ import data.po.TeamDataPO;
 
 public class GetFileData {
 	boolean isjoin = false;
-	String MatchFileName ="D:/迭代一数据/matches";
-    String Teamfilename ="D:/迭代一数据/teams/teams";
+	String MatchFileName ="./迭代一数据/matches";
+    String Teamfilename ="./迭代一数据/teams/teams";
+    
 	public String readPlayerfile(String filename) {
 		String res = "";
 		try {
+			//System.out.println("hi"+filename);
 			File f = new File(filename);
 			FileReader fr = new FileReader(f);
 			BufferedReader br = new BufferedReader(fr);
 			String data = br.readLine();// 一次读入一行，直到读入null为文件结束
 			// res = res + data + '\n';
-
+			isjoin = false;
 			while (data != null) {
 				// System.out.println(data+";");
 
@@ -29,8 +31,12 @@ public class GetFileData {
 					isjoin = true;
 				} else {
 					data = data.trim();
-					// System.out.println(data+";");
+					 //System.out.println(data+";");
 					data = getSubPlayerData(data);
+					if(data.equals("")){
+						data = "null";
+					}
+					
 					res = res + data + '\n';
 					isjoin = false;
 				}
