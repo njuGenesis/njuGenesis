@@ -13,8 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import presentation.contenui.ContentController;
-import presentation.contenui.PlayerStatsPanel;
-import presentation.contenui.TablePanel;
+import assistance.ContentItem;
 import assistance.MenuItem;
 
 import com.sun.awt.AWTUtilities;
@@ -74,7 +73,8 @@ public class MainUI {
 		
 		
 		//表格测试！
-		PlayerStatsPanel sp = new PlayerStatsPanel("img/content/contentTitle.png");
+//		PlayerStatsPanel sp = new PlayerStatsPanel("img/content/contentTitle.png");
+		controller.changeContent(ContentItem.Home);
 		
 		
 		mainFrame.setVisible(true);

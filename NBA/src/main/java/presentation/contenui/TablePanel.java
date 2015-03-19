@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
 
-import presentation.mainui.ContentPanel;
 import presentation.mainui.MainUI;
 import data.po.PlayerDataPO;
 
