@@ -10,9 +10,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import data.po.PlayerDataPO;
 import presentation.component.GComboBox;
+import bussinesslogic.player.PlayerLogic;
 
 public class PlayerStatsPanel extends ContentPanel{
+	
+	private PlayerLogic logic = new PlayerLogic();
 	
 	public JTable table;
 	public JScrollPane jsp;
@@ -113,4 +117,10 @@ public class PlayerStatsPanel extends ContentPanel{
         
 	}
 
+	private TableData[] getPlayerData(){
+		PlayerDataPO[] po = logic.getAllInfo();
+		String[] head = {"序号","名称","球队","参赛","先发","篮板","助攻","","","","","",""};
+		
+		return null;
+	}
 }
