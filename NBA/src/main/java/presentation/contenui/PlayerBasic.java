@@ -20,6 +20,8 @@ public class PlayerBasic extends ContentPanel{
 	private GLabel age;
 	private GLabel exp;
 	private GLabel school;
+	
+	private String url = "img/Player/playerBasic.png";
 
 	public static void main(String[] args) {
 		
@@ -27,17 +29,10 @@ public class PlayerBasic extends ContentPanel{
 		frame. setBounds(0, 0, 1250, 650);
 		frame.setLayout(null);
 		
-		String[] data = {"E:/workplace3/team.png", "E:/workplace3/player.png", "Aaron Brooks", "0", "G", "6-0", "161", "JAN 14, 1985", "29"
-				, "5", "Oregon"};
-		
-		PlayerBasic p = new PlayerBasic(data);
+		PlayerBasic p = new PlayerBasic("");
 		
 		frame.getContentPane().add(p.getContentPanel());
 		frame.setVisible(true);
-	}
-	
-	public PlayerBasic(String url) {
-		super(url);
 	}
 	
 	/*
@@ -54,8 +49,9 @@ public class PlayerBasic extends ContentPanel{
 	 * 9:球龄
 	 * 10:毕业院校
 	 */
-	public PlayerBasic(String[] data){
-		super("img/Player/playerBasic.png");
+	public PlayerBasic(String key) {
+
+		String[] data = getData(key);
 
 		team = new GLabel(data[0], new Point(106, 103), new Point(122, 122), this.getContentPanel(), true);
 		palyer = new GLabel(data[1], new Point(291, 165), new Point(228, 175), this.getContentPanel(), true);
@@ -68,6 +64,14 @@ public class PlayerBasic extends ContentPanel{
 		age = new GLabel(data[8], new Point(646, 317), new Point(110, 25), this.getContentPanel(), true, 1, 15);
 		exp = new GLabel(data[9], new Point(646, 348), new Point(110, 25), this.getContentPanel(), true, 1, 15);
 		school = new GLabel(data[10], new Point(681, 379), new Point(110, 25), this.getContentPanel(), true, 1, 15);
+	}
+	
+	
+	private String[] getData(String palyerName){
+		//
+		String[] data = {"E:/workplace3/team.png", "E:/workplace3/player.png", "Aaron Brooks", "0", "G", "6-0", "161", "JAN 14, 1985", "29"
+				, "5", "Oregon"};
+ 		return data;
 	}
 
 }

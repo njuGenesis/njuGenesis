@@ -5,8 +5,9 @@ import presentation.mainui.BgPanel;
 public class ContentPanel {
 	protected BgPanel panel;
 	public ContentController con;
+	private String url;
 	
-	public ContentPanel(String url){
+	public ContentPanel(){
 		panel = new BgPanel(url);
 		panel.setSize(880, 555);
 		panel.setLocation(220, 95);
