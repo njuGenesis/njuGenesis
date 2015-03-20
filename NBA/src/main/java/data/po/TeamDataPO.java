@@ -1,6 +1,5 @@
 package data.po;
 
-import java.util.ArrayList;
 
 public class TeamDataPO {
 	String Name;//队名
@@ -9,7 +8,7 @@ public class TeamDataPO {
 	String EorW;//东西部
 	String area;//分区
 	String mainposition;//场馆
-	ArrayList<PlayerDataPO> players;  //球员
+	String players;  //球员
 	
 	int buildyear;//年份
 	
@@ -128,12 +127,12 @@ public class TeamDataPO {
 		WinMatch = d;
 	}
 	
-	public ArrayList<PlayerDataPO> getPlayers() {
+	public String getPlayers() {
 		return players;
 	}
 
 	
-	public void setPlayers(ArrayList<PlayerDataPO> players) {
+	public void setPlayers(String players) {
 		this.players = players;
 	}
 	

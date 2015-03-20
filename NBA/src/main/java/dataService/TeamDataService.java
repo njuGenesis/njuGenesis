@@ -1,9 +1,16 @@
 package dataService;
 
 import java.rmi.Remote;
-import java.rmi.RemoteException;
+import java.util.ArrayList;
 
-public interface TeamDataService extends Remote{
-	public void getTeamBasicData(String name)throws RemoteException;
-	public void getTeamHideData(String name)throws RemoteException;
+import data.po.TeamDataPO;
+
+public interface TeamDataService extends Remote {
+	public void addInfo(TeamDataPO p);
+
+	public TeamDataPO getInfo(String name);
+
+	public ArrayList<TeamDataPO> getAllInfo();
+
+	public ArrayList<TeamDataPO> getFirstFifty(String orderName);
 }

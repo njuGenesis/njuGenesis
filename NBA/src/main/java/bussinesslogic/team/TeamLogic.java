@@ -4,30 +4,30 @@ import java.util.ArrayList;
 
 import assistance.GetFileData;
 import bussinesslogic.match.MatchLogic;
+import bussinesslogic.player.PlayerLogic;
 import data.po.MatchDataPO;
 import data.po.PlayerDataPO;
 import data.po.TeamDataPO;
 
 public class TeamLogic {
 	ArrayList<TeamDataPO> Teams;
-
 	// 初始化所有队伍所拥有的球员信息
-	public void savePlayerData(ArrayList<PlayerDataPO> players) {
-		for (int i = 0; i < players.size(); i++) {
+	public void savePlayerData(PlayerDataPO[] players) {
+		for (int i = 0; i < players.length; i++) {
 			for (int k = 0; k < Teams.size(); k++) {
-				if (players.get(i).getTeamName().equals(Teams.get(k).getName())) {
-					Teams.get(k).getPlayers().add(players.get(i));
+				if (players[i].getTeamName().equals(Teams.get(k).getName())) {
+					Teams.get(k).setPlayers(Teams.get(k).getPlayers()+players[i].getName()+";");
 				}
 			}
 		}
 	}
 
 	// players是所有球员信息的集合，循环访问，根据球员的队名更新球队信息
-	public void saveTeamData(ArrayList<PlayerDataPO> players) {
-		for (int i = 0; i < players.size(); i++) {
-			for (int k = 0; players.get(i).getTeamName() != Teams.get(k)
+	public void saveTeamData(PlayerDataPO[] players) {
+		for (int i = 0; i < players.length; i++) {
+			for (int k = 0; players[i].getTeamName() != Teams.get(k)
 					.getName(); k++) {
-				updateTeamData(k, players.get(i));
+				updateTeamData(k, players[i]);
 			}
 		}
 	}
@@ -35,10 +35,9 @@ public class TeamLogic {
 	public void updateTeamData(int teamNumber, PlayerDataPO player) {
 		TeamDataPO upTeam = Teams.get(teamNumber);
 
-		if (!upTeam.getPlayers().contains(player)) {
-			upTeam.getPlayers().add(player);
+		if (!upTeam.getPlayers().contains(player.getName())) {
+			upTeam.setPlayers(upTeam.getPlayers()+player.getName()+";");
 		}
-
 		upTeam.setShootNumber(upTeam.getShootNumber()
 				+ player.getTotalFieldGoal()); // 投篮总数，场均数
 		upTeam.setShootNumberPG(upTeam.getShootNumber()
@@ -48,7 +47,6 @@ public class TeamLogic {
 				+ player.getFieldGoal()); // 投篮命中总数，场均数
 		upTeam.setShootEffNumberPG(upTeam.getShootEffNumber()
 				/ upTeam.getMatchNumber());
-
 		upTeam.setShootEff(upTeam.getShootEffNumber() / upTeam.getShootNumber()); // 投篮进球率
 
 		// -------------------------------------------------------------------------------------------------------
@@ -258,6 +256,9 @@ public class TeamLogic {
 	public static void main(String[] args) {
 		TeamLogic team = new TeamLogic();
 		team.initTeamData();
+		PlayerLogic getPlayers = new PlayerLogic();
+		team.savePlayerData(getPlayers.getAllInfo());
+		team.saveTeamData(getPlayers.getAllInfo());
 	}
 
 }

@@ -29,7 +29,7 @@ public class MatchLogic {
 
 	}
 
-	// 计算回合数
+	// 计算比赛双方进攻回合数
 	public MatchDataPO calcuRound(MatchDataPO match) {
 		match.setTeamround1(match.getShoot1() + 0.4 * match.getFT1() - 1.07
 				* match.getTeam1Off() * match.getLostSH1()
