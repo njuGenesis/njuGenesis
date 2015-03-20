@@ -34,8 +34,11 @@ public class PlayerStatsPanel extends ContentPanel{
 	public JButton left;
 	public JButton right;
 	public JTextField page;
+	
+	private static String url = "img/content/contentTitle.png";
 
-	public PlayerStatsPanel(String url) {
+	public PlayerStatsPanel() {
+		
 		super(url);
 		
 		left = UIUtil.getLeftButton();

@@ -27,8 +27,11 @@ public class PlayerSearchPanel extends ContentPanel{
 	public JTextField nameSearch;
 
 	public JButton[] initials = new JButton[26];
+	
+	private static String url = "img/content/contentTitle.png";
 
-	public PlayerSearchPanel(String url) {
+	public PlayerSearchPanel() {
+		
 		super(url);
 
 		left = UIUtil.getLeftButton();

@@ -24,8 +24,11 @@ public class TeamStatsPanel extends ContentPanel{
 
 	public JButton left;
 	public JButton right;
+	
+	private static  String url = "img/content/contentTitle.png";
 
-	public TeamStatsPanel(String url) {
+	public TeamStatsPanel() {
+		
 		super(url);
 
 		left = UIUtil.getLeftButton();

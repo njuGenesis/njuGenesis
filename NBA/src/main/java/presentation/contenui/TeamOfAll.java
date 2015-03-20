@@ -4,12 +4,13 @@ import java.awt.Point;
 
 import javax.swing.JFrame;
 
-import presentation.mainui.ContentPanel;
 import presentation.mainui.GButton;
 
 public class TeamOfAll extends ContentPanel{
 	
 	private GButton[] team = new GButton[30];
+	
+	private static String url = "img/team/teamcontent.png";
 	
 	public static void main(String[] args) {
 
@@ -17,27 +18,16 @@ public class TeamOfAll extends ContentPanel{
 		frame. setBounds(0, 0, 1250, 650);
 		frame.setLayout(null);
 		
-		String[] data = new String[30];
-		for(int i = 0;i<30;i++){
-			data[i] = "E:/workplace3/team.png";
-		}
-		
-		TeamOfAll team = new TeamOfAll(data);
+		TeamOfAll team = new TeamOfAll("");
 		
 		frame.getContentPane().add(team.getContentPanel());
 		frame.setVisible(true);
 	}
 
-	public TeamOfAll(String url) {
+	public TeamOfAll(String key) {
 		super(url);
-	}
-
-	/*
-	 * data:
-	 * 球队的所有图片地址
-	 */
-	public TeamOfAll(String[] data){
-		super("img/team/teamcontent.png");
+		
+		String[] data = getData(key);
 		
 		for(int i = 0; i<30; i++){
 			if(i>=0&&i<=4){
@@ -64,5 +54,17 @@ public class TeamOfAll extends ContentPanel{
 				}
 			}
 		}
+	}
+
+	/*
+	 * data:
+	 * 球队的所有图片地址
+	 */
+	private String[] getData(String key){
+		String[] data = new String[30];
+		for(int i = 0;i<30;i++){
+			data[i] = "E:/workplace3/team.png";
+		}
+		return data;
 	}
 }

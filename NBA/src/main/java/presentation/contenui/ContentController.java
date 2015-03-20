@@ -23,10 +23,10 @@ public class ContentController {
 	public void changeContent(ContentItem c){
 		ContentPanel cp = new ContentPanel("");
 		switch(c){
-		case PlayerStats:cp = new PlayerStatsPanel("img/content/contentTitle.png");break;
-		case TeamStats:cp = new TeamStatsPanel("img/content/contentTitle.png");break;
-		case Home:cp = new ContentPanel("img/content/homepanel.png");break;
-		case PlayerSearch:cp = new PlayerSearchPanel("img/content/contentTitle.png");break;
+		case PlayerStats:cp = new PlayerStatsPanel();break;
+		case TeamStats:cp = new TeamStatsPanel();break;
+//		case Home:cp = new ContentPanel("img/content/homepanel.png");break;
+		case PlayerSearch:cp = new PlayerSearchPanel();break;
 		default:
 
 		}

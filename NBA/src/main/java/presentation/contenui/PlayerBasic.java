@@ -4,7 +4,6 @@ import java.awt.Point;
 
 import javax.swing.JFrame;
 
-import presentation.mainui.ContentPanel;
 import presentation.mainui.GLabel;
 
 public class PlayerBasic extends ContentPanel{
@@ -21,7 +20,7 @@ public class PlayerBasic extends ContentPanel{
 	private GLabel exp;
 	private GLabel school;
 	
-	private String url = "img/Player/playerBasic.png";
+	protected static String url = "img/Player/playerBasic.png";
 
 	public static void main(String[] args) {
 		
@@ -50,7 +49,8 @@ public class PlayerBasic extends ContentPanel{
 	 * 10:毕业院校
 	 */
 	public PlayerBasic(String key) {
-
+		super(url);
+		
 		String[] data = getData(key);
 
 		team = new GLabel(data[0], new Point(106, 103), new Point(122, 122), this.getContentPanel(), true);
