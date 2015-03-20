@@ -17,7 +17,9 @@ public class BgPanel extends JPanel{
 		im = new ImageIcon(s);  
 	}
 	public void paintComponent(Graphics g) {  
+		super.paintComponent(g);
 		g.drawImage(im.getImage(), 0, 0, this);   
+		//this.repaint();
 	}
 
 }

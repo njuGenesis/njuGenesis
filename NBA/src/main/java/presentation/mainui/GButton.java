@@ -1,6 +1,7 @@
 package presentation.mainui;
 
 import java.awt.Container;
+import java.awt.Graphics;
 import java.awt.Point;
 
 import javax.swing.ImageIcon;
@@ -12,6 +13,8 @@ public class GButton extends JButton{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	ImageIcon image;
 
 	public GButton(String file, Point location, Point size, Container container, boolean visible){
 		this.setIcon(new ImageIcon(file));
