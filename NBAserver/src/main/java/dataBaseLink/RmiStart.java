@@ -40,7 +40,6 @@ public class RmiStart {
         }
 	}
 	public static void main(String[] arg0){
-		
 		connect("127.0.0.1");
 	}
 }
