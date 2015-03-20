@@ -1,12 +1,16 @@
 package presentation.contenui;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+
+import presentation.component.GComboBox;
 
 public class PlayerStatsPanel extends ContentPanel{
 	
@@ -29,6 +33,7 @@ public class PlayerStatsPanel extends ContentPanel{
 	
 	public JButton left;
 	public JButton right;
+	public JTextField page;
 
 	public PlayerStatsPanel(String url) {
 		super(url);
@@ -39,6 +44,13 @@ public class PlayerStatsPanel extends ContentPanel{
         right = UIUtil.getRightButton();
         right.setBounds(450, 495, 20, 20);
         panel.add(right);
+        
+        page = new JTextField("1");
+        page.setBounds(413, 494, 25, 25);
+        page.setOpaque(false);
+//        page.setBorder(null);
+        page.setFont(new Font("微软雅黑",1,12));
+        panel.add(page);
 		
 		PagingTableModel model = new PagingTableModel(TableData.getPlayerVO());  
         table = new JTable(model);  

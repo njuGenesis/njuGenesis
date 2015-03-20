@@ -9,6 +9,7 @@ import assistance.MenuItem;
 
 public class ContentController {
 
+	//----------改变标题----------
 	public void changeTitle(MenuItem m){
 		JPanel title = MainUI.getTitlePanel();
 		if(title.getComponentAt(0, 0)!=null){
@@ -18,12 +19,14 @@ public class ContentController {
 		MainUI.getMainFrame().repaint();
 	}
 
+	//----------内容页跳转----------
 	public void changeContent(ContentItem c){
 		ContentPanel cp = new ContentPanel("");
 		switch(c){
 		case PlayerStats:cp = new PlayerStatsPanel("img/content/contentTitle.png");break;
 		case TeamStats:cp = new TeamStatsPanel("img/content/contentTitle.png");break;
-		case Home:cp = new ContentPanel("img/content/homepanel.png");
+		case Home:cp = new ContentPanel("img/content/homepanel.png");break;
+		case PlayerSearch:cp = new PlayerSearchPanel("img/content/contentTitle.png");break;
 		default:
 
 		}

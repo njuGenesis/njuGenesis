@@ -191,6 +191,7 @@ public class MenuBar {
 
 		public void mousePressed(MouseEvent e) {
 			con.changeTitle(MenuItem.Player);
+			con.changeContent(ContentItem.PlayerSearch);
 		}
 
 		public void mouseReleased(MouseEvent e) {

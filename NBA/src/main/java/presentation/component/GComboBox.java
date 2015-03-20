@@ -1,4 +1,4 @@
-package presentation.contenui;
+package presentation.component;
 
 import java.awt.Color;
 import java.awt.Dimension;

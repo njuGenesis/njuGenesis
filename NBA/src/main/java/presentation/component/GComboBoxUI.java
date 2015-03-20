@@ -1,4 +1,4 @@
-package presentation.contenui;
+package presentation.component;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,6 +16,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
+
+import presentation.contenui.UIUtil;
 
 public class GComboBoxUI extends BasicComboBoxUI{
 

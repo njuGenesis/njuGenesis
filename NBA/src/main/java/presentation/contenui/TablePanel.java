@@ -33,7 +33,7 @@ public class TablePanel extends ContentPanel{
 		}
 		
 		
-		TableModel tm = new PlayerTableModelAll(list);
+		TableModel tm = new PlayerTableModel(list);
 		
 		table.setModel(tm);
 		System.out.println("1111111");

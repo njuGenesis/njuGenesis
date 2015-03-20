@@ -1,4 +1,4 @@
-package presentation.contenui;
+package presentation.component;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicScrollBarUI;
+
+import presentation.contenui.UIUtil;
 
 public class GScrollBarUI extends BasicScrollBarUI{
 
