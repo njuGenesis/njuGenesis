@@ -27,6 +27,7 @@ public class ContentController {
 		case TeamStats:cp = new TeamStatsPanel();break;
 //		case Home:cp = new ContentPanel("img/content/homepanel.png");break;
 		case PlayerSearch:cp = new PlayerSearchPanel();break;
+		case TEAMOFALL:cp = new TeamOfAll();break;
 		default:
 
 		}

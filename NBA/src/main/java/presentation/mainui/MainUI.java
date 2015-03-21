@@ -13,6 +13,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import presentation.component.BgPanel;
 import presentation.contenui.ContentController;
 import assistance.ContentItem;
 import assistance.MenuItem;

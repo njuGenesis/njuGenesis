@@ -5,6 +5,6 @@ public enum ContentItem {
 	TeamStats,
 	Home,
 	PlayerSearch,
-	
+	TEAMOFALL;
 
 }

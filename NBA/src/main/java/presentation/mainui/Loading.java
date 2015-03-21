@@ -7,6 +7,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 
+import presentation.component.GLabel;
+
 import com.sun.awt.AWTUtilities;
 
 @SuppressWarnings("restriction")

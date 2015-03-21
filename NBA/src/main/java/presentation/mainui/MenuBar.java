@@ -164,6 +164,7 @@ public class MenuBar {
 
 		public void mousePressed(MouseEvent e) {
 			con.changeTitle(MenuItem.Team);
+			con.changeContent(ContentItem.TEAMOFALL);
 		}
 
 		public void mouseReleased(MouseEvent e) {

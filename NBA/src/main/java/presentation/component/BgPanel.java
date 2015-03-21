@@ -1,4 +1,4 @@
-package presentation.mainui;
+package presentation.component;
 
 import java.awt.Graphics;
 

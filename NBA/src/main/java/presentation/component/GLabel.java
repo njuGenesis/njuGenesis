@@ -1,4 +1,4 @@
-package presentation.mainui;
+package presentation.component;
 
 import java.awt.Container;
 import java.awt.Point;
