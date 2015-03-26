@@ -15,7 +15,7 @@ public class NewFont {
 	private static File boldFile = new File(fontpath + "SourceHanSansCN-Bold.otf");
 	private static File heavyFile = new File(fontpath + "SourceHanSansCN-Heavy.otf");
 	private static File[] files = {extraLightFile,lightFile,normalFile,regularFile,mediumFile,boldFile,heavyFile};
-	
+
 	public static Font extraLight;
 	public static Font light;
 	public static Font normal;
@@ -24,9 +24,10 @@ public class NewFont {
 	public static Font bold;
 	public static Font heavy;
 	public static Font[] fonts = {extraLight,light,normal,regular,medium,bold,heavy};
-	
+
+
 	public static Font menuFont;
-	
+
 	public static void initFont(){
 		try {
 			for(int i=0;i<7;i++){
@@ -37,13 +38,37 @@ public class NewFont {
 		catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		
+
 		initMenuFont();
-		
+
 	}
-	
+
 	private static void initMenuFont(){
 		light = light.deriveFont(Font.BOLD, 20);
+	}
+
+	private static Font getTableTitleFont(){
+		java.io.File file = new java.io.File(fontpath + "hb.ttf");
+
+		if (!file.exists()) {
+			System.out.println("file not found");
+			return new Font("微软雅黑",1,14);
+		}
+
+
+		try {
+			java.io.FileInputStream fi = new java.io.FileInputStream(file);
+			java.io.BufferedInputStream fb = new java.io.BufferedInputStream(fi);
+			Font nf = Font.createFont(Font.TRUETYPE_FONT, fb);
+			nf = nf.deriveFont(Font.BOLD, 10);
+			System.out.println(nf.getFontName());
+			System.out.println(nf.getSize());
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+		return null;
 	}
 
 

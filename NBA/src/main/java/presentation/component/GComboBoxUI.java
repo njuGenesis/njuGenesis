@@ -11,6 +11,7 @@ import java.awt.RenderingHints;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.plaf.basic.BasicComboBoxUI;
@@ -114,6 +115,9 @@ public class GComboBoxUI extends BasicComboBoxUI{
 						ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
 						ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 				sp.setHorizontalScrollBar(null);
+				JScrollBar jsb = new JScrollBar();
+				jsb.setUI(new GScrollBarUI());
+				sp.setHorizontalScrollBar(jsb);
 				return sp;
 			}
 			//重载paintBorder方法 来画出我们想要的边框..

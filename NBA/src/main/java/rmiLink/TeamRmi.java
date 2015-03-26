@@ -7,7 +7,7 @@ import data.po.TeamDataPO;
 import dataService.TeamDataService;
 
 public class TeamRmi {
-	String ip = "rmi://127.0.0.1:3688/player";
+	String ip = "rmi://127.0.0.1:3688/team";
 
 	public void addInfo(TeamDataPO p) {
 		try {
