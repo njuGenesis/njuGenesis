@@ -25,16 +25,16 @@ public class TeamDataPO implements Serializable{
 	int ShootNumber;//投篮数
 	double ShootNumberPG;//场均投篮
 	
-	int ShootEffNumber;//投篮命中数
+	double ShootEffNumber;//投篮命中数
 	double ShootEffNumberPG;//场均
 	
 	int TPNumber;//三分出手数
 	double TPNumberPG;//场均
 	
-	int TPEffNumber;//三分命中数
+	double TPEffNumber;//三分命中数
 	double TPEffNumberPG;//场均
 	
-	int FTEffNumber;//罚球命中数
+	double FTEffNumber;//罚球命中数
 	double FTEffNumberPG;//场均
 	
 	int FTNumber;//罚球出手数
@@ -222,7 +222,7 @@ public class TeamDataPO implements Serializable{
 		ShootNumberPG = shootNumberPG;
 	}
 
-	public int getShootEffNumber() {
+	public double getShootEffNumber() {
 		return ShootEffNumber;
 	}
 
@@ -254,11 +254,11 @@ public class TeamDataPO implements Serializable{
 		TPNumberPG = tPNumberPG;
 	}
 
-	public int getTPEffNumber() {
+	public double getTPEffNumber() {
 		return TPEffNumber;
 	}
 
-	public void setTPEffNumber(int tPEffNumber) {
+	public void setTPEffNumber(double tPEffNumber) {
 		TPEffNumber = tPEffNumber;
 	}
 
@@ -270,11 +270,11 @@ public class TeamDataPO implements Serializable{
 		TPEffNumberPG = tPEffNumberPG;
 	}
 
-	public int getFTEffNumber() {
+	public double getFTEffNumber() {
 		return FTEffNumber;
 	}
 
-	public void setFTEffNumber(int fTEffNumber) {
+	public void setFTEffNumber(double fTEffNumber) {
 		FTEffNumber = fTEffNumber;
 	}
 

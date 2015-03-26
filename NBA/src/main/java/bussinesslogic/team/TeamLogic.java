@@ -42,7 +42,7 @@ public class TeamLogic implements TeamInfoService {
 		if (!upTeam.getPlayers().contains(player.getName())) {
 			upTeam.setPlayers(upTeam.getPlayers() + player.getName() + ";");
 		}
-		
+
 		upTeam.setShootNumber(upTeam.getShootNumber()
 				+ player.getTotalFieldGoal()); // 投篮总数，场均数
 
@@ -53,6 +53,7 @@ public class TeamLogic implements TeamInfoService {
 				+ player.getFieldGoal()); // 投篮命中总数，场均数
 		upTeam.setShootEffNumberPG(upTeam.getShootEffNumber()
 				/ upTeam.getMatchNumber());
+
 		if ((upTeam.getShootNumber() > 0)) {
 			upTeam.setShootEff(upTeam.getShootEffNumber()
 					/ upTeam.getShootNumber()); // 投篮进球率
@@ -94,9 +95,10 @@ public class TeamLogic implements TeamInfoService {
 		upTeam.setBackBoard(upTeam.getBackBoard() + player.getBackboard()); // 总篮板数
 		upTeam.setBackBoardPG(upTeam.getBackBoard() / upTeam.getMatchNumber());
 
-		upTeam.setBackBoardEff(upTeam.getBackBoardEff()
-				+ player.getBackboardEff() * player.getMinutesOnField() * 5); // 总篮板率
-
+		/*
+		 * upTeam.setBackBoardEff(upTeam.getBackBoardEff() +
+		 * player.getBackboardEff() * player.getMinutesOnField() * 5); // 总篮板率
+		 */
 		/*
 		 * upTeam.setOffBackBoardEff(upTeam.getOffBackBoardEff() +
 		 * player.getOffBEff() * player.getMinutesOnField() * 5); // 进攻总篮板率
@@ -136,7 +138,7 @@ public class TeamLogic implements TeamInfoService {
 
 	// 球队名称，所在地等从teams文件里直接读取的信息
 	public void initTeamData() {
-		if (isExist()) {
+		if (!isExist()) {
 			System.out.println("team信息已经存在！");
 			return;
 		}
@@ -150,8 +152,6 @@ public class TeamLogic implements TeamInfoService {
 					.getFirstteam(), Matches.get(i).getSecondteam());
 		}
 
-		
-		Matches = matchLogic.getMatchDetail();
 		for (int i = 0; i < Matches.size(); i++) {
 			calcuRate(Matches.get(i), Matches.get(i).getFirstteam(), Matches
 					.get(i).getSecondteam());
@@ -220,6 +220,10 @@ public class TeamLogic implements TeamInfoService {
 						Teams.get(i).getOff() + match.getTeamround1()); // 进攻，防守回合总数
 				Teams.get(i).setDef(
 						Teams.get(i).getDef() + match.getTeamround2());
+				Teams.get(i).setDefPG(
+						Teams.get(i).getDef() / Teams.get(i).getMatchNumber());
+				Teams.get(i).setOffPG(
+						Teams.get(i).getOff() / Teams.get(i).getMatchNumber());
 
 				Teams.get(i).setOffBackBoard(
 						Teams.get(i).getOffBackBoard() + match.getTeam1Off()); // 总前场篮板和对手前场篮板
@@ -236,7 +240,7 @@ public class TeamLogic implements TeamInfoService {
 						Teams.get(i).getOff() + match.getTeamround2()); // 进攻，防守回合总数
 				Teams.get(i).setDef(
 						Teams.get(i).getDef() + match.getTeamround1());
-				Teams.get(i).setDef(
+				Teams.get(i).setDefPG(
 						Teams.get(i).getDef() / Teams.get(i).getMatchNumber());
 				Teams.get(i).setOffPG(
 						Teams.get(i).getOff() / Teams.get(i).getMatchNumber());
@@ -269,6 +273,9 @@ public class TeamLogic implements TeamInfoService {
 					Teams.get(i).getDefBackBoard()
 							/ (Teams.get(i).getDefBackBoard() + Teams.get(i)
 									.getOtherOffBoard()));
+			Teams.get(i).setBackBoardEff(
+					Teams.get(i).getOffBackBoardEff()
+							+ Teams.get(i).getDefBackBoardEff());
 
 		}
 	}
@@ -283,8 +290,14 @@ public class TeamLogic implements TeamInfoService {
 	}
 
 	public static void main(String[] args) {
-		TeamLogic team = new TeamLogic();
+		
+		TeamLogic team = new TeamLogic(); 
 		team.initTeamData();
+		TeamLogic t = new TeamLogic();
+		System.out.println(t.GetAllInfo().size());
+		System.out.println(t.isExist());
+
+
 	}
 
 }

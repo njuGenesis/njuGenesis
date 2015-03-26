@@ -35,7 +35,7 @@ public class MatchLogic implements MatchInfoService{
 	}*/
 
 	//返回一个包含回合数等信息的match
-	public ArrayList<MatchDataPO> getMatchDetail() {
+	private ArrayList<MatchDataPO> getMatchDetail() {
 		ArrayList<MatchDataPO> MatchList = new ArrayList<MatchDataPO>();
 		GetFileData MatchReader = new GetFileData();
 		String[] fileList = MatchReader.getAllMathcFielName();
@@ -43,9 +43,9 @@ public class MatchLogic implements MatchInfoService{
 			MatchList.add(calcuRound(MatchReader.detailMatch(fileList[i])));
 		}
 		
-		/*MatchRmi add = new MatchRmi();
+		MatchRmi add = new MatchRmi();
 		add.addInfo(MatchList);
-		System.out.println("match信息成功初始化！");*/
+		System.out.println("match信息成功初始化！");
 		return MatchList;
 	}
 
@@ -64,14 +64,20 @@ public class MatchLogic implements MatchInfoService{
 	}
 
 	public ArrayList<MatchDataPO> GetAllInfo() {
-		if(isExit()){
-			return getMatchDetail();
+		if(!isExit()){
+			return m.getAllInfo();
 		}
 		return getMatchDetail();
 	}
 
 	public ArrayList<MatchDataPO> GetInfo(String team1, String team2, String data) {
 		return m.getInfo(team1, team2, data);
+	}
+	
+	public static void main(String[] args) {
+		MatchLogic match = new MatchLogic();
+		System.out.println(match.isExit());
+		System.out.println(match.GetAllInfo().size());
 	}
 
 }

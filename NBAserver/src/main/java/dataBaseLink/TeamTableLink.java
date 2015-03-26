@@ -24,8 +24,8 @@ public class TeamTableLink {
 
 	}
 
-	public void addInfo(ArrayList<TeamDataPO> list){
-		for(int i=0;i<list.size();i++){
+	public void addInfo(ArrayList<TeamDataPO> list) {
+		for (int i = 0; i < list.size(); i++) {
 			addInfo(list.get(i));
 		}
 
@@ -102,7 +102,7 @@ public class TeamTableLink {
 				System.out.println("success");
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("select * from team");
-			
+
 			while (rs.next()) {
 				if (rs.getString("Name").equals(name)) {
 					AllInfo.setName(name);
@@ -257,7 +257,7 @@ public class TeamTableLink {
 		}
 	}
 
-	public void deleteAll(){
+	public void deleteAll() {
 		try {
 			Connection con = DriverManager.getConnection(url, "thometoy",
 					"960105");
@@ -265,36 +265,19 @@ public class TeamTableLink {
 				System.out.println("success");
 			Statement st = con.createStatement();
 			st.executeQuery("TRUNCATE TABLE team");
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
- 
-	
+
 	public boolean judge() {
 		boolean res = false;
-		try {
-			Connection con = DriverManager.getConnection(url, "thometoy",
-					"960105");
-			if (!con.isClosed()) {
-			}
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select * from team");
-			while (rs.next()) {
-				if (rs.last()) {
-					if (rs.getRow() == 0) {
-						res = true;
-					} else {
-						res = false;
-					}
-				}
+			if (getAllInfo().size() == 0) {
+				res = true;
+			} else {
+				res = false;
 			}
 			return res;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 	}
 
 	public void setOrder(String orderName, boolean isUp) {

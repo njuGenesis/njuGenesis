@@ -17,27 +17,12 @@ public class MatchTableLink {
 
 	public boolean judge() {
 		boolean res = false;
-		try {
-			Connection con = DriverManager.getConnection(url, "thometoy",
-					"960105");
-			if (!con.isClosed()) {
-			}
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select * from matchinfo");
-			while (rs.next()) {
-				if (rs.last()) {
-					if (rs.getRow() == 0) {
-						res = true;
-					} else {
-						res = false;
-					}
-				}
-			}
-			return res;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
+		if (getAllInfo().size() == 0) {
+			res = true;
+		} else {
+			res = false;
 		}
+		return res;
 	}
 
 	public MatchTableLink() {
@@ -70,8 +55,8 @@ public class MatchTableLink {
 					+ p.getTeamround2() + "','" + p.getTeam1Off() + "','"
 					+ p.getTeam2Off() + "','" + p.getTeam1Def() + "','"
 					+ p.getTeam2Def() + "','" + p.getLostSH1() + "','"
-					+ p.getLostSH2() + "','" + p.getShoot1() + p.getShoot2()
-					+ "','" + p.getFT1() + p.getFT2() + "','" + p.getTo1()
+					+ p.getLostSH2() + "','" + p.getShoot1() + "','" + p.getShoot2()
+					+ "','" + p.getFT1() +"','" + p.getFT2() + "','" + p.getTo1()
 					+ "','" + p.getTo2();
 
 			System.out.println("match value = "+value);
@@ -132,6 +117,7 @@ public class MatchTableLink {
 				}
 				AllInfo.add(Info);
 			}
+			con.close();
 			return AllInfo;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -139,7 +125,7 @@ public class MatchTableLink {
 		}
 	}
 
-	public void deleteAll() {
+	/*public void deleteAll() {
 		try {
 			Connection con = DriverManager.getConnection(url, "thometoy",
 					"960105");
@@ -150,7 +136,7 @@ public class MatchTableLink {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	public ArrayList<MatchDataPO> getAllInfo() {
 		// TODO Auto-generated method stub
@@ -175,7 +161,7 @@ public class MatchTableLink {
 				AllInfo.setForth_pts(rs.getString("Forth_pts"));
 				AllInfo.setWinner(rs.getString("Winner"));
 				AllInfo.setTeamround1(rs.getDouble("teamround1"));
-				AllInfo.setTeamround2(rs.getDouble("setTeamround2"));
+				AllInfo.setTeamround2(rs.getDouble("Teamround2"));
 				AllInfo.setTeam1Off(rs.getDouble("Team1Off"));
 				AllInfo.setTeam2Off(rs.getDouble("Team2Off"));
 				AllInfo.setTeam1Def(rs.getDouble("Team1Def"));
