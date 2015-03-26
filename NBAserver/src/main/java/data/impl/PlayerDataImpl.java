@@ -18,6 +18,11 @@ public class PlayerDataImpl extends UnicastRemoteObject implements PlayerDataSer
 	}
 
 	PlayerTableLink pl = new PlayerTableLink();
+	public boolean judge() throws RemoteException{
+		return pl.judge();
+	}
+	
+	
 	public void addInfo(PlayerDataPO p) throws RemoteException {
 		// TODO Auto-generated method stub
 		pl.addInfo(p);

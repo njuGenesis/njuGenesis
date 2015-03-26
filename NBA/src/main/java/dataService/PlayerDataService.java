@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import data.po.PlayerDataPO;
 
 public interface PlayerDataService extends Remote{
+	public boolean judge()throws RemoteException;
 	public void addInfo(PlayerDataPO p)throws RemoteException;
 	public PlayerDataPO getInfo(String name)throws RemoteException;
 	public PlayerDataPO[] getAllInfo()throws RemoteException;

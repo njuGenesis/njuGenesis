@@ -4,7 +4,7 @@ import java.awt.Point;
 
 import javax.swing.JFrame;
 
-import presentation.mainui.GLabel;
+import presentation.component.GLabel;
 
 public class PlayerBasic extends ContentPanel{
 	

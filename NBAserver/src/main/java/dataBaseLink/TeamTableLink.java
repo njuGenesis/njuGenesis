@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import data.po.TeamDataPO;
 
 public class TeamTableLink {
-	public static String ip = "172.26.83.142";
+	public static String ip = "114.212.42.244";
 	// public static String ip = "114.212.42.143";
 	public static String url = "jdbc:mysql://" + ip
 			+ ":3306/nbadata?useUnicode=true&characterEncoding=utf-8";
@@ -65,14 +65,14 @@ public class TeamTableLink {
 			System.out
 					.println("insert into team(Name,ShortName,City,EorW,area,mainposition,players,buildyear,MatchNumber,WinMatch,ShootNumber,ShootNumberPG,ShootEffNumber,ShootEffNumberPG,TPNumber,TPNumberPG,"
 							+ "TPEffNumber,TPEffNumberPG,FTEffNumber,FTEffNumberPG,FTNumber,FTNumberPG,OffBackBoard,OffBackBoardPG,DefBackBoard,DefBackBoradPG,OtherDefBoard,OtherOffBoard,BackBoard,BackBoardPG,AssitNumber,AssitNumberPG,"
-							+ "StealNumber,StealNumberPG,Rejection,RejectionPG,To,ToPG,Foul,FoulPG,PTS,PPG,LPS,LPG,ShootEff,TPEff,FTEff,WR,"
+							+ "StealNumber,StealNumberPG,Rejection,RejectionPG,ToTime,ToPG,Foul,FoulPG,PTS,PPG,LPS,LPG,ShootEff,TPEff,FTEff,WR,"
 							+ "Off,OffPG,Def,DefPG,OffEff,DefEff,OffBackBoardEff,BackBoardEff,DefBackBoardEff,StealEff,AssistEff"
 							+ ")values(" + value + ")");
 
 			st
 					.executeUpdate("insert into team(Name,ShortName,City,EorW,area,mainposition,players,buildyear,MatchNumber,WinMatch,ShootNumber,ShootNumberPG,ShootEffNumber,ShootEffNumberPG,TPNumber,TPNumberPG,"
 							+ "TPEffNumber,TPEffNumberPG,FTEffNumber,FTEffNumberPG,FTNumber,FTNumberPG,OffBackBoard,OffBackBoardPG,DefBackBoard,DefBackBoradPG,OtherDefBoard,OtherOffBoard,BackBoard,BackBoardPG,AssitNumber,AssitNumberPG,"
-							+ "StealNumber,StealNumberPG,Rejection,RejectionPG,To,ToPG,Foul,FoulPG,PTS,PPG,LPS,LPG,ShootEff,TPEff,FTEff,WR,"
+							+ "StealNumber,StealNumberPG,Rejection,RejectionPG,ToTime,ToPG,Foul,FoulPG,PTS,PPG,LPS,LPG,ShootEff,TPEff,FTEff,WR,"
 							+ "Off,OffPG,Def,DefPG,OffEff,DefEff,OffBackBoardEff,BackBoardEff,DefBackBoardEff,StealEff,AssistEff"
 							+ ")values(" + value + ")");
 
@@ -130,7 +130,7 @@ public class TeamTableLink {
 					AllInfo.setStealNumberPG(rs.getDouble("StealNumberPG"));
 					AllInfo.setRejection(rs.getInt("Rejection"));
 					AllInfo.setRejectionPG(rs.getDouble("RejectionPG"));
-					AllInfo.setTo(rs.getInt("To"));
+					AllInfo.setTo(rs.getInt("ToTime"));
 					AllInfo.setToPG(rs.getDouble("ToPG"));
 					AllInfo.setFoul(rs.getInt("Foul"));
 					AllInfo.setFoulPG(rs.getDouble("FoulPG"));
@@ -212,7 +212,7 @@ public class TeamTableLink {
 				AllInfo.setStealNumberPG(rs.getDouble("StealNumberPG"));
 				AllInfo.setRejection(rs.getInt("Rejection"));
 				AllInfo.setRejectionPG(rs.getDouble("RejectionPG"));
-				AllInfo.setTo(rs.getInt("To"));
+				AllInfo.setTo(rs.getInt("ToTime"));
 				AllInfo.setToPG(rs.getDouble("ToPG"));
 				AllInfo.setFoul(rs.getInt("Foul"));
 				AllInfo.setFoulPG(rs.getDouble("FoulPG"));
@@ -324,7 +324,7 @@ public class TeamTableLink {
 				AllInfo.setStealNumberPG(rs.getDouble("StealNumberPG"));
 				AllInfo.setRejection(rs.getInt("Rejection"));
 				AllInfo.setRejectionPG(rs.getDouble("RejectionPG"));
-				AllInfo.setTo(rs.getInt("To"));
+				AllInfo.setTo(rs.getInt("ToTime"));
 				AllInfo.setToPG(rs.getDouble("ToPG"));
 				AllInfo.setFoul(rs.getInt("Foul"));
 				AllInfo.setFoulPG(rs.getDouble("FoulPG"));

@@ -10,6 +10,11 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import presentation.component.GButton;
+import presentation.component.GLabel;
+import presentation.component.GPasswordField;
+import presentation.component.GTextField;
+
 import com.sun.awt.AWTUtilities;
 @SuppressWarnings("restriction")
 
@@ -94,6 +99,10 @@ public class LoginUI extends JFrame implements Runnable {
 		thread.start();
 	}
 
+	private void threadStop(){
+		thread = null;
+	}
+	
 	private void componentInit(){
 
 		int ySpace = 19;
@@ -301,6 +310,7 @@ public class LoginUI extends JFrame implements Runnable {
 				catch (InterruptedException e){}
 			}
 			label_Genesis.setVisible(true);
+			threadStop();
 			break;
 		}
 		case CLOSE:{
@@ -331,6 +341,7 @@ public class LoginUI extends JFrame implements Runnable {
 				thread.sleep(1000);
 			} catch (InterruptedException e1) {}
 			this.dispose();
+			threadStop();
 			break;
 		}
 		case VISITERLOGIN:{
@@ -358,10 +369,8 @@ public class LoginUI extends JFrame implements Runnable {
 				}
 				catch (InterruptedException e){}
 			}
-			
 			state = State.LOGIN;
 			threadRun();
-			
 			break;
 		}
 		case USERLOGIN:{
@@ -373,10 +382,6 @@ public class LoginUI extends JFrame implements Runnable {
 			login.setVisible(true);
 			register.setVisible(true);
 			back.setVisible(true);
-			
-			try {
-				thread.sleep(500);
-			} catch (InterruptedException e1) {}
 			
 			label_id.setLocation(inputLocaton1st.x, x=inputLocaton1st.y);
 			id.setLocation(568, x);
@@ -417,15 +422,10 @@ public class LoginUI extends JFrame implements Runnable {
 				}
 				catch (InterruptedException e){}
 			}
-			try {
-				thread.sleep(500);
-			} catch (InterruptedException e1) {}
+			threadStop();
 			break;
 		}
 		case BACK:{
-			try {
-				thread.sleep(500);
-			} catch (InterruptedException e1) {}
 
 			int move = 388 -smallButtonLocation1st.y;
 			
@@ -468,9 +468,6 @@ public class LoginUI extends JFrame implements Runnable {
 				}
 				catch (InterruptedException e){}
 			}
-			try {
-				thread.sleep(500);
-			} catch (InterruptedException e1) {}
 			label_id.setVisible(false);
 			label_password.setVisible(false);
 			id.setVisible(false);
@@ -478,7 +475,7 @@ public class LoginUI extends JFrame implements Runnable {
 			login.setVisible(false);
 			register.setVisible(false);
 			back.setVisible(false);
-			
+			threadStop();
 			break;
 		}
 		case LOGIN:{
@@ -547,6 +544,7 @@ public class LoginUI extends JFrame implements Runnable {
 			}
 			new MainUI().initMainFrame();;
 			this.dispose();
+			threadStop();
 			break;
 		}
 		case EXIT:{
@@ -593,7 +591,7 @@ public class LoginUI extends JFrame implements Runnable {
 				label_blue.setLocation(x, 0);//让图片移动
 				label_red.setLocation(y, 0);//让图片移动
 				try {
-					thread.sleep(1);//休息2
+					thread.sleep(1);//休息
 				}
 				catch (InterruptedException e){}
 			}
@@ -601,6 +599,7 @@ public class LoginUI extends JFrame implements Runnable {
 //				thread.sleep(500);//休息2
 //			}
 //			catch (InterruptedException e){}
+			threadStop();
 			this.dispose();
 			break;
 		}

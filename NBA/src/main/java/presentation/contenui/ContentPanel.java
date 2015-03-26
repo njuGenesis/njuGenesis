@@ -1,6 +1,6 @@
 package presentation.contenui;
 
-import presentation.mainui.BgPanel;
+import presentation.component.BgPanel;
 
 public class ContentPanel {
 	protected BgPanel panel;

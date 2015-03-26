@@ -1,4 +1,4 @@
-package presentation.mainui;
+package presentation.component;
 
 import java.awt.Container;
 import java.awt.Graphics;
@@ -14,8 +14,8 @@ public class GButton extends JButton{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	ImageIcon image;
-
+	public String key;
+	
 	public GButton(String file, Point location, Point size, Container container, boolean visible){
 		this.setIcon(new ImageIcon(file));
 		this.setLocation(location);
@@ -26,4 +26,8 @@ public class GButton extends JButton{
 		this.setVisible(visible);
 	}
 	
+	public GButton(String file, Point location, Point size, Container container, boolean visible, String key){
+		this(file, location, size, container, visible);
+		this.key = key;
+	}
 }

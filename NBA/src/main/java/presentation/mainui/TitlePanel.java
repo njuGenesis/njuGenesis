@@ -3,6 +3,7 @@ package presentation.mainui;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import presentation.component.BgPanel;
 import assistance.MenuItem;
 
 public class TitlePanel {

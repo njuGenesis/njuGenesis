@@ -2,6 +2,7 @@ package bussinesslogic.team;
 
 import java.util.ArrayList;
 
+import rmiLink.TeamRmi;
 import assistance.GetFileData;
 import bussinesslogic.match.MatchLogic;
 import bussinesslogic.player.PlayerLogic;
@@ -11,12 +12,16 @@ import data.po.TeamDataPO;
 
 public class TeamLogic {
 	ArrayList<TeamDataPO> Teams;
+
 	// 初始化所有队伍所拥有的球员信息
 	public void savePlayerData(PlayerDataPO[] players) {
 		for (int i = 0; i < players.length; i++) {
 			for (int k = 0; k < Teams.size(); k++) {
-				if (players[i].getTeamName().equals(Teams.get(k).getName())) {
-					Teams.get(k).setPlayers(Teams.get(k).getPlayers()+players[i].getName()+";");
+				if (players[i].getTeamName()
+						.equals(Teams.get(k).getShortName())) {
+					Teams.get(k).setPlayers(
+							Teams.get(k).getPlayers() + players[i].getName()
+									+ ";");
 				}
 			}
 		}
@@ -25,9 +30,12 @@ public class TeamLogic {
 	// players是所有球员信息的集合，循环访问，根据球员的队名更新球队信息
 	public void saveTeamData(PlayerDataPO[] players) {
 		for (int i = 0; i < players.length; i++) {
-			for (int k = 0; players[i].getTeamName() != Teams.get(k)
-					.getName(); k++) {
-				updateTeamData(k, players[i]);
+			for (int k = 0; k < 30; k++) {
+				if (players[i].getTeamName()
+						.equals(Teams.get(k).getShortName())) {
+					updateTeamData(k, players[i]);
+					break;
+				}
 			}
 		}
 	}
@@ -36,7 +44,7 @@ public class TeamLogic {
 		TeamDataPO upTeam = Teams.get(teamNumber);
 
 		if (!upTeam.getPlayers().contains(player.getName())) {
-			upTeam.setPlayers(upTeam.getPlayers()+player.getName()+";");
+			upTeam.setPlayers(upTeam.getPlayers() + player.getName() + ";");
 		}
 		upTeam.setShootNumber(upTeam.getShootNumber()
 				+ player.getTotalFieldGoal()); // 投篮总数，场均数
@@ -47,8 +55,10 @@ public class TeamLogic {
 				+ player.getFieldGoal()); // 投篮命中总数，场均数
 		upTeam.setShootEffNumberPG(upTeam.getShootEffNumber()
 				/ upTeam.getMatchNumber());
-		upTeam.setShootEff(upTeam.getShootEffNumber() / upTeam.getShootNumber()); // 投篮进球率
-
+		if (upTeam.getShootNumber() != 0) {
+			upTeam.setShootEff(upTeam.getShootEffNumber()
+					/ upTeam.getShootNumber()); // 投篮进球率
+		}
 		// -------------------------------------------------------------------------------------------------------
 
 		upTeam.setTPNumber(upTeam.getTPNumber() + player.getTotalThreeGoal()); // 总三分投篮书，场均数
@@ -58,8 +68,9 @@ public class TeamLogic {
 		upTeam.setTPEffNumberPG(upTeam.getTPEffNumber()
 				/ upTeam.getMatchNumber());
 
-		upTeam.setTPEff(upTeam.getTPEffNumber() / upTeam.getTPNumber()); // 三分进球率
-
+		if (upTeam.getTPNumber() != 0) {
+			upTeam.setTPEff(upTeam.getTPEffNumber() / upTeam.getTPNumber()); // 三分进球率
+		}
 		// -------------------------------------------------------------------------------------------------------
 
 		upTeam.setFTNumber(upTeam.getFTNumber() + player.getTotalFT()); // 总罚球投篮书，场均
@@ -69,8 +80,9 @@ public class TeamLogic {
 		upTeam.setFTEffNumberPG(upTeam.getFTEffNumber()
 				/ upTeam.getMatchNumber());
 
-		upTeam.setFTEff(upTeam.getFTEffNumber() / upTeam.getFTNumber()); // 罚球进球率
-
+		if (upTeam.getFTNumber() != 0) {
+			upTeam.setFTEff(upTeam.getFTEffNumber() / upTeam.getFTNumber()); // 罚球进球率
+		}
 		// -------------------------------------------------------------------------------------------------------
 
 		upTeam.setOffBackBoard(upTeam.getOffBackBoard() + player.getOff()); // 总进攻篮板数
@@ -87,12 +99,13 @@ public class TeamLogic {
 		upTeam.setBackBoardEff(upTeam.getBackBoardEff()
 				+ player.getBackboardEff() * player.getMinutesOnField() * 5); // 总篮板率
 
-		/*upTeam.setOffBackBoardEff(upTeam.getOffBackBoardEff()
-				+ player.getOffBEff() * player.getMinutesOnField() * 5); // 进攻总篮板率
-
-		upTeam.setDefBackBoardEff(upTeam.getDefBackBoardEff()
-				+ player.getDefBEff() * player.getMinutesOnField() * 5); // 防守篮板率
-*/
+		/*
+		 * upTeam.setOffBackBoardEff(upTeam.getOffBackBoardEff() +
+		 * player.getOffBEff() * player.getMinutesOnField() * 5); // 进攻总篮板率
+		 * 
+		 * upTeam.setDefBackBoardEff(upTeam.getDefBackBoardEff() +
+		 * player.getDefBEff() * player.getMinutesOnField() * 5); // 防守篮板率
+		 */
 		upTeam.setAssitNumber(upTeam.getAssitNumber() + player.getAssist()); // 总助攻数
 		upTeam.setAssitNumberPG(upTeam.getAssitNumber()
 				/ upTeam.getMatchNumber());
@@ -135,6 +148,18 @@ public class TeamLogic {
 			calcuRate(Matches.get(i), Matches.get(i).getFirstteam(), Matches
 					.get(i).getSecondteam());
 		}
+		
+		
+		PlayerLogic getPlayers = new PlayerLogic();
+		savePlayerData(getPlayers.getAllInfo());
+		saveTeamData(getPlayers.getAllInfo());
+		
+		
+		TeamRmi add = new TeamRmi();
+		for(int i=0;i<Teams.size();i++){
+			add.addInfo(Teams.get(i));
+		}
+		
 	}
 
 	// 计算球队的比赛场数，总得分和均分
@@ -205,7 +230,7 @@ public class TeamLogic {
 
 			} else if (Teams.get(i).getShortName().equals(team2)) {
 				Teams.get(i).setOff(
-						Teams.get(i).getOff() + match.getTeamround2());    // 进攻，防守回合总数
+						Teams.get(i).getOff() + match.getTeamround2()); // 进攻，防守回合总数
 				Teams.get(i).setDef(
 						Teams.get(i).getDef() + match.getTeamround1());
 				Teams.get(i).setOffPG(
@@ -248,17 +273,18 @@ public class TeamLogic {
 					Teams.get(i).getDefBackBoard()
 							/ (Teams.get(i).getDefBackBoard() + Teams.get(i)
 									.getOtherOffBoard()));
-			
-			System.out.println(Teams.get(i).getName()+"  "+Teams.get(i).getOffBackBoardEff());
+
+			System.out.println(Teams.get(i).getName() + "  "
+					+ Teams.get(i).getOffBackBoardEff());
 		}
 	}
 
+	
+	
 	public static void main(String[] args) {
 		TeamLogic team = new TeamLogic();
 		team.initTeamData();
-		PlayerLogic getPlayers = new PlayerLogic();
-		team.savePlayerData(getPlayers.getAllInfo());
-		team.saveTeamData(getPlayers.getAllInfo());
+		
 	}
 
 }

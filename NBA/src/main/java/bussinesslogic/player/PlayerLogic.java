@@ -525,11 +525,16 @@ public class PlayerLogic implements PlayerInfoService{
 	}
 
 	public void initialize(String filepath){
+		if(p.judge()==true){
 		File root = new File(filepath);
 		File[] files = root.listFiles();
 		for(File file:files){
 			System.out.println(file.getName());
 			analysData(file.getName());
+		}
+		}
+		else{
+			System.out.println("has initialized");
 		}
 	}
 }
