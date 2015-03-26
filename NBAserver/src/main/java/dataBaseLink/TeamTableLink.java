@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import data.po.TeamDataPO;
 
 public class TeamTableLink {
-	public static String ip = "114.212.42.244";
+	public static String ip = "172.26.83.142";
 	// public static String ip = "114.212.42.143";
 	public static String url = "jdbc:mysql://" + ip
 			+ ":3306/nbadata?useUnicode=true&characterEncoding=utf-8";
@@ -20,6 +20,13 @@ public class TeamTableLink {
 			Class.forName(driver);
 		} catch (Exception e) {
 			System.out.println("error");
+		}
+
+	}
+
+	public void addInfo(ArrayList<TeamDataPO> list){
+		for(int i=0;i<list.size();i++){
+			addInfo(list.get(i));
 		}
 
 	}
@@ -62,19 +69,23 @@ public class TeamTableLink {
 					+ p.getDefBackBoardEff() + "','" + p.getStealEff() + "','"
 					+ p.getAssistEff();
 
-			System.out
-					.println("insert into team(Name,ShortName,City,EorW,area,mainposition,players,buildyear,MatchNumber,WinMatch,ShootNumber,ShootNumberPG,ShootEffNumber,ShootEffNumberPG,TPNumber,TPNumberPG,"
-							+ "TPEffNumber,TPEffNumberPG,FTEffNumber,FTEffNumberPG,FTNumber,FTNumberPG,OffBackBoard,OffBackBoardPG,DefBackBoard,DefBackBoradPG,OtherDefBoard,OtherOffBoard,BackBoard,BackBoardPG,AssitNumber,AssitNumberPG,"
-							+ "StealNumber,StealNumberPG,Rejection,RejectionPG,ToTime,ToPG,Foul,FoulPG,PTS,PPG,LPS,LPG,ShootEff,TPEff,FTEff,WR,"
-							+ "Off,OffPG,Def,DefPG,OffEff,DefEff,OffBackBoardEff,BackBoardEff,DefBackBoardEff,StealEff,AssistEff"
-							+ ")values(" + value + ")");
-
-			st
-					.executeUpdate("insert into team(Name,ShortName,City,EorW,area,mainposition,players,buildyear,MatchNumber,WinMatch,ShootNumber,ShootNumberPG,ShootEffNumber,ShootEffNumberPG,TPNumber,TPNumberPG,"
-							+ "TPEffNumber,TPEffNumberPG,FTEffNumber,FTEffNumberPG,FTNumber,FTNumberPG,OffBackBoard,OffBackBoardPG,DefBackBoard,DefBackBoradPG,OtherDefBoard,OtherOffBoard,BackBoard,BackBoardPG,AssitNumber,AssitNumberPG,"
-							+ "StealNumber,StealNumberPG,Rejection,RejectionPG,ToTime,ToPG,Foul,FoulPG,PTS,PPG,LPS,LPG,ShootEff,TPEff,FTEff,WR,"
-							+ "Off,OffPG,Def,DefPG,OffEff,DefEff,OffBackBoardEff,BackBoardEff,DefBackBoardEff,StealEff,AssistEff"
-							+ ")values(" + value + ")");
+			System.out.println(value);
+			/*
+			 * System.out .println(
+			 * "insert into team(Name,ShortName,City,EorW,area,mainposition,players,buildyear,MatchNumber,WinMatch,ShootNumber,ShootNumberPG,ShootEffNumber,ShootEffNumberPG,TPNumber,TPNumberPG,"
+			 * +
+			 * "TPEffNumber,TPEffNumberPG,FTEffNumber,FTEffNumberPG,FTNumber,FTNumberPG,OffBackBoard,OffBackBoardPG,DefBackBoard,DefBackBoradPG,OtherDefBoard,OtherOffBoard,BackBoard,BackBoardPG,AssitNumber,AssitNumberPG,"
+			 * +
+			 * "StealNumber,StealNumberPG,Rejection,RejectionPG,ToTime,ToPG,Foul,FoulPG,PTS,PPG,LPS,LPG,ShootEff,TPEff,FTEff,WR,"
+			 * +
+			 * "Off,OffPG,Def,DefPG,OffEff,DefEff,OffBackBoardEff,BackBoardEff,DefBackBoardEff,StealEff,AssistEff"
+			 * + ")values(" + value + ")");
+			 */
+			st.executeUpdate("insert into team(Name,ShortName,City,EorW,area,mainposition,player,buildyear,MatchNumber,WinMatch,ShootNumber,ShootNumberPG,ShootEffNumber,ShootEffNumberPG,TPNumber,TPNumberPG,"
+					+ "TPEffNumber,TPEffNumberPG,FTEffNumber,FTEffNumberPG,FTNumber,FTNumberPG,OffBackBoard,OffBackBoardPG,DefBackBoard,DefBackBoardPG,OtherDefBoard,OtherOffBoard,BackBoard,BackBoardPG,AssistNumber,AssistNumberPG,"
+					+ "StealNumber,StealNumberPG,Rejection,RejectionPG,ToTime,ToPG,Foul,FoulPG,PTS,PPG,LPS,LPG,ShootEff,TPEff,FTEff,WR,"
+					+ "Off,OffPG,Def,DefPG,OffEff,DefEff,OffBackBoardEff,BackBoardEff,DefBackBoardEff,StealEff,AssistEff"
+					+ ")values('" + value + "')");
 
 			con.close();
 		} catch (Exception e) {
@@ -91,6 +102,7 @@ public class TeamTableLink {
 				System.out.println("success");
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("select * from team");
+			
 			while (rs.next()) {
 				if (rs.getString("Name").equals(name)) {
 					AllInfo.setName(name);
@@ -99,7 +111,7 @@ public class TeamTableLink {
 					AllInfo.setEorW(rs.getString("EorW"));
 					AllInfo.setArea(rs.getString("Area"));
 					AllInfo.setMainposition(rs.getString("Mainposition"));
-					AllInfo.setPlayers(rs.getString("players"));
+					AllInfo.setPlayers(rs.getString("player"));
 					AllInfo.setBuildyear(rs.getInt("Buildyear"));
 					AllInfo.setMatchNumber(rs.getDouble("MatchNumber"));
 					AllInfo.setWinMatch(rs.getDouble("WinMatch"));
@@ -119,13 +131,13 @@ public class TeamTableLink {
 					AllInfo.setOffBackBoard(rs.getDouble("OffBackBoard"));// off
 					AllInfo.setOffBackBoardPG(rs.getDouble("OffBackBoardPG"));
 					AllInfo.setDefBackBoard(rs.getDouble("DefBackBoard"));// def
-					AllInfo.setDefBackBoardPG(rs.getDouble("DefBackBoradPG"));
+					AllInfo.setDefBackBoardPG(rs.getDouble("DefBackBoardPG"));// xxxxxxxxxxxxxxxxxxxx
 					AllInfo.setOtherDefBoard(rs.getDouble("OtherDefBoard"));
 					AllInfo.setOtherOffBoard(rs.getDouble("OtherOffBoard"));
 					AllInfo.setBackBoard(rs.getInt("BackBoard"));
 					AllInfo.setBackBoardPG(rs.getDouble("BackBoardPG"));
-					AllInfo.setAssitNumber(rs.getInt("AssitNumber"));
-					AllInfo.setAssitNumberPG(rs.getDouble("AssitNumberPG"));
+					AllInfo.setAssitNumber(rs.getInt("AssistNumber"));
+					AllInfo.setAssitNumberPG(rs.getDouble("AssistNumberPG"));
 					AllInfo.setStealNumber(rs.getInt("StealNumber"));
 					AllInfo.setStealNumberPG(rs.getDouble("StealNumberPG"));
 					AllInfo.setRejection(rs.getInt("Rejection"));
@@ -138,9 +150,9 @@ public class TeamTableLink {
 					AllInfo.setPPG(rs.getDouble("PPG"));
 					AllInfo.setLPS(rs.getDouble("LPS"));
 					AllInfo.setLPG(rs.getDouble("LPG"));// steal
-					AllInfo.setShootEff(rs.getDouble("ShootEff"));
-					AllInfo.setTPEff(rs.getDouble("TPEff"));
-					AllInfo.setFTEff(rs.getDouble("FTEff"));
+					AllInfo.setShootEff(rs.getDouble("ShootEff"));// xxxxxxxxxxxxxxxxxxx
+					AllInfo.setTPEff(rs.getDouble("TPEff"));// xxxxxxxxxxxxxxx
+					AllInfo.setFTEff(rs.getDouble("FTEff"));// xxxxxxxxxxxxxxxxx
 					AllInfo.setWR(rs.getDouble("WR"));
 					AllInfo.setOff(rs.getDouble("Off"));
 					AllInfo.setOffPG(rs.getDouble("OffPG"));
@@ -172,7 +184,7 @@ public class TeamTableLink {
 
 				System.out.println("success");
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select * from player");
+			ResultSet rs = st.executeQuery("select * from team");
 			while (rs.next()) {
 				TeamDataPO AllInfo = new TeamDataPO();
 				AllInfo.setName(rs.getString("Name"));
@@ -181,15 +193,14 @@ public class TeamTableLink {
 				AllInfo.setEorW(rs.getString("EorW"));
 				AllInfo.setArea(rs.getString("Area"));
 				AllInfo.setMainposition(rs.getString("Mainposition"));
-				AllInfo.setPlayers(rs.getString("players"));
+				AllInfo.setPlayers(rs.getString("player"));
 				AllInfo.setBuildyear(rs.getInt("Buildyear"));
 				AllInfo.setMatchNumber(rs.getDouble("MatchNumber"));
 				AllInfo.setWinMatch(rs.getDouble("WinMatch"));
 				AllInfo.setShootNumber(rs.getInt("ShootNumber"));
 				AllInfo.setShootNumberPG(rs.getDouble("ShootNumberPG"));
 				AllInfo.setShootEffNumber(rs.getInt("ShootEffNumber"));
-				AllInfo.setShootEffNumberPG(rs
-						.getDouble("ShootEffNumberPG"));
+				AllInfo.setShootEffNumberPG(rs.getDouble("ShootEffNumberPG"));
 				AllInfo.setTPNumber(rs.getInt("TPNumber"));
 				AllInfo.setTPNumberPG(rs.getDouble("TPNumberPG"));
 				AllInfo.setTPEffNumber(rs.getInt("TPEffNumber"));
@@ -201,13 +212,13 @@ public class TeamTableLink {
 				AllInfo.setOffBackBoard(rs.getDouble("OffBackBoard"));// off
 				AllInfo.setOffBackBoardPG(rs.getDouble("OffBackBoardPG"));
 				AllInfo.setDefBackBoard(rs.getDouble("DefBackBoard"));// def
-				AllInfo.setDefBackBoardPG(rs.getDouble("DefBackBoradPG"));
+				AllInfo.setDefBackBoardPG(rs.getDouble("DefBackBoardPG"));
 				AllInfo.setOtherDefBoard(rs.getDouble("OtherDefBoard"));
 				AllInfo.setOtherOffBoard(rs.getDouble("OtherOffBoard"));
 				AllInfo.setBackBoard(rs.getInt("BackBoard"));
 				AllInfo.setBackBoardPG(rs.getDouble("BackBoardPG"));
-				AllInfo.setAssitNumber(rs.getInt("AssitNumber"));
-				AllInfo.setAssitNumberPG(rs.getDouble("AssitNumberPG"));
+				AllInfo.setAssitNumber(rs.getInt("AssistNumber"));
+				AllInfo.setAssitNumberPG(rs.getDouble("AssistNumberPG"));
 				AllInfo.setStealNumber(rs.getInt("StealNumber"));
 				AllInfo.setStealNumberPG(rs.getDouble("StealNumberPG"));
 				AllInfo.setRejection(rs.getInt("Rejection"));
@@ -246,6 +257,46 @@ public class TeamTableLink {
 		}
 	}
 
+	public void deleteAll(){
+		try {
+			Connection con = DriverManager.getConnection(url, "thometoy",
+					"960105");
+			if (!con.isClosed())
+				System.out.println("success");
+			Statement st = con.createStatement();
+			st.executeQuery("TRUNCATE TABLE team");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+ 
+	
+	public boolean judge() {
+		boolean res = false;
+		try {
+			Connection con = DriverManager.getConnection(url, "thometoy",
+					"960105");
+			if (!con.isClosed()) {
+			}
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery("select * from team");
+			while (rs.next()) {
+				if (rs.last()) {
+					if (rs.getRow() == 0) {
+						res = true;
+					} else {
+						res = false;
+					}
+				}
+			}
+			return res;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 	public void setOrder(String orderName, boolean isUp) {
 		try {
 			Connection con = DriverManager.getConnection(url, "thometoy",
@@ -280,11 +331,11 @@ public class TeamTableLink {
 
 			String Order = "";
 
-			Order = "select * from player order by '" + orderName + "'desc";
+			Order = "select * from team order by '" + orderName + "'desc";
 
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(Order);
-			ResultSet rs2 = st.executeQuery("select * from player");
+			ResultSet rs2 = st.executeQuery("select * from team");
 			while (rs2.next() && (count > 0)) {
 				TeamDataPO AllInfo = new TeamDataPO();
 				AllInfo.setName(rs.getString("Name"));
@@ -293,15 +344,14 @@ public class TeamTableLink {
 				AllInfo.setEorW(rs.getString("EorW"));
 				AllInfo.setArea(rs.getString("Area"));
 				AllInfo.setMainposition(rs.getString("Mainposition"));
-				AllInfo.setPlayers(rs.getString("players"));
+				AllInfo.setPlayers(rs.getString("player"));
 				AllInfo.setBuildyear(rs.getInt("Buildyear"));
 				AllInfo.setMatchNumber(rs.getDouble("MatchNumber"));
 				AllInfo.setWinMatch(rs.getDouble("WinMatch"));
 				AllInfo.setShootNumber(rs.getInt("ShootNumber"));
 				AllInfo.setShootNumberPG(rs.getDouble("ShootNumberPG"));
 				AllInfo.setShootEffNumber(rs.getInt("ShootEffNumber"));
-				AllInfo.setShootEffNumberPG(rs
-						.getDouble("ShootEffNumberPG"));
+				AllInfo.setShootEffNumberPG(rs.getDouble("ShootEffNumberPG"));
 				AllInfo.setTPNumber(rs.getInt("TPNumber"));
 				AllInfo.setTPNumberPG(rs.getDouble("TPNumberPG"));
 				AllInfo.setTPEffNumber(rs.getInt("TPEffNumber"));
@@ -311,15 +361,15 @@ public class TeamTableLink {
 				AllInfo.setFTNumber(rs.getInt("FTNumber"));
 				AllInfo.setFTNumberPG(rs.getDouble("FTNumberPG"));
 				AllInfo.setOffBackBoard(rs.getDouble("OffBackBoard"));// off
-				AllInfo.setOffBackBoardPG(rs.getDouble("OffBackBoardPG"));
+				AllInfo.setOffBackBoardPG(rs.getDouble("OffBackBoardPG"));// xxxxxxxxxxxxxxxxxxxxxxxxxxx
 				AllInfo.setDefBackBoard(rs.getDouble("DefBackBoard"));// def
-				AllInfo.setDefBackBoardPG(rs.getDouble("DefBackBoradPG"));
+				AllInfo.setDefBackBoardPG(rs.getDouble("DefBackBoardPG"));// xxxxxxxxxxxxxxxxxxxxxx
 				AllInfo.setOtherDefBoard(rs.getDouble("OtherDefBoard"));
 				AllInfo.setOtherOffBoard(rs.getDouble("OtherOffBoard"));
 				AllInfo.setBackBoard(rs.getInt("BackBoard"));
 				AllInfo.setBackBoardPG(rs.getDouble("BackBoardPG"));
-				AllInfo.setAssitNumber(rs.getInt("AssitNumber"));
-				AllInfo.setAssitNumberPG(rs.getDouble("AssitNumberPG"));
+				AllInfo.setAssitNumber(rs.getInt("AssistNumber"));
+				AllInfo.setAssitNumberPG(rs.getDouble("AssistNumberPG"));
 				AllInfo.setStealNumber(rs.getInt("StealNumber"));
 				AllInfo.setStealNumberPG(rs.getDouble("StealNumberPG"));
 				AllInfo.setRejection(rs.getInt("Rejection"));
@@ -345,12 +395,12 @@ public class TeamTableLink {
 				AllInfo.setOffBackBoardEff(rs.getDouble("OffBackBoardEff"));
 				AllInfo.setBackBoardEff(rs.getDouble("BackBoardEff"));
 				AllInfo.setDefBackBoardEff(rs.getDouble("DefBackBoardEff"));
-				AllInfo.setStealEff(rs.getDouble("StealEff"));
-				AllInfo.setAssistEff(rs.getDouble("AssistEff"));
+				AllInfo.setStealEff(rs.getDouble("StealEff"));// xxxxxxxxxxxxxxxxxxxx
+				AllInfo.setAssistEff(rs.getDouble("AssistEff"));// xxxxxxxxxxxxxxxxxxxxxx
 				count--;
 				list.add(AllInfo);
 			}
-			
+
 			rs2.close();
 			rs.close();
 			con.close();

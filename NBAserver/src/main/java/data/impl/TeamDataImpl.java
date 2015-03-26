@@ -20,7 +20,9 @@ public class TeamDataImpl extends UnicastRemoteObject implements TeamDataService
 		// TODO Auto-generated constructor stub
 	}
 	TeamTableLink pl = new TeamTableLink();
-
+	public boolean judge() throws RemoteException{
+		return pl.judge();
+	}
 	public void addInfo(TeamDataPO p) {
 		pl.addInfo(p);
 	}
@@ -35,6 +37,10 @@ public class TeamDataImpl extends UnicastRemoteObject implements TeamDataService
 
 	public ArrayList<TeamDataPO> getFirstFifty(String orderName) {
 		return null;
+	}
+	public void addInfo(ArrayList<TeamDataPO> list) throws RemoteException {
+		pl.addInfo(list);
+		
 	}
 
 }

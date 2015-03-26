@@ -9,13 +9,33 @@ import dataService.TeamDataService;
 public class TeamRmi {
 	String ip = "rmi://127.0.0.1:3688/team";
 
+	public boolean judge(){
+		try {
+
+			TeamDataService t = (TeamDataService) Naming.lookup(ip);
+			return t.judge();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public void addInfo(TeamDataPO p) {
 		try {
 			TeamDataService t = (TeamDataService) Naming.lookup(ip);
 			t.addInfo(p);
 		} catch (Exception e) {
 			e.printStackTrace();
-
+		}
+	}
+	
+	public void addInfo(ArrayList<TeamDataPO> p) {
+		try {
+			TeamDataService t = (TeamDataService) Naming.lookup(ip);
+			t.addInfo(p);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

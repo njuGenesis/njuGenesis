@@ -20,16 +20,23 @@ public class MatchDataImpl extends UnicastRemoteObject implements MatchDataServi
 		// TODO Auto-generated constructor stub
 	}
 	MatchTableLink pl = new MatchTableLink();
+	public boolean judge() throws RemoteException{
+		return pl.judge();
+	}
 	public void addInfo(MatchDataPO p) {
 		pl.addInfo(p);
 	}
 
-	public MatchDataPO getInfo(String name) {
-		return pl.getInfo(name);
+	public ArrayList<MatchDataPO> getInfo(String team1,String team2,String data) {
+		return pl.getInfo(team1, team2, data);
 	}
 
 	public ArrayList<MatchDataPO> getAllInfo() {
 		return pl.getAllInfo();
+	}
+	public void addInfo(ArrayList<MatchDataPO> p) throws RemoteException {
+		pl.addInfo(p);
+		
 	}
 	
 
