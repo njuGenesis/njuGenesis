@@ -54,7 +54,7 @@ public class PlayerBasic extends ContentPanel{
 		String[] data = getData(key);
 
 		team = new GLabel(data[0], new Point(106, 103), new Point(122, 122), this.getContentPanel(), true);
-		palyer = new GLabel(data[1], new Point(291, 165), new Point(228, 175), this.getContentPanel(), true);
+		palyer = new GLabel(data[1], new Point(250, -70), new Point(330, 525), this.getContentPanel(), true);
 		name = new GLabel(data[2], new Point(646, 131), new Point(110, 25), this.getContentPanel(), true, 1, 15);//差31
 		number = new GLabel(data[3], new Point(681, 162), new Point(110, 25), this.getContentPanel(), true, 1, 15);
 		position = new GLabel(data[4], new Point(646, 193), new Point(110, 25), this.getContentPanel(), true, 1, 15);
@@ -69,7 +69,7 @@ public class PlayerBasic extends ContentPanel{
 	
 	private String[] getData(String palyerName){
 		//
-		String[] data = {"E:/workplace3/team.png", "E:/workplace3/player.png", "Aaron Brooks", "0", "G", "6-0", "161", "JAN 14, 1985", "29"
+		String[] data = {"E:/workplace3/team.png", "E:/workplace3/player(3).png", "Aaron Brooks", "0", "G", "6-0", "161", "JAN 14, 1985", "29"
 				, "5", "Oregon"};
  		return data;
 	}
