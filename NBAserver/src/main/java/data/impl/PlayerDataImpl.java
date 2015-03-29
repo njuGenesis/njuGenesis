@@ -52,4 +52,12 @@ public class PlayerDataImpl extends UnicastRemoteObject implements PlayerDataSer
 		return res;
 	}
 
+
+	public PlayerDataPO[] getSelect(String position, String Union)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		PlayerDataPO[] res = pl.getSelect(position,Union);
+		return res;
+	}
+
 }

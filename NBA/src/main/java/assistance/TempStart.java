@@ -13,7 +13,11 @@ public class TempStart {
 		//p.analysData("Ognjen Kuzmic");
 		//GetFileData g = new GetFileData();
 		//g.readPlayerfile("D:/学习/软工3/CSEIII data/迭代一数据/players/info/Aaron Gray");
-		p.initialize("./迭代一数据/players/info");
+		//p.initialize("./迭代一数据/players/info");
+		PlayerDataPO[] res = p.getSelect("G", "W");
+		for(int i = 0;i<res.length;i++){
+			System.out.println(res[i].getName()+" ; "+res[i].getPosition()+" ; "+res[i].getTeamName());
+		}
 	}
 	
 }
