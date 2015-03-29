@@ -22,7 +22,7 @@ public class PagingTableModel extends AbstractTableModel{
 	protected int pageSize;  //页数
 	protected int pageOffset;  //当前页数
 
-	protected TableData[] data;  //表格数据
+	public TableData[] data;  //表格数据
 
 	public PagingTableModel(TableData[] data){
 		this(10,data);
@@ -167,6 +167,7 @@ public class PagingTableModel extends AbstractTableModel{
 		return jsp;  
 	}  
 	
+
 	
 	public static JScrollPane createPagingScrollPaneForTable(JTable jt,JButton up,JButton down) {  
 		JScrollPane jsp = new JScrollPane(jt);  
@@ -211,10 +212,47 @@ public class PagingTableModel extends AbstractTableModel{
 		});  
 
 		// Turn on the scrollbars; otherwise we won't get our corners.  
-//		jsp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);  
-//		jsp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);  
+		jsp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);  
+		jsp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);  
 
 		return jsp;  
+	}
+	
+	
+	public static void setPagingButton(JTable jt,JButton up,JButton down){
+		TableModel tmodel = jt.getModel();  
+
+		final PagingTableModel model = (PagingTableModel) tmodel;  
+		final JButton upButton = up;  
+		upButton.setEnabled(false); // starts off at 0, so can't go up  
+		final JButton downButton = down;  
+		if (model.getPageCount() <= 1) {  
+			downButton.setEnabled(false); // One page...can't scroll down  
+		}  
+
+		upButton.addActionListener(new ActionListener() {  
+			public void actionPerformed(ActionEvent ae) {  
+				model.pageUp();  
+
+				// If we hit the top of the data, disable the up button.  
+				if (model.getPageOffset() == 0) {  
+					upButton.setEnabled(false);  
+				}  
+				downButton.setEnabled(true);  
+			}  
+		});  
+
+		downButton.addActionListener(new ActionListener() {  
+			public void actionPerformed(ActionEvent ae) {  
+				model.pageDown();  
+
+				// If we hit the bottom of the data, disable the down button.  
+				if (model.getPageOffset() == (model.getPageCount() - 1)) {  
+					downButton.setEnabled(false);  
+				}  
+				upButton.setEnabled(true);  
+			}  
+		});  
 	}
 
 

@@ -1,9 +1,13 @@
 package presentation.contenui;
 
-public class TableData {
+import java.util.Arrays;
+
+public class TableData implements Comparable<TableData>{
 	public String[] headers;
 	public String[] dataRow;
-
+	
+	private static int compareColumn = 1; //待排列的列数，默认为1（名称）
+	
 	public TableData(String[] headers,String[] dataRow){
 		this.headers = headers;
 		this.dataRow = dataRow;
@@ -19,7 +23,27 @@ public class TableData {
 		return headers.length;
 	}
 	
+	private static void setCompareCol(int col){
+		compareColumn = col;
+	}
 	
+	public int compareTo(TableData o) {
+		return dataRow[compareColumn].compareTo(o.dataRow[compareColumn]);
+	}
+	
+	
+	public static TableData[] sort(TableData[] data,int column){
+		setCompareCol(column);
+		
+		Arrays.sort(data);
+		
+		int len = data.length;
+		for(int i=0;i<len;i++){
+			data[i].dataRow[0] = String.valueOf(i+1);
+		}
+		
+		return data;
+	}
 	
 	
 	//player测试用数据
@@ -35,6 +59,10 @@ public class TableData {
 		}
 		return array;
 	}
+
+	
+
+	
 	
 }
 

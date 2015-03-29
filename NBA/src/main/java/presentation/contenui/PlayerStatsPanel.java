@@ -2,17 +2,26 @@ package presentation.contenui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
-import data.po.PlayerDataPO;
 import presentation.component.GComboBox;
+import presentation.component.GTable;
 import bussinesslogic.player.PlayerLogic;
+import data.po.PlayerDataPO;
 
 public class PlayerStatsPanel extends ContentPanel{
 
@@ -25,7 +34,6 @@ public class PlayerStatsPanel extends ContentPanel{
 
 	public JComboBox<String> position;
 	public JComboBox<String> league;
-	public JComboBox<String> stats;
 	public JComboBox<String> dataType;
 
 	public String[] positionItem = {"全部位置","后卫","前锋","中锋"}; 
@@ -45,30 +53,38 @@ public class PlayerStatsPanel extends ContentPanel{
 
 		super(url);
 
+		//-----初始化翻页按钮-----
 		left = UIUtil.getLeftButton();
-		left.setBounds(380, 495, 20, 20);
+		left.setBounds(380, 515, 20, 20);
 		panel.add(left);
 		right = UIUtil.getRightButton();
-		right.setBounds(450, 495, 20, 20);
+		right.setBounds(450, 515, 20, 20);
 		panel.add(right);
 
+		
+		//-----初始化页数框-----
 		page = new JTextField("1");
-		page.setBounds(413, 494, 25, 25);
+		page.setBounds(413, 514, 25, 25);
+		page.setBorder(null);
 		page.setOpaque(false);
-		//        page.setBorder(null);
+		page.setHorizontalAlignment(JTextField.CENTER);
+		page.addActionListener(new PageListener());
 		page.setFont(new Font("微软雅黑",1,12));
 		panel.add(page);
 
+		
+		
 		PagingTableModel model = new PagingTableModel(getPlayerDataAll());  
-		table = new JTable(model);  
-		TableUtility.setFont(table);
-		TableUtility.setTableColor(table);
-		TableUtility.setTableRowHeight(table, 32);
-		TableUtility.setTableHeaderHeight(table, 30);
+		table = new GTable(model,left,right);
+//		table = new JTable(model);  
+//		TableUtility.setFont(table);
+//		TableUtility.setTableColor(table);
+//		TableUtility.setTableRowHeight(table, 32);
+//		TableUtility.setTableHeaderHeight(table, 30);
 
 		// Use our own custom scrollpane.  
 		jsp = PagingTableModel.createPagingScrollPaneForTable(table,left,right);  
-		jsp.setBounds(25, 144, 830, 350);
+		jsp.setBounds(25, 144, 830, 370);
 		TableUtility.setTabelPanel(jsp);
 
 		panel.add(jsp);
@@ -102,16 +118,13 @@ public class PlayerStatsPanel extends ContentPanel{
 		//        league.setOpaque(false);
 		panel.add(league);
 
-		stats = new GComboBox(statsItem);
-		stats.setBounds(365, 63, 120, 30);
-		panel.add(stats);
-
 		dataType = new GComboBox(dataTypeItem);
-		dataType.setBounds(525, 63, 120, 30);
+		dataType.setBounds(365, 63, 120, 30);
 		panel.add(dataType);
 
-		submit = new JButton("提交");
+		submit = new JButton("筛选");
 		submit.setBounds(720, 100, 120, 30);
+		submit.addMouseListener(new SubmitListener());
 		panel.add(submit);
 
 
@@ -155,5 +168,85 @@ public class PlayerStatsPanel extends ContentPanel{
 		}
 
 		return data;
+	}
+	
+	
+	class SubmitListener implements MouseListener{
+
+		public void mouseClicked(MouseEvent arg0) {
+			String pos = position.getSelectedItem().toString();
+			String leag = league.getSelectedItem().toString();
+			String type = dataType.getSelectedItem().toString();
+			
+			
+		}
+
+		public void mouseEntered(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		public void mouseExited(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		public void mousePressed(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		public void mouseReleased(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
+	
+	class PageListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			PagingTableModel tm = (PagingTableModel)table.getModel();
+			try{
+				int p = Integer.parseInt(page.getText());		
+				System.out.println(p);
+				int pages = tm.getPageCount();
+				int now = tm.getPageOffset()+1;
+				if(0<p&&p<=pages){
+					if(p<now){
+						for(int i=0;i<now-p;i++){
+							tm.pageUp();
+							checkButton();
+						}
+					}else if(p>now){
+						for(int i=0;i<p-now;i++){
+							tm.pageDown();
+							checkButton();
+						}
+					}
+				}
+				page.setText(String.valueOf(tm.getPageOffset()+1));
+			}catch(Exception ex){
+				page.setText(String.valueOf(tm.getPageOffset()+1));
+			}
+		}
+
+		private void checkButton(){
+			PagingTableModel tm = (PagingTableModel)table.getModel();
+			int now = tm.getPageOffset();
+			if(now == 0){
+				left.setEnabled(false);
+				right.setEnabled(true);
+			}else if(now == tm.getPageCount()-1){
+				left.setEnabled(true);
+				right.setEnabled(false);
+			}else{
+				left.setEnabled(true);
+				right.setEnabled(true);
+			}
+		}
+		
+
 	}
 }
