@@ -6,6 +6,7 @@ import java.util.Enumeration;
 
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
@@ -23,16 +24,20 @@ public class GTable extends JTable{
 	
 	public JButton pageUp;
 	public JButton pageDown;
+	public JTextField page;
+	
+	public int sortingCol = 0;  //用于标记被排序的列
 
-	public GTable(PagingTableModel dm,JButton up,JButton down){
-		this(dm,32,30,up,down);
+	public GTable(PagingTableModel dm,JButton up,JButton down,JTextField p){
+		this(dm,32,30,up,down,p);
 	}
 
-	public GTable(final PagingTableModel dm,int rowHeight,int headerHeight,JButton up,JButton down){
+	public GTable(final PagingTableModel dm,int rowHeight,int headerHeight,JButton up,JButton down,JTextField p){
 		super(dm);
 		
 		pageUp = up;
 		pageDown = down;
+		page = p;
 		
 		this.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -78,9 +83,28 @@ public class GTable extends JTable{
 			JTableHeader header = GTable.this.getTableHeader();
 			PagingTableModel model = (PagingTableModel)GTable.this.getModel();
 			int tableColumn = header.columnAtPoint(e.getPoint());//获取点击的列
-			GTable.this.setModel(new PagingTableModel(TableData.sort(model.data, tableColumn)));
-			PagingTableModel.setPagingButton(GTable.this, pageUp, pageDown);
-			MainUI.getMainFrame().repaint();
+			
+			if(tableColumn!=0){  //第一列为序号不排序
+				if(tableColumn == sortingCol){  //表示第二次点击，升序
+					GTable.this.setModel(new PagingTableModel(TableData.ascendingSort(model.data, tableColumn)));
+					sortingCol = 0;
+				}else{  //第一次点击，降序
+					GTable.this.setModel(new PagingTableModel(TableData.descendingSort(model.data, tableColumn)));
+					sortingCol = tableColumn;
+				}
+				
+				//重新设置翻页按钮
+				PagingTableModel.setPagingButton(GTable.this, pageUp, pageDown);
+				
+				//列宽自适应
+				fitTableColumns(GTable.this);
+				
+				//更改页数
+				model = (PagingTableModel)GTable.this.getModel();
+				page.setText(String.valueOf(model.getPageOffset()+1));
+				
+				MainUI.getMainFrame().repaint();
+			}
 		}
 
 		public void mouseEntered(MouseEvent arg0) {

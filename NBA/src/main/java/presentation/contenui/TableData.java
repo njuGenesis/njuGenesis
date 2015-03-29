@@ -31,8 +31,13 @@ public class TableData implements Comparable<TableData>{
 		return dataRow[compareColumn].compareTo(o.dataRow[compareColumn]);
 	}
 	
+	//------------------------------
+	//排序有点问题待修改！
+	//------------------------------
 	
-	public static TableData[] sort(TableData[] data,int column){
+	
+	//升序排序
+	public static TableData[] ascendingSort(TableData[] data,int column){
 		setCompareCol(column);
 		
 		Arrays.sort(data);
@@ -44,6 +49,23 @@ public class TableData implements Comparable<TableData>{
 		
 		return data;
 	}
+	
+	//降序排序
+	public static TableData[] descendingSort(TableData[] data,int column){
+		setCompareCol(column);
+		
+		Arrays.sort(data);
+		int len = data.length;
+		TableData[] newData = new TableData[len];
+		
+		for(int i=0;i<len;i++){
+			newData[i] = data[len-1-i];
+			newData[i].dataRow[0] = String.valueOf(i+1);
+		}
+		
+		return newData;
+	}
+	
 	
 	
 	//player测试用数据

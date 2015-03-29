@@ -56,9 +56,11 @@ public class PlayerStatsPanel extends ContentPanel{
 		//-----初始化翻页按钮-----
 		left = UIUtil.getLeftButton();
 		left.setBounds(380, 515, 20, 20);
+		left.addActionListener(new ButtonListener());
 		panel.add(left);
 		right = UIUtil.getRightButton();
 		right.setBounds(450, 515, 20, 20);
+		right.addActionListener(new ButtonListener());
 		panel.add(right);
 
 		
@@ -74,8 +76,8 @@ public class PlayerStatsPanel extends ContentPanel{
 
 		
 		
-		PagingTableModel model = new PagingTableModel(getPlayerDataAll());  
-		table = new GTable(model,left,right);
+		PagingTableModel model = new PagingTableModel(getPlayerDataAvg());  
+		table = new GTable(model,left,right,page);
 //		table = new JTable(model);  
 //		TableUtility.setFont(table);
 //		TableUtility.setTableColor(table);
@@ -202,6 +204,15 @@ public class PlayerStatsPanel extends ContentPanel{
 		}
 		
 	}
+	
+	class ButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			PagingTableModel tm = (PagingTableModel)table.getModel();
+			page.setText(String.valueOf(tm.getPageOffset()+1));
+		}
+		
+	} 
 	
 	
 	class PageListener implements ActionListener{
