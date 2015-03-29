@@ -1,109 +1,109 @@
 package data.po;
 
+import java.io.Serializable;
 
-public class TeamDataPO {
-	String Name;//队名
-	String ShortName; //缩写
-	String City;//城市
-	String EorW;//东西部
-	String area;//分区
-	String mainposition;//场馆
-	String players;  //球员
-	
-	int buildyear;//年份
-	
-	double MatchNumber;//比赛场数
-	
-	double WinMatch; //胜场数
-	
-	int ShootNumber;//投篮数
-	double ShootNumberPG;//场均投篮
-	
-	int ShootEffNumber;//投篮命中数
-	double ShootEffNumberPG;//场均
-	
-	int TPNumber;//三分出手数
-	double TPNumberPG;//场均
-	
-	int TPEffNumber;//三分命中数
-	double TPEffNumberPG;//场均
-	
-	int FTEffNumber;//罚球命中数
-	double FTEffNumberPG;//场均
-	
-	int FTNumber;//罚球出手数
-	double FTNumberPG;//场均
-	
-	double OffBackBoard;//进攻篮板
-	double OffBackBoardPG;//场均
-	
-	double DefBackBoard;//防守篮板
-	double DefBackBoradPG;//场均
-	
-	double OtherDefBoard;//对手后场篮板
-	double OtherOffBoard;//对手前场篮板
-	
-	int BackBoard;//篮板数
-	double BackBoardPG;//场均
-	
-	int AssitNumber;//助攻数
+public class TeamDataPO implements Serializable {
+	/**
+			 * 
+			 */
+	private static final long serialVersionUID = 1L;
+	String Name;// 队名
+	String ShortName; // 缩写
+	String City;// 城市
+	String EorW;// 东西部
+	String area;// 分区
+	String mainposition;// 场馆
+	String players; // 球员，以英文分号隔开 形如 xxx;xxx;xxx;。。。;
+
+	int buildyear;// 年份
+
+	double MatchNumber;// 比赛场数
+
+	double WinMatch; // 胜场数
+
+	int ShootNumber;// 投篮数
+	double ShootNumberPG;// 场均投篮
+
+	double ShootEffNumber;// 投篮命中数
+	double ShootEffNumberPG;// 场均
+
+	int TPNumber;// 三分出手数
+	double TPNumberPG;// 场均
+
+	double TPEffNumber;// 三分命中数
+	double TPEffNumberPG;// 场均
+
+	double FTEffNumber;// 罚球命中数
+	double FTEffNumberPG;// 场均
+
+	int FTNumber;// 罚球出手数
+	double FTNumberPG;// 场均
+
+	double OffBackBoard;// 进攻篮板
+	double OffBackBoardPG;// 场均
+
+	double DefBackBoard;// 防守篮板
+	double DefBackBoradPG;// 场均
+
+	double OtherDefBoard;// 对手后场篮板
+	double OtherOffBoard;// 对手前场篮板
+
+	int BackBoard;// 篮板数
+	double BackBoardPG;// 场均
+
+	int AssitNumber;// 助攻数
 	double AssitNumberPG;
-	
-	int StealNumber;//抢断数
+
+	int StealNumber;// 抢断数
 	double StealNumberPG;
-	
-	int Rejection;//盖帽数，
+
+	int Rejection;// 盖帽数，
 	double RejectionPG;
-	
-	int To;//失误数
+
+	int To;// 失误数
 	double ToPG;
-	
-	int Foul;//犯规数，
+
+	int Foul;// 犯规数，
 	double FoulPG;
-	
-	int PTS;//比赛得分，
+
+	int PTS;// 比赛得分，
 	double PPG;
-	
-	double LPS;//比赛失分
-	double LPG;//场均失分
-	
-	
 
-	double ShootEff;//投篮命中率，
-	
-	double TPEff;//三分命中率，
-	
-	double FTEff;//罚球命中率，
-	
-	double WR;//胜率，
-	
-	double Off;//进攻回合，
+	double LPS;// 比赛失分
+	double LPG;// 场均失分
+
+	double ShootEff;// 投篮命中率，
+
+	double TPEff;// 三分命中率，
+
+	double FTEff;// 罚球命中率，
+
+	double WR;// 胜率，
+
+	double Off;// 进攻回合，
 	double OffPG;
-	
-	double Def;//防守回合，
-	double DefPG;
-	
-	double OffEff;//进攻效率，
-	
-	double DefEff;//防守效率，
-	
-	double OffBackBoardEff;//进攻篮板效率，
-	
-	double BackBoardEff;//篮板效率，
-	
-	double DefBackBoardEff;//防守篮板效率，
-	
-	double StealEff;//抢断效率，
-	
-	double AssistEff;//助攻率
 
-	
-	
+	double Def;// 防守回合，
+	double DefPG;
+
+	double OffEff;// 进攻效率，
+
+	double DefEff;// 防守效率，
+
+	double OffBackBoardEff;// 进攻篮板效率，
+
+	double BackBoardEff;// 篮板效率，
+
+	double DefBackBoardEff;// 防守篮板效率，
+
+	double StealEff;// 抢断效率，
+
+	double AssistEff;// 助攻率
+
 	public double getLPS() {
 		return LPS;
 	}
 
-	
 	public void setLPS(double lPS) {
 		LPS = lPS;
 	}
@@ -112,13 +112,10 @@ public class TeamDataPO {
 		return LPG;
 	}
 
-	
 	public void setLPG(double lPG) {
 		LPG = lPG;
 	}
 
-	
-	
 	public double getWinMatch() {
 		return WinMatch;
 	}
@@ -126,16 +123,15 @@ public class TeamDataPO {
 	public void setWinMatch(double d) {
 		WinMatch = d;
 	}
-	
+
 	public String getPlayers() {
 		return players;
 	}
 
-	
 	public void setPlayers(String players) {
 		this.players = players;
 	}
-	
+
 	public String getName() {
 		return Name;
 	}
@@ -216,12 +212,12 @@ public class TeamDataPO {
 		ShootNumberPG = shootNumberPG;
 	}
 
-	public int getShootEffNumber() {
+	public double getShootEffNumber() {
 		return ShootEffNumber;
 	}
 
-	public void setShootEffNumber(int shootEffNumber) {
-		ShootEffNumber = shootEffNumber;
+	public void setShootEffNumber(double d) {
+		ShootEffNumber = d;
 	}
 
 	public double getShootEffNumberPG() {
@@ -248,12 +244,12 @@ public class TeamDataPO {
 		TPNumberPG = tPNumberPG;
 	}
 
-	public int getTPEffNumber() {
+	public double getTPEffNumber() {
 		return TPEffNumber;
 	}
 
-	public void setTPEffNumber(int tPEffNumber) {
-		TPEffNumber = tPEffNumber;
+	public void setTPEffNumber(double d) {
+		TPEffNumber = d;
 	}
 
 	public double getTPEffNumberPG() {
@@ -264,12 +260,12 @@ public class TeamDataPO {
 		TPEffNumberPG = tPEffNumberPG;
 	}
 
-	public int getFTEffNumber() {
+	public double getFTEffNumber() {
 		return FTEffNumber;
 	}
 
-	public void setFTEffNumber(int fTEffNumber) {
-		FTEffNumber = fTEffNumber;
+	public void setFTEffNumber(double d) {
+		FTEffNumber = d;
 	}
 
 	public double getFTEffNumberPG() {
@@ -319,8 +315,7 @@ public class TeamDataPO {
 	public void setDefBackBoard(double d) {
 		DefBackBoard = d;
 	}
-	
-	
+
 	public double getDefBackBoardPG() {
 		return DefBackBoradPG;
 	}
@@ -528,7 +523,7 @@ public class TeamDataPO {
 	public void setBackBoardEff(double backBoardEff) {
 		BackBoardEff = backBoardEff;
 	}
-	
+
 	public double getOffBackBoardEff() {
 		return OffBackBoardEff;
 	}
@@ -536,7 +531,7 @@ public class TeamDataPO {
 	public void setOffBackBoardEff(double offbackBoardEff) {
 		OffBackBoardEff = offbackBoardEff;
 	}
-	
+
 	public double getDefBackBoardEff() {
 		return DefBackBoardEff;
 	}
@@ -561,7 +556,6 @@ public class TeamDataPO {
 		AssistEff = assistEff;
 	}
 
-
 	/**
 	 * @return the otherDefBoard
 	 */
@@ -569,14 +563,13 @@ public class TeamDataPO {
 		return OtherDefBoard;
 	}
 
-
 	/**
-	 * @param otherDefBoard the otherDefBoard to set
+	 * @param otherDefBoard
+	 *            the otherDefBoard to set
 	 */
 	public void setOtherDefBoard(double otherDefBoard) {
 		OtherDefBoard = otherDefBoard;
 	}
-
 
 	/**
 	 * @return the otherOffBoard
@@ -585,12 +578,12 @@ public class TeamDataPO {
 		return OtherOffBoard;
 	}
 
-
 	/**
-	 * @param otherOffBoard the otherOffBoard to set
+	 * @param otherOffBoard
+	 *            the otherOffBoard to set
 	 */
 	public void setOtherOffBoard(double otherOffBoard) {
 		OtherOffBoard = otherOffBoard;
 	}
-	
+
 }

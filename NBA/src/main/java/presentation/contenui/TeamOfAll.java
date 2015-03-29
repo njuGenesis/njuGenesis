@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 
+import bussinesslogic.team.TeamLogic;
 import presentation.component.GButton;
 import presentation.mainui.MainUI;
 
@@ -82,6 +83,9 @@ public class TeamOfAll extends ContentPanel{
 	 * 球队的所有简称
 	 */
 	private String[] getData(){
+		
+		
+		
 		String[] data = new String[30];
 		for(int i = 0;i<30;i++){
 			data[i] = "E:/workplace3/team.png";

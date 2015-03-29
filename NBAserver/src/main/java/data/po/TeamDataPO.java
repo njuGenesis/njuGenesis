@@ -1,31 +1,40 @@
 package data.po;
 
+import java.io.Serializable;
 
-public class TeamDataPO {
+
+public class TeamDataPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String Name;//队名
 	String ShortName; //缩写
 	String City;//城市
 	String EorW;//东西部
-	String Area;//分区
-	String Mainposition;//场馆
-	String Players;  //球员
-	int Buildyear;//年份	
-	double MatchNumber;//比赛场数	
-	double WinMatch; //胜场数	
+	String area;//分区
+	String mainposition;//场馆
+	String players;  //球员
+	
+	int buildyear;//年份
+	
+	double MatchNumber;//比赛场数
+	
+	double WinMatch; //胜场数
 	
 	int ShootNumber;//投篮数
 	double ShootNumberPG;//场均投篮
 	
-	int ShootEffNumber;//投篮命中数
+	double ShootEffNumber;//投篮命中数
 	double ShootEffNumberPG;//场均
 	
 	int TPNumber;//三分出手数
 	double TPNumberPG;//场均
 	
-	int TPEffNumber;//三分命中数
+	double TPEffNumber;//三分命中数
 	double TPEffNumberPG;//场均
 	
-	int FTEffNumber;//罚球命中数
+	double FTEffNumber;//罚球命中数
 	double FTEffNumberPG;//场均
 	
 	int FTNumber;//罚球出手数
@@ -35,7 +44,7 @@ public class TeamDataPO {
 	double OffBackBoardPG;//场均
 	
 	double DefBackBoard;//防守篮板
-	double DefBackBoardPG;//场均
+	double DefBackBoradPG;//场均
 	
 	double OtherDefBoard;//对手后场篮板
 	double OtherOffBoard;//对手前场篮板
@@ -125,12 +134,12 @@ public class TeamDataPO {
 	}
 	
 	public String getPlayers() {
-		return Players;
+		return players;
 	}
 
 	
 	public void setPlayers(String players) {
-		this.Players = players;
+		this.players = players;
 	}
 	
 	public String getName() {
@@ -166,27 +175,27 @@ public class TeamDataPO {
 	}
 
 	public String getArea() {
-		return Area;
+		return area;
 	}
 
 	public void setArea(String area) {
-		this.Area = area;
+		this.area = area;
 	}
 
 	public String getMainposition() {
-		return Mainposition;
+		return mainposition;
 	}
 
 	public void setMainposition(String mainposition) {
-		this.Mainposition = mainposition;
+		this.mainposition = mainposition;
 	}
 
 	public int getBuildyear() {
-		return Buildyear;
+		return buildyear;
 	}
 
 	public void setBuildyear(int buildyear) {
-		this.Buildyear = buildyear;
+		this.buildyear = buildyear;
 	}
 
 	public double getMatchNumber() {
@@ -213,7 +222,7 @@ public class TeamDataPO {
 		ShootNumberPG = shootNumberPG;
 	}
 
-	public int getShootEffNumber() {
+	public double getShootEffNumber() {
 		return ShootEffNumber;
 	}
 
@@ -245,11 +254,11 @@ public class TeamDataPO {
 		TPNumberPG = tPNumberPG;
 	}
 
-	public int getTPEffNumber() {
+	public double getTPEffNumber() {
 		return TPEffNumber;
 	}
 
-	public void setTPEffNumber(int tPEffNumber) {
+	public void setTPEffNumber(double tPEffNumber) {
 		TPEffNumber = tPEffNumber;
 	}
 
@@ -261,11 +270,11 @@ public class TeamDataPO {
 		TPEffNumberPG = tPEffNumberPG;
 	}
 
-	public int getFTEffNumber() {
+	public double getFTEffNumber() {
 		return FTEffNumber;
 	}
 
-	public void setFTEffNumber(int fTEffNumber) {
+	public void setFTEffNumber(double fTEffNumber) {
 		FTEffNumber = fTEffNumber;
 	}
 
@@ -319,11 +328,11 @@ public class TeamDataPO {
 	
 	
 	public double getDefBackBoardPG() {
-		return DefBackBoardPG;
+		return DefBackBoradPG;
 	}
 
 	public void setDefBackBoardPG(double defBackBoradPG) {
-		DefBackBoardPG = defBackBoradPG;
+		DefBackBoradPG = defBackBoradPG;
 	}
 
 	public int getBackBoard() {
@@ -589,5 +598,4 @@ public class TeamDataPO {
 	public void setOtherOffBoard(double otherOffBoard) {
 		OtherOffBoard = otherOffBoard;
 	}
-	
 }

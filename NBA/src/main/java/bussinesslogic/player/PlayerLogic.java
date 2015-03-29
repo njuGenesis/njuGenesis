@@ -121,7 +121,7 @@ public class PlayerLogic implements PlayerInfoService{
 
 		int Double = 0;//涓ゅ弻
 		
-		
+		AllInfo.setTeamName("null");
 		File root = new File(filepath);
 		File[] files = root.listFiles();
 		for(File file:files){
@@ -523,7 +523,10 @@ public class PlayerLogic implements PlayerInfoService{
 		// TODO Auto-generated method stub
 		return null ;
 	}
-
+	public PlayerDataPO[] getSelect(String position,String Union){//都是英文，如Union可以是“E”或“W”,默认的话不要改就行
+		PlayerDataPO[] res = p.getSelect(position,Union);
+		return res;
+	}
 	public void initialize(String filepath){
 		if(p.judge()==true){
 		File root = new File(filepath);

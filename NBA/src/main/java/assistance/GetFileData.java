@@ -121,6 +121,16 @@ public class GetFileData {
 			res.setFirstteam(temp[1].split("-")[0]);
 			res.setSecondteam(temp[1].split("-")[1]);
 			res.setPoints(temp[2]);
+			if (temp[2].split("-")[0].compareTo(temp[2].split("-")[1]) > 0) {
+				res.setWinner(res.getFirstteam());
+			} else {
+				res.setWinner(res.getSecondteam());
+			}
+			data = br.readLine();
+			res.setFirst_pts(data.split(";")[0]);
+			res.setSecond_pts(data.split(";")[1]);
+			res.setThird_pts(data.split(";")[2]);
+			res.setForth_pts(data.split(";")[3]);
 			
 			data = br.readLine();
 			data = br.readLine();  //跳过两行数据

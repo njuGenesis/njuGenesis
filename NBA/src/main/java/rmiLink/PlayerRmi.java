@@ -78,4 +78,15 @@ public class PlayerRmi {
 			return null;
 		}
 	}
+	public PlayerDataPO[] getSelect(String position, String union) {
+		// TODO Auto-generated method stub
+		try{
+			PlayerDataService t = (PlayerDataService)Naming.lookup(ip);
+			return t.getSelect(position, union);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
 }
