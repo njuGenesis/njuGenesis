@@ -20,6 +20,7 @@ import javax.swing.border.Border;
 
 import presentation.component.GComboBox;
 import presentation.component.GTable;
+import presentation.mainui.MainUI;
 import bussinesslogic.player.PlayerLogic;
 import data.po.PlayerDataPO;
 
@@ -38,7 +39,7 @@ public class PlayerStatsPanel extends ContentPanel{
 
 	public String[] positionItem = {"全部位置","后卫","前锋","中锋"}; 
 	public String[] leagueItem = {"全部联盟","东部","西部"};
-	public String[] statsItem = {"得分","篮板","助攻","得分/篮板/助攻","盖帽","抢断","犯规","失误","分钟","效率","投篮","三分","罚球","两双"};
+//	public String[] statsItem = {"得分","篮板","助攻","得分/篮板/助攻","盖帽","抢断","犯规","失误","分钟","效率","投篮","三分","罚球","两双"};
 	public String[] dataTypeItem = {"场均","总数"};
 
 	public JButton submit;
@@ -76,7 +77,7 @@ public class PlayerStatsPanel extends ContentPanel{
 
 		
 		
-		PagingTableModel model = new PagingTableModel(getPlayerDataAvg());  
+		PagingTableModel model = new PagingTableModel(getPlayerDataAvg(logic.getAllInfo()));  
 		table = new GTable(model,left,right,page);
 //		table = new JTable(model);  
 //		TableUtility.setFont(table);
@@ -132,9 +133,9 @@ public class PlayerStatsPanel extends ContentPanel{
 
 	}
 
-	private TableData[] getPlayerDataAll(){
-		PlayerDataPO[] po = logic.getAllInfo();
-		String[] head = {"序号","名称","球队","参赛","先发","篮板","助攻","在场时间","投篮%","三分%",
+	//----------总数据----------
+	private TableData[] getPlayerDataAll(PlayerDataPO[] po){
+		String[] head = {"序号","姓名","球队","参赛","先发","篮板","助攻","在场时间","投篮%","三分%",
 				"罚球%","进攻","防守","抢断","盖帽","失误","犯规","得分","效率","GmSc效率",
 				"真实命中%","投篮效率","篮板%","进攻篮板%","防守篮板%","助攻%","抢断%","盖帽%","失误%","使用%"};
 		TableData[] data = new TableData[po.length];
@@ -152,9 +153,9 @@ public class PlayerStatsPanel extends ContentPanel{
 		return data;
 	}
 
-	private TableData[] getPlayerDataAvg(){
-		PlayerDataPO[] po = logic.getAllInfo();
-		String[] head = {"序号","名称","球队","参赛","先发","篮板","助攻","在场时间","投篮%","三分%",
+	//----------场均数据----------
+	private TableData[] getPlayerDataAvg(PlayerDataPO[] po){
+		String[] head = {"序号","姓名","球队","参赛","先发","篮板","助攻","在场时间","投篮%","三分%",
 				"罚球%","进攻","防守","抢断","盖帽","失误","犯规","得分","效率","GmSc效率",
 				"真实命中%","投篮效率","篮板%","进攻篮板%","防守篮板%","助攻%","抢断%","盖帽%","失误%","使用%"};
 		TableData[] data = new TableData[po.length];
@@ -172,7 +173,34 @@ public class PlayerStatsPanel extends ContentPanel{
 		return data;
 	}
 	
+	private String changePosStr(String chinese){
+		if(chinese=="前锋"){
+			return "F";
+		}else if(chinese=="中锋"){
+			return "C";
+		}else if(chinese=="后卫"){
+			return "G";
+		}else{
+			return "null";
+		}
+	}
 	
+	private String changeUnStr(String chinese){
+		if(chinese=="东部"){
+			return "E";
+		}else if(chinese=="西部"){
+			return "W";
+		}else{
+			return "null";
+		}
+	}
+	
+	private boolean isAverageData(String chinese){
+		return chinese=="场均";
+	}
+	
+	
+	//----------筛选按钮的监听事件----------
 	class SubmitListener implements MouseListener{
 
 		public void mouseClicked(MouseEvent arg0) {
@@ -180,7 +208,16 @@ public class PlayerStatsPanel extends ContentPanel{
 			String leag = league.getSelectedItem().toString();
 			String type = dataType.getSelectedItem().toString();
 			
+			PlayerDataPO[] po = logic.getSelect(changePosStr(pos), changeUnStr(leag));
+			PagingTableModel tm;
+			if(isAverageData(type)){
+				tm = new PagingTableModel(getPlayerDataAvg(po));
+			}else{
+				tm = new PagingTableModel(getPlayerDataAll(po));
+			}
 			
+			table.setModel(tm);
+			MainUI.getMainFrame().repaint();
 		}
 
 		public void mouseEntered(MouseEvent arg0) {

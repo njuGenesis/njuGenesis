@@ -39,4 +39,28 @@ public class TableUtility {
 		table.getTableHeader().setForeground(Color.white);
 	}
 
+	public static String getChPosition(String en){
+		if(en.contains("-")){
+			String[] pos = en.split("-");
+			return transPosition(pos[0])+"-"+transPosition(pos[1]);
+		}else{
+			return transPosition(en);
+		}
+	}
+	
+	private static String transPosition(String en){
+		if(en=="G"){
+			return "后卫";
+		}else if(en=="F"){
+			return "前锋";
+		}else{
+			return "中锋";
+		}
+	}
+	
+	public static String getChTeam(String en){
+		
+		return null;
+	}
+	
 }

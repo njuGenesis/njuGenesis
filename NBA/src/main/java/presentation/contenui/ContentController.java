@@ -25,7 +25,7 @@ public class ContentController {
 		ContentPanel cp = new ContentPanel("");
 		switch(c){
 		case PlayerStats:cp = new PlayerStatsPanel();break;
-		case TeamStats:cp = new TeamStatsPanel();break;
+		case TeamStats:cp = new TeamStatsPanel();System.out.println("!!!!!");break;
 //		case Home:cp = new ContentPanel("img/content/homepanel.png");break;
 		case PlayerSearch:cp = new PlayerSearchPanel();break;
 		case TEAMOFALL:cp = new TeamOfAll();break;

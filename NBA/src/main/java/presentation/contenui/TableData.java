@@ -28,7 +28,19 @@ public class TableData implements Comparable<TableData>{
 	}
 	
 	public int compareTo(TableData o) {
-		return dataRow[compareColumn].compareTo(o.dataRow[compareColumn]);
+		try{
+			double d1 = Double.parseDouble(dataRow[compareColumn]);
+			double d2 = Double.parseDouble(o.dataRow[compareColumn]);
+			if(d1-d2>0){
+				return 1;
+			}else if(d1-d2<0){
+				return -1;
+			}else{
+				return 0;
+			}
+		}catch(Exception ex){
+			return dataRow[compareColumn].compareTo(o.dataRow[compareColumn]);
+		}
 	}
 	
 	//------------------------------
