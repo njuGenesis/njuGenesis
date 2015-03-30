@@ -8,6 +8,17 @@ import dataService.PlayerDataService;
 public class PlayerRmi {
 	String ip = "rmi://127.0.0.1:3688/player";
 	
+	public PlayerDataPO[] getSearch(String keys){
+		try {
+
+			PlayerDataService t = (PlayerDataService) Naming.lookup(ip);
+			return t.getSearch(keys);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	public boolean judge(){
 		try {
 

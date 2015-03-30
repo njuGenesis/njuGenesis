@@ -528,6 +528,10 @@ public class PlayerLogic implements PlayerInfoService{
 		PlayerDataPO[] res = p.getSelect(position,Union);
 		return res;
 	}
+	public PlayerDataPO[] getSearch(String keys){
+		PlayerDataPO[] res = p.getSearch(keys);
+		return res;
+	}
 	public String initialize(String filepath){
 		if(p.judge()==true){
 		File root = new File(filepath);

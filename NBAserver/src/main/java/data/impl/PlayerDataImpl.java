@@ -60,4 +60,11 @@ public class PlayerDataImpl extends UnicastRemoteObject implements PlayerDataSer
 		return res;
 	}
 
+
+	public PlayerDataPO[] getSearch(String keys) throws RemoteException {
+		// TODO Auto-generated method stub
+		PlayerDataPO[] res = pl.getSearch(keys);
+		return res;
+	}
+
 }

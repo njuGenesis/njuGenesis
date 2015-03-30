@@ -13,4 +13,5 @@ public interface PlayerDataService extends Remote{
 	public void setOrder(String orderName,boolean isASC)throws RemoteException;
 	public PlayerDataPO[] getFirstFifty(String orderName)throws RemoteException;
 	public PlayerDataPO[] getSelect(String position ,String Union)throws RemoteException;
+	public PlayerDataPO[] getSearch(String keys)throws RemoteException;
 }
