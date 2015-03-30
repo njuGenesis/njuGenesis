@@ -37,9 +37,10 @@ public class PlayerLogic implements PlayerInfoService{
 		
 		AllInfo.setSchool(tempbasic[8]);
 		getAllMatch("./迭代一数据/matches",name);
+		p.addInfo(AllInfo);
 	}
 	public void getAllMatch(String filepath,String name){
-		
+		System.out.println(name);
 		int GP = 0;//姣旇禌鍦烘暟
 		int GS = 0;//鍏堝彂鍦烘暟
 		
@@ -498,14 +499,14 @@ public class PlayerLogic implements PlayerInfoService{
 		AllInfo.setTotalFT(TotalFT);
 		
 		//
-		p.addInfo(AllInfo);
+		//p.addInfo(AllInfo);
 	}
 	public PlayerDataPO getpo(){
 		return AllInfo;
 	}
 	public PlayerDataPO getInfo(String name) {
 		// TODO Auto-generated method stub
-		PlayerDataPO res = p.getInfo(name);
+		PlayerDataPO res = p.getInfo(name.replaceAll("'", "‘"));
 		return res;
 	}
 	public void setOrder(String orderName,boolean isASC) {
@@ -527,17 +528,19 @@ public class PlayerLogic implements PlayerInfoService{
 		PlayerDataPO[] res = p.getSelect(position,Union);
 		return res;
 	}
-	public void initialize(String filepath){
+	public String initialize(String filepath){
 		if(p.judge()==true){
 		File root = new File(filepath);
 		File[] files = root.listFiles();
 		for(File file:files){
 			System.out.println(file.getName());
 			analysData(file.getName());
+			
 		}
+		return "initialization completed.";
 		}
 		else{
-			System.out.println("has initialized");
+			return "has initialized";
 		}
 	}
 }

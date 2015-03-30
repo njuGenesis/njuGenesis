@@ -42,14 +42,14 @@ public class PlayerDataImpl extends UnicastRemoteObject implements PlayerDataSer
 
 	public void setOrder(String orderName,boolean isASC) throws RemoteException {
 		// TODO Auto-generated method stub
-		pl.setOrder(orderName, isASC);
+		//pl.setOrder(orderName, isASC);
 	}
 
 	public PlayerDataPO[] getFirstFifty(String orderName)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		PlayerDataPO[] res = pl.getFirstFifty(orderName);
-		return res;
+		//PlayerDataPO[] res = pl.getFirstFifty(orderName);
+		return null;
 	}
 
 
