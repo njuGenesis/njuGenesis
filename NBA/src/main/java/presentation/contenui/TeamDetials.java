@@ -2,18 +2,15 @@ package presentation.contenui;
 
 import java.awt.Color;
 import java.awt.Point;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 
 import assistance.ContentItem;
 import data.po.TeamDataPO;
 import presentation.component.GButton;
 import presentation.component.GLabel;
-import presentation.mainui.MenuBar;
 
 public class TeamDetials extends ContentPanel{
 	
@@ -70,6 +67,8 @@ public class TeamDetials extends ContentPanel{
 					label.setVisible(true);
 				}
 				public void mouseClicked(MouseEvent e) {
+					ContentController con = new ContentController();
+					con.changeToPlayerBasic(names[k]);
 				}
 			});
 		}

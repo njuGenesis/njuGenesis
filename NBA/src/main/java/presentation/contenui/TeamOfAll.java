@@ -18,7 +18,7 @@ public class TeamOfAll extends ContentPanel{
 	
 	private static String url = "img/team/teamcontent.png";
 	
-	public static void main(ArrayList args) {
+	public static void main(String[] args) {
 
 		JFrame frame = new JFrame();
 		frame. setBounds(0, 0, 1250, 650);
@@ -71,11 +71,8 @@ public class TeamOfAll extends ContentPanel{
 			}
 			public void mousePressed(MouseEvent e) {
 				GButton button = (GButton)e.getSource();
-				TeamOfAll.this.getContentPanel().setVisible(false);
-				if(MainUI.getBg().getComponentAt(220, 95)!=null){
-					MainUI.getBg().remove(MainUI.getBg().getComponentAt(220, 95));
-				}
-				MainUI.addCom(new TeamDetials(button.po).getContentPanel());
+				ContentController con = new ContentController();
+				con.changeToTeamDetails(button.po);
 			}
 		};
 		

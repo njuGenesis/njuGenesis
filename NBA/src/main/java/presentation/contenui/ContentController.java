@@ -2,6 +2,7 @@ package presentation.contenui;
 
 import javax.swing.JPanel;
 
+import data.po.TeamDataPO;
 import presentation.mainui.MainUI;
 import presentation.mainui.TitlePanel;
 import assistance.ContentItem;
@@ -28,15 +29,27 @@ public class ContentController {
 //		case Home:cp = new ContentPanel("img/content/homepanel.png");break;
 		case PlayerSearch:cp = new PlayerSearchPanel();break;
 		case TEAMOFALL:cp = new TeamOfAll();break;
-		default:
-
+		default:break;
 		}
 		if(MainUI.getBg().getComponentAt(220, 95)!=null){
 			MainUI.getBg().remove(MainUI.getBg().getComponentAt(220, 95));
 		}
 		MainUI.addCom(cp.getContentPanel());
-		
-
 	}
 
+	public void changeToTeamDetails(TeamDataPO po){
+		ContentPanel cp = new TeamDetials(po);
+		if(MainUI.getBg().getComponentAt(220, 95)!=null){
+			MainUI.getBg().remove(MainUI.getBg().getComponentAt(220, 95));
+		}
+		MainUI.addCom(cp.getContentPanel());
+	}
+	
+	public void changeToPlayerBasic(String key){
+		ContentPanel cp =new PlayerBasic(key);
+		if(MainUI.getBg().getComponentAt(220, 95)!=null){
+			MainUI.getBg().remove(MainUI.getBg().getComponentAt(220, 95));
+		}
+		MainUI.addCom(cp.getContentPanel());
+	}
 }
