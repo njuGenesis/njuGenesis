@@ -70,4 +70,16 @@ public class TeamRmi {
 			return null;
 		}
 	}
+
+	public TeamDataPO GetBySN(String shortname) {
+		try {
+
+			TeamDataService t = (TeamDataService) Naming.lookup(ip);
+			return t.GetBySN(shortname);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

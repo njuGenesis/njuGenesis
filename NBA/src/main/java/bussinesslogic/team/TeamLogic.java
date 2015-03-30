@@ -292,13 +292,17 @@ public class TeamLogic implements TeamInfoService {
 	public TeamDataPO GetInfo(String name) {
 		return t.getInfo(name);
 	}
+	
+	public TeamDataPO GetBySN(String Shortname) {
+		return t.GetBySN(Shortname);
+	}
 
 	public static void main(String[] args) {
 
 		TeamLogic team = new TeamLogic();
 		team.initTeamData();
 		TeamLogic t = new TeamLogic();
-		System.out.println(t.GetAllInfo().size());
+		System.out.println(t.GetBySN("HOU").getCity());
 		System.out.println(t.isExist());
 
 	}

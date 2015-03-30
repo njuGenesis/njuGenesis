@@ -12,5 +12,6 @@ public interface TeamDataService extends Remote{
 	public void addInfo(ArrayList<TeamDataPO> list)throws RemoteException;
 	public TeamDataPO getInfo(String name)throws RemoteException;
 	public ArrayList<TeamDataPO> getAllInfo()throws RemoteException;
+	public TeamDataPO GetBySN(String shortname)throws RemoteException;
 	public ArrayList<TeamDataPO> getFirstFifty(String orderName) throws RemoteException ;
 }

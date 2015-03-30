@@ -23,24 +23,27 @@ public class TeamDataImpl extends UnicastRemoteObject implements TeamDataService
 	public boolean judge() throws RemoteException{
 		return pl.judge();
 	}
-	public void addInfo(TeamDataPO p) {
+	public void addInfo(TeamDataPO p) throws RemoteException{
 		pl.addInfo(p);
 	}
 
-	public TeamDataPO getInfo(String name) {
+	public TeamDataPO getInfo(String name) throws RemoteException{
 		return pl.getInfo(name);
 	}
 
-	public ArrayList<TeamDataPO> getAllInfo() {
+	public ArrayList<TeamDataPO> getAllInfo() throws RemoteException{
 		return pl.getAllInfo();
 	}
 
-	public ArrayList<TeamDataPO> getFirstFifty(String orderName) {
+	public ArrayList<TeamDataPO> getFirstFifty(String orderName) throws RemoteException{
 		return null;
 	}
 	public void addInfo(ArrayList<TeamDataPO> list) throws RemoteException {
 		pl.addInfo(list);
 		
+	}
+	public TeamDataPO GetBySN(String shortname) throws RemoteException {
+		return pl.getBySN(shortname);
 	}
 
 }
