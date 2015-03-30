@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 public class GLabel extends JLabel{
 	
 	private ImageIcon image;
+	private Point size;
+	private Point location;
 	
 	/**
 	 * 
@@ -18,7 +20,9 @@ public class GLabel extends JLabel{
 	
 	public GLabel(String file, Point location, Point size, Container container, boolean visible){
 		image = new ImageIcon(file);
-		image.setImage(image.getImage().getScaledInstance(size.x, size.y, Image.SCALE_SMOOTH)); 
+		image.setImage(image.getImage().getScaledInstance(size.x, size.y, Image.SCALE_DEFAULT)); 
+		this.size = size;
+		this.location = location;
 		this.setIcon(image);
 		this.setBounds(location.x, location.y, size.x, size.y);
 		this.setVisible(visible);
