@@ -1,6 +1,7 @@
 package data.po;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class MatchDataPO implements Serializable{
@@ -119,7 +120,8 @@ public class MatchDataPO implements Serializable{
 	 * @param teamround1 the teamround1 to set
 	 */
 	public void setTeamround1(double teamround1) {
-		this.teamround1 = teamround1;
+		BigDecimal bg = new BigDecimal(teamround1);
+		this.teamround1 = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 	/**
 	 * @return the teamround2
@@ -131,7 +133,8 @@ public class MatchDataPO implements Serializable{
 	 * @param teamround2 the teamround2 to set
 	 */
 	public void setTeamround2(double teamround2) {
-		this.teamround2 = teamround2;
+		BigDecimal bg = new BigDecimal(teamround2);
+		this.teamround2 = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 	/**
 	 * @return the team1Off

@@ -59,7 +59,6 @@ public class MatchTableLink {
 					+ "','" + p.getFT1() +"','" + p.getFT2() + "','" + p.getTo1()
 					+ "','" + p.getTo2();
 
-			System.out.println("match value = "+value);
 			st.executeUpdate("insert into matchinfo(Date,Firstteam,Secondteam,Points,"
 					+ "First_pts,Second_pts,Third_pts,Forth_pts,Winner,"
 					+ "teamround1,teamround2,team1Off,team2Off,team1Def,"

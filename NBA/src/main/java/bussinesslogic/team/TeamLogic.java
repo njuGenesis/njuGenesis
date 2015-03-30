@@ -215,9 +215,11 @@ public class TeamLogic implements TeamInfoService {
 	// 计算和回合数相关的rate
 	private void calcuRate(MatchDataPO match, String team1, String team2) {
 		for (int i = 0; i < Teams.size(); i++) {
+			if(Teams.get(i).getShortName().equals(team1)||Teams.get(i).getShortName().equals(team2)){
 			if (Teams.get(i).getShortName().equals(team1)) {
 				Teams.get(i).setOff(
 						Teams.get(i).getOff() + match.getTeamround1()); // 进攻，防守回合总数
+				
 				Teams.get(i).setDef(
 						Teams.get(i).getDef() + match.getTeamround2());
 				Teams.get(i).setDefPG(
@@ -260,6 +262,7 @@ public class TeamLogic implements TeamInfoService {
 			Teams.get(i).setOffPG(
 					Teams.get(i).getOff() / Teams.get(i).getMatchNumber());// 进攻场均回合数
 
+
 			Teams.get(i).setOffEff(
 					Teams.get(i).getPTS() * 100 / Teams.get(i).getOff()); // 进攻、防守效率
 			Teams.get(i).setDefEff(
@@ -276,6 +279,7 @@ public class TeamLogic implements TeamInfoService {
 			Teams.get(i).setBackBoardEff(
 					Teams.get(i).getOffBackBoardEff()
 							+ Teams.get(i).getDefBackBoardEff());
+			}
 
 		}
 	}
@@ -290,13 +294,12 @@ public class TeamLogic implements TeamInfoService {
 	}
 
 	public static void main(String[] args) {
-		
-		TeamLogic team = new TeamLogic(); 
+
+		TeamLogic team = new TeamLogic();
 		team.initTeamData();
 		TeamLogic t = new TeamLogic();
 		System.out.println(t.GetAllInfo().size());
 		System.out.println(t.isExist());
-
 
 	}
 
