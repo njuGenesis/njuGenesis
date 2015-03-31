@@ -4,22 +4,21 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 
 import presentation.component.GComboBox;
 import presentation.component.GTable;
+import presentation.component.NameCellEditor;
+import presentation.component.NameRenderer;
+import presentation.component.TeamCellEditor;
 import presentation.mainui.MainUI;
 import bussinesslogic.player.PlayerLogic;
 import data.po.PlayerDataPO;
@@ -77,14 +76,23 @@ public class PlayerStatsPanel extends ContentPanel{
 
 		
 		
-		PagingTableModel model = new PagingTableModel(getPlayerDataAvg(logic.getAllInfo()));  
+		PagingTableModel model = new PagingTableModel(getPlayerDataAvg(logic.getAllInfo())){
+			public boolean isCellEditable(int row, int column){
+				if(column==1 || column==2){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		};  
 		table = new GTable(model,left,right,page);
-//		table = new JTable(model);  
-//		TableUtility.setFont(table);
-//		TableUtility.setTableColor(table);
-//		TableUtility.setTableRowHeight(table, 32);
-//		TableUtility.setTableHeaderHeight(table, 30);
 
+		table.getColumnModel().getColumn(1).setCellRenderer(new NameRenderer());
+		table.getColumnModel().getColumn(1).setCellEditor(new NameCellEditor());
+		
+		table.getColumnModel().getColumn(2).setCellRenderer(new NameRenderer());
+		table.getColumnModel().getColumn(2).setCellEditor(new TeamCellEditor());
+		
 		// Use our own custom scrollpane.  
 		jsp = PagingTableModel.createPagingScrollPaneForTable(table,left,right);  
 		jsp.setBounds(25, 144, 830, 370);

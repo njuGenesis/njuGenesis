@@ -13,9 +13,9 @@ public class GRadioButton extends JRadioButton{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public String letter;
+	public char letter;
 
-	public GRadioButton(String letter){
+	public GRadioButton(char letter){
 		this.letter = letter;
 		this.setIcon(getIcon(letter));
 		this.setContentAreaFilled(false);
@@ -23,12 +23,12 @@ public class GRadioButton extends JRadioButton{
 		this.setSelectedIcon(getChosenIcon(letter));
 	}
 
-	public static ImageIcon getIcon(String letter){
+	public static ImageIcon getIcon(char letter){
 		ImageIcon icon = new ImageIcon("img/alphabet/"+letter+".png");
 		return icon;
 	}
 
-	public static ImageIcon getChosenIcon(String letter){
+	public static ImageIcon getChosenIcon(char letter){
 		ImageIcon icon = new ImageIcon("img/alphabet/chosen"+letter+".png");
 		return icon;
 	}

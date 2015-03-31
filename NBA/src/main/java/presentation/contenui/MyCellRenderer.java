@@ -2,7 +2,6 @@ package presentation.contenui;
 
 import java.awt.Color;
 import java.awt.Component;
-
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -23,7 +22,7 @@ public class MyCellRenderer extends DefaultTableCellRenderer{
 	/*
 	 * 设置颜色
 	 */
-	private void setColor(Component component,JTable table,boolean isSelected,boolean hasFocus,int row,int column){
+	protected void setColor(Component component,JTable table,boolean isSelected,boolean hasFocus,int row,int column){
 
 		//		if(row%2 == 0){
 		//			component.setBackground(evenRowColor);  
@@ -42,6 +41,7 @@ public class MyCellRenderer extends DefaultTableCellRenderer{
 			}
 		}
 	}
+	
 	
 	
 }

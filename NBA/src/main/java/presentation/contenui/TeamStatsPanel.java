@@ -19,6 +19,8 @@ import data.po.PlayerDataPO;
 import data.po.TeamDataPO;
 import presentation.component.GComboBox;
 import presentation.component.GTable;
+import presentation.component.NameRenderer;
+import presentation.component.TeamCellEditor;
 import presentation.contenui.PlayerStatsPanel.ButtonListener;
 import presentation.contenui.PlayerStatsPanel.PageListener;
 import presentation.contenui.PlayerStatsPanel.SubmitListener;
@@ -72,8 +74,19 @@ public class TeamStatsPanel extends ContentPanel{
 		
 		
 		
-		PagingTableModel model = new PagingTableModel(getTeamDataAvg(logic.GetAllInfo()));  
+		PagingTableModel model = new PagingTableModel(getTeamDataAvg(logic.GetAllInfo())){
+			public boolean isCellEditable(int row, int column){
+				if(column==1){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		};  
 		table = new GTable(model,left,right,page);
+		
+		table.getColumnModel().getColumn(1).setCellRenderer(new NameRenderer());
+		table.getColumnModel().getColumn(1).setCellEditor(new TeamCellEditor());
 
 		// Use our own custom scrollpane.  
 		jsp = PagingTableModel.createPagingScrollPaneForTable(table,left,right);  

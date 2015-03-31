@@ -33,7 +33,13 @@ public class GTable extends JTable{
 	public GTable(PagingTableModel dm,JButton up,JButton down,JTextField p){
 		this(dm,32,30,up,down,p);
 	}
+	
+	public GTable(PagingTableModel dm,JButton up,JButton down,JTextField p,boolean sortable){
+		this(dm,32,30,up,down,p,sortable);
+	}
 
+	
+	
 	public GTable(final PagingTableModel dm,int rowHeight,int headerHeight,JButton up,JButton down,JTextField p){
 		super(dm);
 		
@@ -48,20 +54,28 @@ public class GTable extends JTable{
 		TableUtility.setTableRowHeight(this, rowHeight);
 		TableUtility.setTableHeaderHeight(this, headerHeight);
 		
+		
+//		int col = this.getColumnModel().getColumnCount();
+//		for(int i=0;i<col;i++){
+//			this.getColumnModel().getColumn(i).setPreferredWidth(50);
+//			this.getColumnModel().getColumn(i).setMaxWidth(50);
+//			this.getColumnModel().getColumn(i).setMinWidth(50);
+//		}
+		
 		fitTableColumns(this);
 
 		this.getTableHeader().addMouseListener(new HeaderListener());
 
 	}
 	
-	public GTable(final PagingTableModel dm,int rowHeight,int headerHeight,JButton up,JButton down,JTextField p,boolean b){
+	public GTable(final PagingTableModel dm,int rowHeight,int headerHeight,JButton up,JButton down,JTextField p,boolean sortable){
 		super(dm);
 		
 		pageUp = up;
 		pageDown = down;
 		page = p;
 		
-		fit = b;
+		fit = sortable;
 		
 		this.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -78,8 +92,7 @@ public class GTable extends JTable{
 
 	}
 	
-	public void fitTableColumns(JTable myTable)
-    {
+	public void fitTableColumns(JTable myTable){
          myTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
          JTableHeader header = myTable.getTableHeader();
          int rowCount = myTable.getRowCount();
