@@ -14,8 +14,7 @@ import presentation.contenui.ContentController;
 import bussinesslogic.team.TeamLogic;
 import data.po.TeamDataPO;
 
-public class TeamCellEditor extends DefaultCellEditor{
-
+public class TeamShortCellEditor extends DefaultCellEditor{
 	/**
 	 * 
 	 */
@@ -28,7 +27,7 @@ public class TeamCellEditor extends DefaultCellEditor{
 	private ContentController con = new ContentController();
 
 
-	public TeamCellEditor() {
+	public TeamShortCellEditor() {
 		super(new JTextField());
 
 		// 设置点击几次激活编辑。   
@@ -54,10 +53,10 @@ public class TeamCellEditor extends DefaultCellEditor{
 			public void actionPerformed(ActionEvent e)  
 			{  
 				// 触发取消编辑的事件，不会调用tableModel的setValue方法。   
-				TeamCellEditor.this.fireEditingCanceled();  
+				TeamShortCellEditor.this.fireEditingCanceled();  
 
 				TeamLogic l = new TeamLogic();
-				TeamDataPO po = l.GetInfo(TeamCellEditor.this.button.getText());
+				TeamDataPO po = l.GetBySN(TeamShortCellEditor.this.button.getText());
 
 				con.changeToTeamDetails(po);
 			}  
@@ -87,4 +86,5 @@ public class TeamCellEditor extends DefaultCellEditor{
 	public Object getCellEditorValue(){  
 		return this.button.getText();  
 	}  
+
 }

@@ -35,7 +35,7 @@ public class GComboBox extends JComboBox{
 		setOpaque(false);
 		setUI(new GComboBoxUI());
 		setRenderer(new GComboBoxRenderer());
-		setBackground(Color.white);
+		setBackground(new Color(250,250,250));
 	}
 	public Dimension getPreferredSize(){
 		return super.getPreferredSize();

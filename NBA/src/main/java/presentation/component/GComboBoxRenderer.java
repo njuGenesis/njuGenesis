@@ -22,12 +22,12 @@ public class GComboBoxRenderer implements ListCellRenderer{
 		JLabel renderer = (JLabel)defaultCellRenderer.getListCellRendererComponent(
 				list, value, index, isSelected, cellHasFocus);
 		if(isSelected){
-			renderer.setBackground(Color.BLACK);
+			renderer.setBackground(new Color(0, 110, 185));
 			renderer.setForeground(Color.WHITE);
 		}else{
-			renderer.setBackground(Color.WHITE);
+			renderer.setBackground(new Color(250,250,250));
 		}
-		list.setSelectionBackground(Color.white);
+		list.setSelectionBackground(new Color(250,250,250));
 		list.setBorder(null);
 //		renderer.setFont(XUtil.defaultComboBoxFont);
 		renderer.setHorizontalAlignment(JLabel.CENTER);

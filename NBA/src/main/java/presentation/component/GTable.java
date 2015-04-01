@@ -138,6 +138,7 @@ public class GTable extends JTable{
 				//列宽自适应
 				if(fit){
 					fitTableColumns(GTable.this);
+					GTable.this.repaint();
 				}
 				
 				//更改页数

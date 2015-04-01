@@ -30,7 +30,7 @@ public class TeamStatsPanel extends ContentPanel{
 
 	private TeamLogic logic = new TeamLogic();
 
-	public JTable table;
+	public GTable table;
 	public JScrollPane jsp;
 
 	public JLabel title;
@@ -104,7 +104,7 @@ public class TeamStatsPanel extends ContentPanel{
 		dataType.setBounds(45, 63, 120, 30);
 		panel.add(dataType);
 
-		submit = new JButton("筛选");
+		submit = UIUtil.getSelectButton();
 		submit.setBounds(720, 100, 120, 30);
 		submit.addMouseListener(new SubmitListener());
 		panel.add(submit);
@@ -193,7 +193,9 @@ public class TeamStatsPanel extends ContentPanel{
 				}
 				
 				table.setModel(tm);
-				MainUI.getMainFrame().repaint();
+				table.fitTableColumns(table);
+				
+//				MainUI.getMainFrame().repaint();
 			}
 
 			public void mouseEntered(MouseEvent arg0) {

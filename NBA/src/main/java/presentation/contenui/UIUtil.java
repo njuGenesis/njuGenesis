@@ -1,7 +1,10 @@
 package presentation.contenui;
 
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicArrowButton;
@@ -12,6 +15,37 @@ public class UIUtil {
 	
 	public static Color nbaBlue = new Color(0,110,185);
 	public static Color nbaRed = new Color(228,42,81);
+	
+	public static JButton getSelectButton(){
+		JButton bt = new JButton("筛选");
+		bt.addMouseListener(new MouseListener(){
+
+			public void mouseClicked(MouseEvent arg0) {
+			}
+
+			public void mouseEntered(MouseEvent e) {
+				JButton bt = (JButton)e.getSource();
+				bt.setBorder(BorderFactory.createLineBorder(nbaBlue, 2));
+			}
+
+			public void mouseExited(MouseEvent e) {
+				JButton bt = (JButton)e.getSource();
+				bt.setBorder(BorderFactory.createLineBorder(nbaBlue));
+			}
+
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			public void mouseReleased(MouseEvent arg0) {
+			}
+			
+		});
+		bt.setBorder(BorderFactory.createLineBorder(nbaBlue));
+		bt.setContentAreaFilled(false);
+		bt.setForeground(nbaBlue);
+		
+		return bt;
+	}
 
 	public static JButton getComboBoxArrowButton(){
 		BasicArrowButton bt = new BasicArrowButton(BasicArrowButton.LEFT,Color.black,Color.black,Color.black,Color.black);

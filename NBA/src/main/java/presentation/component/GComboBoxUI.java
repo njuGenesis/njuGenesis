@@ -24,8 +24,6 @@ public class GComboBoxUI extends BasicComboBoxUI{
 
 	private JButton arrow;
 	private boolean boundsLight = false;
-	private static final int ARCWIDTH = 15;
-	private static final int ARCHEIGHT = 15;
 
 	public GComboBoxUI() {
 		super();
@@ -39,7 +37,6 @@ public class GComboBoxUI extends BasicComboBoxUI{
 		arrow.setRolloverEnabled(true);
 		//	  arrow.setRolloverIcon(XUtil.defaultComboBoxArrowIcon_Into);
 		arrow.setBorder(null);
-//		arrow.setBackground(Color.black);
 		arrow.setOpaque(false);
 		arrow.setContentAreaFilled(false);
 		return arrow;
@@ -59,29 +56,12 @@ public class GComboBoxUI extends BasicComboBoxUI{
 
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
-		int width = (int) this.getPreferredSize(c).getWidth()
-				+ arrow.getWidth() - 2;
-		int height = 0;
-		int heightOffset = 0;
-		if (comboBox.isPopupVisible()) {
-			heightOffset = 5;
-			height = (int) this.getPreferredSize(c).getHeight();
-			//			arrow.setIcon(XUtil.defaultComboBoxArrowIcon_Into);
-		} else {
-			heightOffset = 0;
-			height = (int) this.getPreferredSize(c).getHeight() - 1;
-			//			arrow.setIcon(XUtil.defaultComboBoxArrowIcon);
-		}
-		if (comboBox.isFocusable()) {
-			g2.setColor(new Color(0, 110, 185));
-		}
-		//g2.drawRoundRect(0, 0, width, height + heightOffset,ARCWIDTH,ARCHEIGHT);
-		g2.drawRect(0, 0, 122, 32);
+		g2.setColor(new Color(0, 110, 185));
+		g2.drawRect(0,0,comboBox.getWidth()-1,comboBox.getHeight()-1);
 	}
 
 	public void paintCurrentValue(Graphics g, Rectangle bounds, boolean hasFocus) {
 		Font oldFont = comboBox.getFont();
-		//		comboBox.setFont(XUtil.defaultComboBoxFont);
 
 		super.paintCurrentValue(g, bounds, hasFocus);
 		comboBox.setFont(oldFont);
@@ -103,8 +83,6 @@ public class GComboBoxUI extends BasicComboBoxUI{
 		int width = comboBox.getWidth();
 		int height = comboBox.getHeight();
 		Insets insets = getInsets();
-		int editorWidth = width - (insets.left + insets.right);
-		int editorHeight = (height - (insets.top + insets.bottom - 1)) / 2;
 		return new Rectangle(insets.left, insets.top, width, height);
 	} 
 
@@ -127,8 +105,8 @@ public class GComboBoxUI extends BasicComboBoxUI{
 						RenderingHints.VALUE_ANTIALIAS_ON);
 				g2.setColor(new Color(0, 110, 185));
 				//g2.drawRoundRect(0,-arrow.getHeight(),getWidth()-1,getHeight()+arrow.getHeight()-1,0,0);
-//				g2.drawRect(0, -arrow.getHeight(), getWidth(), arrow.getHeight());
-				g2.drawRect(0, -arrow.getHeight(), 122, 32);
+//				g2.drawRect(0, -arrow.getHeight(), getWidth()-1, getHeight()-1);
+				g2.drawRect(0, 0, getWidth()-1, getHeight()-1);
 			}
 		};
 		return popup;

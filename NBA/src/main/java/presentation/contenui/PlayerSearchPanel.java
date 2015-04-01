@@ -23,7 +23,7 @@ import presentation.component.GRadioButton;
 import presentation.component.GTable;
 import presentation.component.NameCellEditor;
 import presentation.component.NameRenderer;
-import presentation.component.TeamCellEditor;
+import presentation.component.TeamShortCellEditor;
 import presentation.mainui.MainUI;
 import bussinesslogic.player.PlayerLogic;
 import data.po.PlayerDataPO;
@@ -32,7 +32,7 @@ public class PlayerSearchPanel extends ContentPanel{
 
 	public PlayerLogic logic = new PlayerLogic();
 
-	public JTable table;
+	public GTable table;
 	public JScrollPane jsp;
 
 	public JLabel title;
@@ -88,11 +88,12 @@ public class PlayerSearchPanel extends ContentPanel{
 		};  
 		table = new GTable(model,left,right,page,false); 
 		
+		//球员和球队名可点击，设置不同的renderer和editor
 		table.getColumnModel().getColumn(1).setCellRenderer(new NameRenderer());
 		table.getColumnModel().getColumn(1).setCellEditor(new NameCellEditor());
 		
 		table.getColumnModel().getColumn(2).setCellRenderer(new NameRenderer());
-		table.getColumnModel().getColumn(2).setCellEditor(new TeamCellEditor());
+		table.getColumnModel().getColumn(2).setCellEditor(new TeamShortCellEditor());
 		
 
 		MouseListener[] m = table.getTableHeader().getMouseListeners();
@@ -117,8 +118,8 @@ public class PlayerSearchPanel extends ContentPanel{
 		position.setBounds(45, 93, 120, 30);
 		panel.add(position);
 
-		submit = new JButton("筛选");
-		submit.setBounds(220, 93, 120, 30);
+		submit = UIUtil.getSelectButton();
+		submit.setBounds(720, 100, 120, 30);
 		submit.addMouseListener(new SubmitListener());
 		panel.add(submit);
 

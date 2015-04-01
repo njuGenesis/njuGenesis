@@ -18,7 +18,7 @@ import presentation.component.GComboBox;
 import presentation.component.GTable;
 import presentation.component.NameCellEditor;
 import presentation.component.NameRenderer;
-import presentation.component.TeamCellEditor;
+import presentation.component.TeamShortCellEditor;
 import presentation.mainui.MainUI;
 import bussinesslogic.player.PlayerLogic;
 import data.po.PlayerDataPO;
@@ -27,7 +27,7 @@ public class PlayerStatsPanel extends ContentPanel{
 
 	private PlayerLogic logic = new PlayerLogic();
 
-	public JTable table;
+	public GTable table;
 	public JScrollPane jsp;
 
 	public JLabel title;
@@ -91,7 +91,7 @@ public class PlayerStatsPanel extends ContentPanel{
 		table.getColumnModel().getColumn(1).setCellEditor(new NameCellEditor());
 		
 		table.getColumnModel().getColumn(2).setCellRenderer(new NameRenderer());
-		table.getColumnModel().getColumn(2).setCellEditor(new TeamCellEditor());
+		table.getColumnModel().getColumn(2).setCellEditor(new TeamShortCellEditor());
 		
 		// Use our own custom scrollpane.  
 		jsp = PagingTableModel.createPagingScrollPaneForTable(table,left,right);  
@@ -133,7 +133,7 @@ public class PlayerStatsPanel extends ContentPanel{
 		dataType.setBounds(365, 63, 120, 30);
 		panel.add(dataType);
 
-		submit = new JButton("筛选");
+		submit = UIUtil.getSelectButton();
 		submit.setBounds(720, 100, 120, 30);
 		submit.addMouseListener(new SubmitListener());
 		panel.add(submit);
@@ -225,26 +225,24 @@ public class PlayerStatsPanel extends ContentPanel{
 			}
 			
 			table.setModel(tm);
-			MainUI.getMainFrame().repaint();
+			table.fitTableColumns(table);
+			
+//			MainUI.getMainFrame().repaint();
 		}
 
 		public void mouseEntered(MouseEvent arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		public void mouseExited(MouseEvent arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		public void mousePressed(MouseEvent arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		public void mouseReleased(MouseEvent arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 		
