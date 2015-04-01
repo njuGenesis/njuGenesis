@@ -26,6 +26,7 @@ public class MatchDataImpl extends UnicastRemoteObject implements MatchDataServi
 	public void addInfo(MatchDataPO p) {
 		pl.addInfo(p);
 	}
+	
 
 	public ArrayList<MatchDataPO> getInfo(String team1,String team2,String data) {
 		return pl.getInfo(team1, team2, data);

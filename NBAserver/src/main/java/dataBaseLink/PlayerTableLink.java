@@ -88,12 +88,7 @@ public class PlayerTableLink {
 					+ p.getThreeGoal() + "','" + p.getTotalThreeGoal() + "','"
 					+ p.getFT() + "','" + p.getTotalFT();
 
-			System.out
-					.println("insert into player(Name,Number,position,Height,Weight,Birth,Age,Exp,School,TeamName,GP,GS,backboard,BPG,assist,APG,"
-							+ "MinutesOnField,MPG,FieldGoalPercentage,ThreePGPercentage,FTPercentage,Off,OffPG,Def,DefPG,Steal,StealPG,Rejection,RPG,To,ToPG,foul,"
-							+ "foulPG,PTS,PPG,Eff,Gmsc,TruePercentage,ShootEff,BackboardEff,OffBEff,DefBEff,AssitEff,StealEff,RejectionEff,ToEff,UseEff,Double,"
-							+ "FieldGoal,TotalFieldGoal,ThreeGoal,TotalThreeGoal,FT,TotalFT"
-							+ ")values(" + value + ")");
+
 
 			int rs = st
 					.executeUpdate("insert into player(Name,Number,position,Height,Weight,Birth,Age,Exp,School,TeamName,GP,GS,backboard,BPG,assist,APG,"

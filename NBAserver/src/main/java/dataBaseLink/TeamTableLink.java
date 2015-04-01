@@ -69,18 +69,7 @@ public class TeamTableLink {
 					+ p.getDefBackBoardEff() + "','" + p.getStealEff() + "','"
 					+ p.getAssistEff();
 
-			System.out.println(value);
-			/*
-			 * System.out .println(
-			 * "insert into team(Name,ShortName,City,EorW,area,mainposition,players,buildyear,MatchNumber,WinMatch,ShootNumber,ShootNumberPG,ShootEffNumber,ShootEffNumberPG,TPNumber,TPNumberPG,"
-			 * +
-			 * "TPEffNumber,TPEffNumberPG,FTEffNumber,FTEffNumberPG,FTNumber,FTNumberPG,OffBackBoard,OffBackBoardPG,DefBackBoard,DefBackBoradPG,OtherDefBoard,OtherOffBoard,BackBoard,BackBoardPG,AssitNumber,AssitNumberPG,"
-			 * +
-			 * "StealNumber,StealNumberPG,Rejection,RejectionPG,ToTime,ToPG,Foul,FoulPG,PTS,PPG,LPS,LPG,ShootEff,TPEff,FTEff,WR,"
-			 * +
-			 * "Off,OffPG,Def,DefPG,OffEff,DefEff,OffBackBoardEff,BackBoardEff,DefBackBoardEff,StealEff,AssistEff"
-			 * + ")values(" + value + ")");
-			 */
+
 			st.executeUpdate("insert into team(Name,ShortName,City,EorW,area,mainposition,player,buildyear,MatchNumber,WinMatch,ShootNumber,ShootNumberPG,ShootEffNumber,ShootEffNumberPG,TPNumber,TPNumberPG,"
 					+ "TPEffNumber,TPEffNumberPG,FTEffNumber,FTEffNumberPG,FTNumber,FTNumberPG,OffBackBoard,OffBackBoardPG,DefBackBoard,DefBackBoardPG,OtherDefBoard,OtherOffBoard,BackBoard,BackBoardPG,AssistNumber,AssistNumberPG,"
 					+ "StealNumber,StealNumberPG,Rejection,RejectionPG,ToTime,ToPG,Foul,FoulPG,PTS,PPG,LPS,LPG,ShootEff,TPEff,FTEff,WR,"
@@ -257,19 +246,19 @@ public class TeamTableLink {
 		}
 	}
 
-	public void deleteAll() {
+/*	public void deleteAll() {
 		try {
 			Connection con = DriverManager.getConnection(url, "thometoy",
 					"960105");
 			if (!con.isClosed())
 				System.out.println("success");
 			Statement st = con.createStatement();
-			st.executeQuery("TRUNCATE TABLE team");
+			st.executeQuery("delete from team");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
+*/
 	public boolean judge() {
 		boolean res = false;
 		if (getAllInfo().size() == 0) {

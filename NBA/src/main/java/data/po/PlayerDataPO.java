@@ -302,7 +302,7 @@ public class PlayerDataPO implements Serializable{
 
 	public void setFieldGoalPercentage(double fieldGoalPercentage) {
 		BigDecimal bg = new BigDecimal(fieldGoalPercentage);
-		FieldGoalPercentage = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		FieldGoalPercentage = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getThreePGPercentage() {
@@ -311,7 +311,7 @@ public class PlayerDataPO implements Serializable{
 
 	public void setThreePGPercentage(double threePGPercentage) {
 		BigDecimal bg = new BigDecimal(threePGPercentage);
-		ThreePGPercentage = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		ThreePGPercentage = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 
 	}
 
@@ -321,7 +321,7 @@ public class PlayerDataPO implements Serializable{
 
 	public void setFTPercentage(double fTPercentage) {
 		BigDecimal bg = new BigDecimal(fTPercentage);
-		FTPercentage = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		FTPercentage = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public int getOff() {
@@ -456,7 +456,7 @@ public class PlayerDataPO implements Serializable{
 
 	public void setEff(double eff) {
 		BigDecimal bg = new BigDecimal(eff);
-		Eff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		Eff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 		//Eff = eff;
 	}
 
@@ -466,7 +466,7 @@ public class PlayerDataPO implements Serializable{
 
 	public void setGmsc(double gmsc) {
 		BigDecimal bg = new BigDecimal(gmsc);
-		Gmsc = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		Gmsc = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 		//Gmsc = gmsc;
 	}
 
@@ -476,7 +476,7 @@ public class PlayerDataPO implements Serializable{
 
 	public void setTruePercentage(double truePercentage) {
 		BigDecimal bg = new BigDecimal(truePercentage);
-		TruePercentage = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		TruePercentage = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 		//TruePercentage = truePercentage;
 	}
 
@@ -486,7 +486,7 @@ public class PlayerDataPO implements Serializable{
 
 	public void setShootEff(double shootEff) {
 		BigDecimal bg = new BigDecimal(shootEff);
-		ShootEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		ShootEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 		//ShootEff = shootEff;
 	}
 
@@ -496,7 +496,7 @@ public class PlayerDataPO implements Serializable{
 
 	public void setBackboardEff(double backboardEff) {
 		BigDecimal bg = new BigDecimal(backboardEff);
-		BackboardEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		BackboardEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 		//BackboardEff = backboardEff;
 	}
 
@@ -506,7 +506,7 @@ public class PlayerDataPO implements Serializable{
 
 	public void setOffBEff(double offBEff) {
 		BigDecimal bg = new BigDecimal(offBEff);
-		OffBEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		OffBEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 		//OffBEff = offBEff;
 	}
 
@@ -516,7 +516,7 @@ public class PlayerDataPO implements Serializable{
 
 	public void setDefBEff(double defBEff) {
 		BigDecimal bg = new BigDecimal(defBEff);
-		DefBEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		DefBEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 		//DefBEff = defBEff;
 	}
 
@@ -526,7 +526,7 @@ public class PlayerDataPO implements Serializable{
 
 	public void setAssitEff(double assitEff) {
 		BigDecimal bg = new BigDecimal(assitEff);
-		AssitEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		AssitEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 		//AssitEff = assitEff;
 	}
 
@@ -536,7 +536,7 @@ public class PlayerDataPO implements Serializable{
 
 	public void setStealEff(double stealEff) {
 		BigDecimal bg = new BigDecimal(stealEff);
-		StealEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		StealEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 		//StealEff = stealEff;
 	}
 
@@ -546,7 +546,7 @@ public class PlayerDataPO implements Serializable{
 
 	public void setRejectionEff(double rejectionEff) {
 		BigDecimal bg = new BigDecimal(rejectionEff);
-		RejectionEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		RejectionEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 		//RejectionEff = rejectionEff;
 	}
 
@@ -556,7 +556,7 @@ public class PlayerDataPO implements Serializable{
 
 	public void setToEff(double toEff) {
 		BigDecimal bg = new BigDecimal(toEff);
-		ToEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		ToEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 		//ToEff = toEff;
 	}
 
@@ -566,7 +566,7 @@ public class PlayerDataPO implements Serializable{
 
 	public void setUseEff(double useEff) {
 		BigDecimal bg = new BigDecimal(useEff);
-		UseEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		UseEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 		//UseEff = useEff;
 	}
 

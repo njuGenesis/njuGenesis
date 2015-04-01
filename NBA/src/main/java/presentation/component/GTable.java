@@ -28,10 +28,18 @@ public class GTable extends JTable{
 	
 	public int sortingCol = 0;  //用于标记被排序的列
 
+	public boolean fit = true;
+	
 	public GTable(PagingTableModel dm,JButton up,JButton down,JTextField p){
 		this(dm,32,30,up,down,p);
 	}
+	
+	public GTable(PagingTableModel dm,JButton up,JButton down,JTextField p,boolean sortable){
+		this(dm,32,30,up,down,p,sortable);
+	}
 
+	
+	
 	public GTable(final PagingTableModel dm,int rowHeight,int headerHeight,JButton up,JButton down,JTextField p){
 		super(dm);
 		
@@ -46,14 +54,45 @@ public class GTable extends JTable{
 		TableUtility.setTableRowHeight(this, rowHeight);
 		TableUtility.setTableHeaderHeight(this, headerHeight);
 		
+		
+//		int col = this.getColumnModel().getColumnCount();
+//		for(int i=0;i<col;i++){
+//			this.getColumnModel().getColumn(i).setPreferredWidth(50);
+//			this.getColumnModel().getColumn(i).setMaxWidth(50);
+//			this.getColumnModel().getColumn(i).setMinWidth(50);
+//		}
+		
 		fitTableColumns(this);
 
 		this.getTableHeader().addMouseListener(new HeaderListener());
 
 	}
 	
-	public void fitTableColumns(JTable myTable)
-    {
+	public GTable(final PagingTableModel dm,int rowHeight,int headerHeight,JButton up,JButton down,JTextField p,boolean sortable){
+		super(dm);
+		
+		pageUp = up;
+		pageDown = down;
+		page = p;
+		
+		fit = sortable;
+		
+		this.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+		TableUtility.setFont(this);
+		TableUtility.setTableColor(this);
+		TableUtility.setTableRowHeight(this, rowHeight);
+		TableUtility.setTableHeaderHeight(this, headerHeight);
+		
+		if(fit){
+			fitTableColumns(this);
+		}
+		
+		this.getTableHeader().addMouseListener(new HeaderListener());
+
+	}
+	
+	public void fitTableColumns(JTable myTable){
          myTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
          JTableHeader header = myTable.getTableHeader();
          int rowCount = myTable.getRowCount();
@@ -97,7 +136,9 @@ public class GTable extends JTable{
 				PagingTableModel.setPagingButton(GTable.this, pageUp, pageDown);
 				
 				//列宽自适应
-				fitTableColumns(GTable.this);
+				if(fit){
+					fitTableColumns(GTable.this);
+				}
 				
 				//更改页数
 				model = (PagingTableModel)GTable.this.getModel();
