@@ -496,7 +496,7 @@ public class PlayerTableLink {
 									|| (rs.getString("TeamName").equals("DET"))
 									|| (rs.getString("TeamName").equals("IND"))
 									//|| (rs.getString("TeamName").equals("MIA"))
-									|| (rs.getString("TeamName").equals("MIL")))
+									|| (rs.getString("TeamName").equals("MIL"))){
 									//|| (rs.getString("TeamName").equals("NYK"))
 									//|| (rs.getString("TeamName").equals("ORL"))
 									//|| (rs.getString("TeamName").equals("PHI"))
@@ -568,6 +568,7 @@ public class PlayerTableLink {
 								AllInfo.setTotalFT(rs.getInt("TotalFT"));
 								list.add(AllInfo);
 							}
+							}
 						}
 					else if (union.equals("Atlantic")) {
 						while (rs.next()) {
@@ -585,7 +586,7 @@ public class PlayerTableLink {
 									|| (rs.getString("TeamName").equals("NYK"))
 									//|| (rs.getString("TeamName").equals("ORL"))
 									|| (rs.getString("TeamName").equals("PHI"))
-									|| (rs.getString("TeamName").equals("TOR")))
+									|| (rs.getString("TeamName").equals("TOR"))){
 									//|| (rs.getString("TeamName").equals("WAS"))) {
 
 								AllInfo.setName(rs.getString("Name"));
@@ -652,6 +653,7 @@ public class PlayerTableLink {
 								AllInfo.setFT(rs.getInt("FT"));
 								AllInfo.setTotalFT(rs.getInt("TotalFT"));
 								list.add(AllInfo);
+							}
 							}
 						}
 					else if (union.equals("Southwest")) {
@@ -670,7 +672,7 @@ public class PlayerTableLink {
 									|| (rs.getString("TeamName").equals("MEM"))
 									//|| (rs.getString("TeamName").equals("ORL"))
 									|| (rs.getString("TeamName").equals("NOP"))
-									|| (rs.getString("TeamName").equals("SAS")))
+									|| (rs.getString("TeamName").equals("SAS"))){
 									//|| (rs.getString("TeamName").equals("WAS"))) {
 
 								AllInfo.setName(rs.getString("Name"));
@@ -737,6 +739,7 @@ public class PlayerTableLink {
 								AllInfo.setFT(rs.getInt("FT"));
 								AllInfo.setTotalFT(rs.getInt("TotalFT"));
 								list.add(AllInfo);
+							}
 							}
 						}
 					else if (union.equals("Northwest")) {
@@ -755,7 +758,7 @@ public class PlayerTableLink {
 									|| (rs.getString("TeamName").equals("OKC"))
 									//|| (rs.getString("TeamName").equals("ORL"))
 									|| (rs.getString("TeamName").equals("POR"))
-									|| (rs.getString("TeamName").equals("UTA")))
+									|| (rs.getString("TeamName").equals("UTA"))){
 									//|| (rs.getString("TeamName").equals("WAS"))) {
 
 								AllInfo.setName(rs.getString("Name"));
@@ -823,6 +826,7 @@ public class PlayerTableLink {
 								AllInfo.setTotalFT(rs.getInt("TotalFT"));
 								list.add(AllInfo);
 							}
+							}
 						}
 					else if (union.equals("Pacific")) {
 						while (rs.next()) {
@@ -840,7 +844,7 @@ public class PlayerTableLink {
 									|| (rs.getString("TeamName").equals("LAL"))
 									//|| (rs.getString("TeamName").equals("ORL"))
 									|| (rs.getString("TeamName").equals("PHX"))
-									|| (rs.getString("TeamName").equals("SAC")))
+									|| (rs.getString("TeamName").equals("SAC"))){
 									//|| (rs.getString("TeamName").equals("WAS"))) {
 
 								AllInfo.setName(rs.getString("Name"));
@@ -907,6 +911,7 @@ public class PlayerTableLink {
 								AllInfo.setFT(rs.getInt("FT"));
 								AllInfo.setTotalFT(rs.getInt("TotalFT"));
 								list.add(AllInfo);
+							}
 							}
 						}
 					
@@ -1087,7 +1092,7 @@ public class PlayerTableLink {
 								|| (rs.getString("TeamName").equals("DET"))
 								|| (rs.getString("TeamName").equals("IND"))
 								//|| (rs.getString("TeamName").equals("MIA"))
-								|| (rs.getString("TeamName").equals("MIL")))
+								|| (rs.getString("TeamName").equals("MIL"))){
 								//|| (rs.getString("TeamName").equals("NYK"))
 								//|| (rs.getString("TeamName").equals("ORL"))
 								//|| (rs.getString("TeamName").equals("PHI"))
@@ -1159,6 +1164,7 @@ public class PlayerTableLink {
 							AllInfo.setTotalFT(rs.getInt("TotalFT"));
 							list.add(AllInfo);
 						}
+						}
 					}
 					}
 				else if (union.equals("Atlantic")) {
@@ -1177,7 +1183,7 @@ public class PlayerTableLink {
 								|| (rs.getString("TeamName").equals("NYK"))
 								//|| (rs.getString("TeamName").equals("ORL"))
 								|| (rs.getString("TeamName").equals("PHI"))
-								|| (rs.getString("TeamName").equals("TOR")))
+								|| (rs.getString("TeamName").equals("TOR"))){
 								//|| (rs.getString("TeamName").equals("WAS"))) {
 
 							AllInfo.setName(rs.getString("Name"));
@@ -1244,6 +1250,7 @@ public class PlayerTableLink {
 							AllInfo.setFT(rs.getInt("FT"));
 							AllInfo.setTotalFT(rs.getInt("TotalFT"));
 							list.add(AllInfo);
+						}
 						}
 					}
 					}
@@ -1263,7 +1270,7 @@ public class PlayerTableLink {
 								|| (rs.getString("TeamName").equals("MEM"))
 								//|| (rs.getString("TeamName").equals("ORL"))
 								|| (rs.getString("TeamName").equals("NOP"))
-								|| (rs.getString("TeamName").equals("SAS")))
+								|| (rs.getString("TeamName").equals("SAS"))){
 								//|| (rs.getString("TeamName").equals("WAS"))) {
 
 							AllInfo.setName(rs.getString("Name"));
@@ -1330,6 +1337,7 @@ public class PlayerTableLink {
 							AllInfo.setFT(rs.getInt("FT"));
 							AllInfo.setTotalFT(rs.getInt("TotalFT"));
 							list.add(AllInfo);
+						}
 						}
 					}
 					}
@@ -1349,7 +1357,7 @@ public class PlayerTableLink {
 								|| (rs.getString("TeamName").equals("OKC"))
 								//|| (rs.getString("TeamName").equals("ORL"))
 								|| (rs.getString("TeamName").equals("POR"))
-								|| (rs.getString("TeamName").equals("UTA")))
+								|| (rs.getString("TeamName").equals("UTA"))){
 								//|| (rs.getString("TeamName").equals("WAS"))) {
 
 							AllInfo.setName(rs.getString("Name"));
@@ -1417,6 +1425,7 @@ public class PlayerTableLink {
 							AllInfo.setTotalFT(rs.getInt("TotalFT"));
 							list.add(AllInfo);
 						}
+						}
 					}
 					}
 				else if (union.equals("Pacific")) {
@@ -1435,7 +1444,7 @@ public class PlayerTableLink {
 								|| (rs.getString("TeamName").equals("LAL"))
 								//|| (rs.getString("TeamName").equals("ORL"))
 								|| (rs.getString("TeamName").equals("PHX"))
-								|| (rs.getString("TeamName").equals("SAC")))
+								|| (rs.getString("TeamName").equals("SAC"))){
 								//|| (rs.getString("TeamName").equals("WAS"))) {
 
 							AllInfo.setName(rs.getString("Name"));
@@ -1502,6 +1511,7 @@ public class PlayerTableLink {
 							AllInfo.setFT(rs.getInt("FT"));
 							AllInfo.setTotalFT(rs.getInt("TotalFT"));
 							list.add(AllInfo);
+						}
 						}
 					}
 					}

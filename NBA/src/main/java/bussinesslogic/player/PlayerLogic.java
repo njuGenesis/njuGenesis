@@ -535,6 +535,7 @@ public class PlayerLogic implements PlayerInfoService{
 	}
 	public PlayerDataPO[] getAllSearch(String namekeys,String position,String Union){
 		PlayerDataPO[] res = p.getSelect(position, Union);
+		System.out.println(res[0].getName()+"dddd");
 		if(namekeys.equals("null")){
 			return res;
 		}
