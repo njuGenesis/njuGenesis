@@ -187,13 +187,37 @@ public class TeamStatsPanel extends ContentPanel{
 				ArrayList<TeamDataPO> po = logic.GetAllInfo();
 				PagingTableModel tm;
 				if(isAverageData(type)){
-					tm = new PagingTableModel(getTeamDataAvg(po));
+					tm = new PagingTableModel(getTeamDataAvg(po)){
+						public boolean isCellEditable(int row, int column){
+							if(column==1){
+								return true;
+							}else{
+								return false;
+							}
+						}
+					};
 				}else{
-					tm = new PagingTableModel(getTeamDataAll(po));
+					tm = new PagingTableModel(getTeamDataAll(po)){
+						public boolean isCellEditable(int row, int column){
+							if(column==1){
+								return true;
+							}else{
+								return false;
+							}
+						}
+					};
 				}
 				
 				table.setModel(tm);
 				table.fitTableColumns(table);
+				
+				PagingTableModel.setPagingButton(table, left, right);
+				page.setText(String.valueOf(tm.getPageOffset()+1));
+				
+				table.getColumnModel().getColumn(1).setCellRenderer(new NameRenderer());
+				table.getColumnModel().getColumn(1).setCellEditor(new TeamCellEditor());
+				
+				table.repaint();
 				
 //				MainUI.getMainFrame().repaint();
 			}

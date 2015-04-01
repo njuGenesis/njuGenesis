@@ -88,7 +88,7 @@ public class GTable extends JTable{
 			fitTableColumns(this);
 		}
 		
-		this.getTableHeader().addMouseListener(new HeaderListener());
+//		this.getTableHeader().addMouseListener(new HeaderListener());
 
 	}
 	

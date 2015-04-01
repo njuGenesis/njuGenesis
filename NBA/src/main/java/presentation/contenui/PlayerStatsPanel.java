@@ -219,13 +219,40 @@ public class PlayerStatsPanel extends ContentPanel{
 			PlayerDataPO[] po = logic.getSelect(changePosStr(pos), changeUnStr(leag));
 			PagingTableModel tm;
 			if(isAverageData(type)){
-				tm = new PagingTableModel(getPlayerDataAvg(po));
+				tm = new PagingTableModel(getPlayerDataAvg(po)){
+					public boolean isCellEditable(int row, int column){
+						if(column==1 || column==2){
+							return true;
+						}else{
+							return false;
+						}
+					}
+				};
 			}else{
-				tm = new PagingTableModel(getPlayerDataAll(po));
+				tm = new PagingTableModel(getPlayerDataAll(po)){
+					public boolean isCellEditable(int row, int column){
+						if(column==1 || column==2){
+							return true;
+						}else{
+							return false;
+						}
+					}
+				};
 			}
 			
 			table.setModel(tm);
 			table.fitTableColumns(table);
+	
+			PagingTableModel.setPagingButton(table, left, right);
+			page.setText(String.valueOf(tm.getPageOffset()+1));
+			
+			table.getColumnModel().getColumn(1).setCellRenderer(new NameRenderer());
+			table.getColumnModel().getColumn(1).setCellEditor(new NameCellEditor());
+			
+			table.getColumnModel().getColumn(2).setCellRenderer(new NameRenderer());
+			table.getColumnModel().getColumn(2).setCellEditor(new TeamShortCellEditor());
+			
+			table.repaint();
 			
 //			MainUI.getMainFrame().repaint();
 		}

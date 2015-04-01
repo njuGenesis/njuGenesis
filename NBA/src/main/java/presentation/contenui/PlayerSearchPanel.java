@@ -207,6 +207,11 @@ public class PlayerSearchPanel extends ContentPanel{
 				PagingTableModel tm = new PagingTableModel(TableData.getInitials(model.data, bt.letter, 1));
 
 				table.setModel(tm);
+				
+				PagingTableModel.setPagingButton(table, left, right);
+				page.setText(String.valueOf(tm.getPageOffset()+1));
+				
+				table.repaint();
 				MainUI.getMainFrame().repaint();
 
 			}else{
@@ -223,9 +228,29 @@ public class PlayerSearchPanel extends ContentPanel{
 			String pos = position.getSelectedItem().toString();
 
 			PlayerDataPO[] po = logic.getSelect(changePosStr(pos),"null");
-			PagingTableModel tm = new PagingTableModel(getPlayerData(po));
+			PagingTableModel tm = new PagingTableModel(getPlayerData(po)){
+				public boolean isCellEditable(int row, int column){
+					if(column==1 || column==2){
+						return true;
+					}else{
+						return false;
+					}
+				}
+			};
 
 			table.setModel(tm);
+			
+			PagingTableModel.setPagingButton(table, left, right);
+			page.setText(String.valueOf(tm.getPageOffset()+1));
+			
+			table.getColumnModel().getColumn(1).setCellRenderer(new NameRenderer());
+			table.getColumnModel().getColumn(1).setCellEditor(new NameCellEditor());
+			
+			table.getColumnModel().getColumn(2).setCellRenderer(new NameRenderer());
+			table.getColumnModel().getColumn(2).setCellEditor(new TeamShortCellEditor());
+			
+			table.repaint();
+			
 			MainUI.getMainFrame().repaint();
 		}
 

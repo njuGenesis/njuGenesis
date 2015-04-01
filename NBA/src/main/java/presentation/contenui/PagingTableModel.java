@@ -60,7 +60,13 @@ public class PagingTableModel extends AbstractTableModel{
 	//仅显示表格的可见部分
 	public Object getValueAt(int row, int col) {
 		int realRow = row + (pageOffset * pageSize);  
-		return data[realRow].getValueAt(col);  
+		return data[realRow].getValueAt(col);
+		//		try{
+		//			return data[realRow].getValueAt(col);
+		//		}catch(Exception ex){
+		//			return "";
+		//		}
+
 	}
 
 	public int getPageCount() {  
@@ -166,9 +172,9 @@ public class PagingTableModel extends AbstractTableModel{
 
 		return jsp;  
 	}  
-	
 
-	
+
+
 	public static JScrollPane createPagingScrollPaneForTable(JTable jt,JButton up,JButton down) {  
 		JScrollPane jsp = new JScrollPane(jt);  
 		TableModel tmodel = jt.getModel();  
@@ -213,12 +219,12 @@ public class PagingTableModel extends AbstractTableModel{
 
 		// Turn on the scrollbars; otherwise we won't get our corners.  
 		jsp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);  
-		jsp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);  
+		jsp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);  
 
 		return jsp;  
 	}
-	
-	
+
+
 	public static void setPagingButton(JTable jt,JButton up,JButton down){
 		TableModel tmodel = jt.getModel();  
 
@@ -254,7 +260,7 @@ public class PagingTableModel extends AbstractTableModel{
 			}  
 		});  
 	}
-	
+
 
 
 }
