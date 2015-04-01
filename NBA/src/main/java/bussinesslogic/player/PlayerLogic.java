@@ -3,6 +3,7 @@ package bussinesslogic.player;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 
 import rmiLink.PlayerRmi;
 import assistance.GetFileData;
@@ -531,6 +532,25 @@ public class PlayerLogic implements PlayerInfoService{
 	public PlayerDataPO[] getSearch(String keys){
 		PlayerDataPO[] res = p.getSearch(keys);
 		return res;
+	}
+	public PlayerDataPO[] getAllSearch(String namekeys,String position,String Union){
+		PlayerDataPO[] res = p.getSelect(position, Union);
+		if(namekeys.equals("null")){
+			return res;
+		}
+		else {
+			ArrayList<PlayerDataPO> temp = new ArrayList<PlayerDataPO>();
+			for(int i =0;i<res.length;i++){
+				if(res[i].getName().contains(namekeys)){
+					temp.add(res[i]);
+				}
+			}
+		PlayerDataPO[] res2 = new PlayerDataPO[temp.size()];
+			for(int i = 0;i<temp.size();i++){
+				res2[i] =  temp.get(i);
+			}
+		return res2;
+		}
 	}
 	public String initialize(String filepath){
 		if(p.judge()==true){

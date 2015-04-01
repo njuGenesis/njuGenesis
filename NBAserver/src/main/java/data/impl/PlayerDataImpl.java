@@ -2,6 +2,7 @@ package data.impl;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 import data.po.PlayerDataPO;
 import dataBaseLink.PlayerTableLink;
@@ -66,5 +67,5 @@ public class PlayerDataImpl extends UnicastRemoteObject implements PlayerDataSer
 		PlayerDataPO[] res = pl.getSearch(keys);
 		return res;
 	}
-
+	
 }

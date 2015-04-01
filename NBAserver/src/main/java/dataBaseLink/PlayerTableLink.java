@@ -398,23 +398,23 @@ public class PlayerTableLink {
 				if (union.equals("null")) {
 					return getAllInfo();
 				} else {
-					if (union.equals("E")) {
+					if (union.equals("Southeast")) {
 						while (rs.next()) {
 							PlayerDataPO AllInfo = new PlayerDataPO();
 
 							if ((rs.getString("TeamName").equals("ATL"))
-									|| (rs.getString("TeamName").equals("BKN"))
+									//|| (rs.getString("TeamName").equals("BKN"))
 									|| (rs.getString("TeamName").equals("CHA"))
-									|| (rs.getString("TeamName").equals("CHI"))
-									|| (rs.getString("TeamName").equals("CLE"))
-									|| (rs.getString("TeamName").equals("DET"))
-									|| (rs.getString("TeamName").equals("IND"))
+									//|| (rs.getString("TeamName").equals("CHI"))
+									//|| (rs.getString("TeamName").equals("CLE"))
+									//|| (rs.getString("TeamName").equals("DET"))
+									//|| (rs.getString("TeamName").equals("IND"))
 									|| (rs.getString("TeamName").equals("MIA"))
-									|| (rs.getString("TeamName").equals("MIL"))
-									|| (rs.getString("TeamName").equals("NYK"))
+									//|| (rs.getString("TeamName").equals("MIL"))
+									//|| (rs.getString("TeamName").equals("NYK"))
 									|| (rs.getString("TeamName").equals("ORL"))
-									|| (rs.getString("TeamName").equals("PHI"))
-									|| (rs.getString("TeamName").equals("TOR"))
+									//|| (rs.getString("TeamName").equals("PHI"))
+									//|| (rs.getString("TeamName").equals("TOR"))
 									|| (rs.getString("TeamName").equals("WAS"))) {
 
 								AllInfo.setName(rs.getString("Name"));
@@ -483,25 +483,25 @@ public class PlayerTableLink {
 								list.add(AllInfo);
 							}
 						}
-					} else if (union.equals("W")) {
+					} 
+					else if (union.equals("Central")) {
 						while (rs.next()) {
 							PlayerDataPO AllInfo = new PlayerDataPO();
 
-							if ((!rs.getString("TeamName").equals("ATL"))
-									&& (!rs.getString("TeamName").equals("BKN"))
-									&& (!rs.getString("TeamName").equals("CHA"))
-									&& (!rs.getString("TeamName").equals("CHI"))
-									&& (!rs.getString("TeamName").equals("CLE"))
-									&& (!rs.getString("TeamName").equals("DET"))
-									&& (!rs.getString("TeamName").equals("IND"))
-									&& (!rs.getString("TeamName").equals("MIA"))
-									&& (!rs.getString("TeamName").equals("MIL"))
-									&& (!rs.getString("TeamName").equals("NYK"))
-									&& (!rs.getString("TeamName").equals("ORL"))
-									&& (!rs.getString("TeamName").equals("PHI"))
-									&& (!rs.getString("TeamName").equals("TOR"))
-									&& (!rs.getString("TeamName").equals("WAS"))
-									&& (!rs.getString("TeamName").equals("null"))) {
+							if (//(rs.getString("TeamName").equals("ATL"))
+									//|| (rs.getString("TeamName").equals("BKN"))
+									// (rs.getString("TeamName").equals("CHA"))
+									 (rs.getString("TeamName").equals("CHI"))
+									|| (rs.getString("TeamName").equals("CLE"))
+									|| (rs.getString("TeamName").equals("DET"))
+									|| (rs.getString("TeamName").equals("IND"))
+									//|| (rs.getString("TeamName").equals("MIA"))
+									|| (rs.getString("TeamName").equals("MIL")))
+									//|| (rs.getString("TeamName").equals("NYK"))
+									//|| (rs.getString("TeamName").equals("ORL"))
+									//|| (rs.getString("TeamName").equals("PHI"))
+									//|| (rs.getString("TeamName").equals("TOR"))
+									//|| (rs.getString("TeamName").equals("WAS"))) {
 
 								AllInfo.setName(rs.getString("Name"));
 								AllInfo.setNumber(rs.getString("Number"));
@@ -569,8 +569,352 @@ public class PlayerTableLink {
 								list.add(AllInfo);
 							}
 						}
+					else if (union.equals("Atlantic")) {
+						while (rs.next()) {
+							PlayerDataPO AllInfo = new PlayerDataPO();
+
+							if (//(rs.getString("TeamName").equals("ATL"))
+									(rs.getString("TeamName").equals("BKN"))
+									|| (rs.getString("TeamName").equals("BOS"))
+									// (rs.getString("TeamName").equals("CHI"))
+									//|| (rs.getString("TeamName").equals("CLE"))
+									//|| (rs.getString("TeamName").equals("DET"))
+									//|| (rs.getString("TeamName").equals("IND"))
+									//|| (rs.getString("TeamName").equals("MIA"))
+									//|| (rs.getString("TeamName").equals("MIL")))
+									|| (rs.getString("TeamName").equals("NYK"))
+									//|| (rs.getString("TeamName").equals("ORL"))
+									|| (rs.getString("TeamName").equals("PHI"))
+									|| (rs.getString("TeamName").equals("TOR")))
+									//|| (rs.getString("TeamName").equals("WAS"))) {
+
+								AllInfo.setName(rs.getString("Name"));
+								AllInfo.setNumber(rs.getString("Number"));
+								AllInfo.setPosition(rs.getString("position"));
+								AllInfo.setHeight(rs.getString("Height"));
+								AllInfo.setWeight(rs.getDouble("Weight"));
+								AllInfo.setBirth(rs.getString("Birth"));
+								AllInfo.setAge(rs.getInt("Age"));
+								AllInfo.setExp(rs.getInt("Exp"));
+								AllInfo.setSchool(rs.getString("School"));
+								AllInfo.setTeamName(rs.getString("TeamName"));
+								AllInfo.setGP(rs.getInt("GP"));
+								AllInfo.setGS(rs.getInt("GS"));
+								AllInfo.setBackboard(rs.getInt("backboard"));
+								AllInfo.setBPG(rs.getDouble("BPG"));
+								AllInfo.setAssist(rs.getInt("assist"));
+								AllInfo.setAPG(rs.getDouble("APG"));
+								AllInfo.setMinutesOnField(rs
+										.getDouble("MinutesOnField"));
+								AllInfo.setMPG(rs.getDouble("MPG"));
+								AllInfo.setFieldGoalPercentage(rs
+										.getDouble("FieldGoalPercentage"));
+								AllInfo.setThreePGPercentage(rs
+										.getDouble("ThreePGPercentage"));
+								AllInfo.setFTPercentage(rs
+										.getDouble("FTPercentage"));
+								AllInfo.setOff(rs.getInt("Off"));
+								AllInfo.setOffPG(rs.getDouble("OffPG"));// off
+								AllInfo.setDef(rs.getInt("Def"));
+								AllInfo.setDefPG(rs.getDouble("DefPG"));// def
+								AllInfo.setSteal(rs.getInt("Steal"));
+								AllInfo.setStealPG(rs.getDouble("StealPG"));
+								AllInfo.setRejection(rs.getInt("Rejection"));
+								AllInfo.setRPG(rs.getDouble("RPG"));
+								AllInfo.setTo(rs.getInt("ToMiss"));
+								AllInfo.setToPG(rs.getDouble("ToMissPG"));
+								AllInfo.setFoul(rs.getInt("foul"));
+								AllInfo.setFoulPG(rs.getDouble("foulPG"));
+								AllInfo.setPTS(rs.getInt("PTS"));
+								AllInfo.setPPG(rs.getDouble("PPG"));
+								AllInfo.setEff(rs.getDouble("Eff"));
+								AllInfo.setGmsc(rs.getDouble("Gmsc"));
+								AllInfo.setTruePercentage(rs
+										.getDouble("TruePercentage"));
+								AllInfo.setShootEff(rs.getDouble("ShootEff"));
+								AllInfo.setBackboardEff(rs
+										.getDouble("BackboardEff"));
+								AllInfo.setOffBEff(rs.getDouble("OffBEff"));
+								AllInfo.setDefBEff(rs.getDouble("DefBEff"));
+								AllInfo.setAssitEff(rs.getDouble("AssitEff"));
+								AllInfo.setStealEff(rs.getDouble("StealEff"));// steal
+								AllInfo.setRejectionEff(rs
+										.getDouble("RejectionEff"));
+								AllInfo.setToEff(rs.getDouble("ToEff"));
+								AllInfo.setUseEff(rs.getDouble("UseEff"));
+								AllInfo.setDouble(rs.getInt("DoubleTime"));
+								AllInfo.setFieldGoal(rs.getInt("FieldGoal"));
+								AllInfo.setTotalFieldGoal(rs
+										.getInt("TotalFieldGoal"));
+								AllInfo.setThreeGoal(rs.getInt("ThreeGoal"));
+								AllInfo.setTotalThreeGoal(rs
+										.getInt("TotalThreeGoal"));
+								AllInfo.setFT(rs.getInt("FT"));
+								AllInfo.setTotalFT(rs.getInt("TotalFT"));
+								list.add(AllInfo);
+							}
+						}
+					else if (union.equals("Southwest")) {
+						while (rs.next()) {
+							PlayerDataPO AllInfo = new PlayerDataPO();
+
+							if (//(rs.getString("TeamName").equals("ATL"))
+									(rs.getString("TeamName").equals("DAL"))
+									|| (rs.getString("TeamName").equals("HOU"))
+									// (rs.getString("TeamName").equals("CHI"))
+									//|| (rs.getString("TeamName").equals("CLE"))
+									//|| (rs.getString("TeamName").equals("DET"))
+									//|| (rs.getString("TeamName").equals("IND"))
+									//|| (rs.getString("TeamName").equals("MIA"))
+									//|| (rs.getString("TeamName").equals("MIL")))
+									|| (rs.getString("TeamName").equals("MEM"))
+									//|| (rs.getString("TeamName").equals("ORL"))
+									|| (rs.getString("TeamName").equals("NOP"))
+									|| (rs.getString("TeamName").equals("SAS")))
+									//|| (rs.getString("TeamName").equals("WAS"))) {
+
+								AllInfo.setName(rs.getString("Name"));
+								AllInfo.setNumber(rs.getString("Number"));
+								AllInfo.setPosition(rs.getString("position"));
+								AllInfo.setHeight(rs.getString("Height"));
+								AllInfo.setWeight(rs.getDouble("Weight"));
+								AllInfo.setBirth(rs.getString("Birth"));
+								AllInfo.setAge(rs.getInt("Age"));
+								AllInfo.setExp(rs.getInt("Exp"));
+								AllInfo.setSchool(rs.getString("School"));
+								AllInfo.setTeamName(rs.getString("TeamName"));
+								AllInfo.setGP(rs.getInt("GP"));
+								AllInfo.setGS(rs.getInt("GS"));
+								AllInfo.setBackboard(rs.getInt("backboard"));
+								AllInfo.setBPG(rs.getDouble("BPG"));
+								AllInfo.setAssist(rs.getInt("assist"));
+								AllInfo.setAPG(rs.getDouble("APG"));
+								AllInfo.setMinutesOnField(rs
+										.getDouble("MinutesOnField"));
+								AllInfo.setMPG(rs.getDouble("MPG"));
+								AllInfo.setFieldGoalPercentage(rs
+										.getDouble("FieldGoalPercentage"));
+								AllInfo.setThreePGPercentage(rs
+										.getDouble("ThreePGPercentage"));
+								AllInfo.setFTPercentage(rs
+										.getDouble("FTPercentage"));
+								AllInfo.setOff(rs.getInt("Off"));
+								AllInfo.setOffPG(rs.getDouble("OffPG"));// off
+								AllInfo.setDef(rs.getInt("Def"));
+								AllInfo.setDefPG(rs.getDouble("DefPG"));// def
+								AllInfo.setSteal(rs.getInt("Steal"));
+								AllInfo.setStealPG(rs.getDouble("StealPG"));
+								AllInfo.setRejection(rs.getInt("Rejection"));
+								AllInfo.setRPG(rs.getDouble("RPG"));
+								AllInfo.setTo(rs.getInt("ToMiss"));
+								AllInfo.setToPG(rs.getDouble("ToMissPG"));
+								AllInfo.setFoul(rs.getInt("foul"));
+								AllInfo.setFoulPG(rs.getDouble("foulPG"));
+								AllInfo.setPTS(rs.getInt("PTS"));
+								AllInfo.setPPG(rs.getDouble("PPG"));
+								AllInfo.setEff(rs.getDouble("Eff"));
+								AllInfo.setGmsc(rs.getDouble("Gmsc"));
+								AllInfo.setTruePercentage(rs
+										.getDouble("TruePercentage"));
+								AllInfo.setShootEff(rs.getDouble("ShootEff"));
+								AllInfo.setBackboardEff(rs
+										.getDouble("BackboardEff"));
+								AllInfo.setOffBEff(rs.getDouble("OffBEff"));
+								AllInfo.setDefBEff(rs.getDouble("DefBEff"));
+								AllInfo.setAssitEff(rs.getDouble("AssitEff"));
+								AllInfo.setStealEff(rs.getDouble("StealEff"));// steal
+								AllInfo.setRejectionEff(rs
+										.getDouble("RejectionEff"));
+								AllInfo.setToEff(rs.getDouble("ToEff"));
+								AllInfo.setUseEff(rs.getDouble("UseEff"));
+								AllInfo.setDouble(rs.getInt("DoubleTime"));
+								AllInfo.setFieldGoal(rs.getInt("FieldGoal"));
+								AllInfo.setTotalFieldGoal(rs
+										.getInt("TotalFieldGoal"));
+								AllInfo.setThreeGoal(rs.getInt("ThreeGoal"));
+								AllInfo.setTotalThreeGoal(rs
+										.getInt("TotalThreeGoal"));
+								AllInfo.setFT(rs.getInt("FT"));
+								AllInfo.setTotalFT(rs.getInt("TotalFT"));
+								list.add(AllInfo);
+							}
+						}
+					else if (union.equals("Northwest")) {
+						while (rs.next()) {
+							PlayerDataPO AllInfo = new PlayerDataPO();
+
+							if (//(rs.getString("TeamName").equals("ATL"))
+									(rs.getString("TeamName").equals("DEN"))
+									|| (rs.getString("TeamName").equals("MIN"))
+									// (rs.getString("TeamName").equals("CHI"))
+									//|| (rs.getString("TeamName").equals("CLE"))
+									//|| (rs.getString("TeamName").equals("DET"))
+									//|| (rs.getString("TeamName").equals("IND"))
+									//|| (rs.getString("TeamName").equals("MIA"))
+									//|| (rs.getString("TeamName").equals("MIL")))
+									|| (rs.getString("TeamName").equals("OKC"))
+									//|| (rs.getString("TeamName").equals("ORL"))
+									|| (rs.getString("TeamName").equals("POR"))
+									|| (rs.getString("TeamName").equals("UTA")))
+									//|| (rs.getString("TeamName").equals("WAS"))) {
+
+								AllInfo.setName(rs.getString("Name"));
+								AllInfo.setNumber(rs.getString("Number"));
+								AllInfo.setPosition(rs.getString("position"));
+								AllInfo.setHeight(rs.getString("Height"));
+								AllInfo.setWeight(rs.getDouble("Weight"));
+								AllInfo.setBirth(rs.getString("Birth"));
+								AllInfo.setAge(rs.getInt("Age"));
+								AllInfo.setExp(rs.getInt("Exp"));
+								AllInfo.setSchool(rs.getString("School"));
+								AllInfo.setTeamName(rs.getString("TeamName"));
+								AllInfo.setGP(rs.getInt("GP"));
+								AllInfo.setGS(rs.getInt("GS"));
+								AllInfo.setBackboard(rs.getInt("backboard"));
+								AllInfo.setBPG(rs.getDouble("BPG"));
+								AllInfo.setAssist(rs.getInt("assist"));
+								AllInfo.setAPG(rs.getDouble("APG"));
+								AllInfo.setMinutesOnField(rs
+										.getDouble("MinutesOnField"));
+								AllInfo.setMPG(rs.getDouble("MPG"));
+								AllInfo.setFieldGoalPercentage(rs
+										.getDouble("FieldGoalPercentage"));
+								AllInfo.setThreePGPercentage(rs
+										.getDouble("ThreePGPercentage"));
+								AllInfo.setFTPercentage(rs
+										.getDouble("FTPercentage"));
+								AllInfo.setOff(rs.getInt("Off"));
+								AllInfo.setOffPG(rs.getDouble("OffPG"));// off
+								AllInfo.setDef(rs.getInt("Def"));
+								AllInfo.setDefPG(rs.getDouble("DefPG"));// def
+								AllInfo.setSteal(rs.getInt("Steal"));
+								AllInfo.setStealPG(rs.getDouble("StealPG"));
+								AllInfo.setRejection(rs.getInt("Rejection"));
+								AllInfo.setRPG(rs.getDouble("RPG"));
+								AllInfo.setTo(rs.getInt("ToMiss"));
+								AllInfo.setToPG(rs.getDouble("ToMissPG"));
+								AllInfo.setFoul(rs.getInt("foul"));
+								AllInfo.setFoulPG(rs.getDouble("foulPG"));
+								AllInfo.setPTS(rs.getInt("PTS"));
+								AllInfo.setPPG(rs.getDouble("PPG"));
+								AllInfo.setEff(rs.getDouble("Eff"));
+								AllInfo.setGmsc(rs.getDouble("Gmsc"));
+								AllInfo.setTruePercentage(rs
+										.getDouble("TruePercentage"));
+								AllInfo.setShootEff(rs.getDouble("ShootEff"));
+								AllInfo.setBackboardEff(rs
+										.getDouble("BackboardEff"));
+								AllInfo.setOffBEff(rs.getDouble("OffBEff"));
+								AllInfo.setDefBEff(rs.getDouble("DefBEff"));
+								AllInfo.setAssitEff(rs.getDouble("AssitEff"));
+								AllInfo.setStealEff(rs.getDouble("StealEff"));// steal
+								AllInfo.setRejectionEff(rs
+										.getDouble("RejectionEff"));
+								AllInfo.setToEff(rs.getDouble("ToEff"));
+								AllInfo.setUseEff(rs.getDouble("UseEff"));
+								AllInfo.setDouble(rs.getInt("DoubleTime"));
+								AllInfo.setFieldGoal(rs.getInt("FieldGoal"));
+								AllInfo.setTotalFieldGoal(rs
+										.getInt("TotalFieldGoal"));
+								AllInfo.setThreeGoal(rs.getInt("ThreeGoal"));
+								AllInfo.setTotalThreeGoal(rs
+										.getInt("TotalThreeGoal"));
+								AllInfo.setFT(rs.getInt("FT"));
+								AllInfo.setTotalFT(rs.getInt("TotalFT"));
+								list.add(AllInfo);
+							}
+						}
+					else if (union.equals("Pacific")) {
+						while (rs.next()) {
+							PlayerDataPO AllInfo = new PlayerDataPO();
+
+							if (//(rs.getString("TeamName").equals("ATL"))
+									(rs.getString("TeamName").equals("GSW"))
+									|| (rs.getString("TeamName").equals("LAC"))
+									// (rs.getString("TeamName").equals("CHI"))
+									//|| (rs.getString("TeamName").equals("CLE"))
+									//|| (rs.getString("TeamName").equals("DET"))
+									//|| (rs.getString("TeamName").equals("IND"))
+									//|| (rs.getString("TeamName").equals("MIA"))
+									//|| (rs.getString("TeamName").equals("MIL")))
+									|| (rs.getString("TeamName").equals("LAL"))
+									//|| (rs.getString("TeamName").equals("ORL"))
+									|| (rs.getString("TeamName").equals("PHX"))
+									|| (rs.getString("TeamName").equals("SAC")))
+									//|| (rs.getString("TeamName").equals("WAS"))) {
+
+								AllInfo.setName(rs.getString("Name"));
+								AllInfo.setNumber(rs.getString("Number"));
+								AllInfo.setPosition(rs.getString("position"));
+								AllInfo.setHeight(rs.getString("Height"));
+								AllInfo.setWeight(rs.getDouble("Weight"));
+								AllInfo.setBirth(rs.getString("Birth"));
+								AllInfo.setAge(rs.getInt("Age"));
+								AllInfo.setExp(rs.getInt("Exp"));
+								AllInfo.setSchool(rs.getString("School"));
+								AllInfo.setTeamName(rs.getString("TeamName"));
+								AllInfo.setGP(rs.getInt("GP"));
+								AllInfo.setGS(rs.getInt("GS"));
+								AllInfo.setBackboard(rs.getInt("backboard"));
+								AllInfo.setBPG(rs.getDouble("BPG"));
+								AllInfo.setAssist(rs.getInt("assist"));
+								AllInfo.setAPG(rs.getDouble("APG"));
+								AllInfo.setMinutesOnField(rs
+										.getDouble("MinutesOnField"));
+								AllInfo.setMPG(rs.getDouble("MPG"));
+								AllInfo.setFieldGoalPercentage(rs
+										.getDouble("FieldGoalPercentage"));
+								AllInfo.setThreePGPercentage(rs
+										.getDouble("ThreePGPercentage"));
+								AllInfo.setFTPercentage(rs
+										.getDouble("FTPercentage"));
+								AllInfo.setOff(rs.getInt("Off"));
+								AllInfo.setOffPG(rs.getDouble("OffPG"));// off
+								AllInfo.setDef(rs.getInt("Def"));
+								AllInfo.setDefPG(rs.getDouble("DefPG"));// def
+								AllInfo.setSteal(rs.getInt("Steal"));
+								AllInfo.setStealPG(rs.getDouble("StealPG"));
+								AllInfo.setRejection(rs.getInt("Rejection"));
+								AllInfo.setRPG(rs.getDouble("RPG"));
+								AllInfo.setTo(rs.getInt("ToMiss"));
+								AllInfo.setToPG(rs.getDouble("ToMissPG"));
+								AllInfo.setFoul(rs.getInt("foul"));
+								AllInfo.setFoulPG(rs.getDouble("foulPG"));
+								AllInfo.setPTS(rs.getInt("PTS"));
+								AllInfo.setPPG(rs.getDouble("PPG"));
+								AllInfo.setEff(rs.getDouble("Eff"));
+								AllInfo.setGmsc(rs.getDouble("Gmsc"));
+								AllInfo.setTruePercentage(rs
+										.getDouble("TruePercentage"));
+								AllInfo.setShootEff(rs.getDouble("ShootEff"));
+								AllInfo.setBackboardEff(rs
+										.getDouble("BackboardEff"));
+								AllInfo.setOffBEff(rs.getDouble("OffBEff"));
+								AllInfo.setDefBEff(rs.getDouble("DefBEff"));
+								AllInfo.setAssitEff(rs.getDouble("AssitEff"));
+								AllInfo.setStealEff(rs.getDouble("StealEff"));// steal
+								AllInfo.setRejectionEff(rs
+										.getDouble("RejectionEff"));
+								AllInfo.setToEff(rs.getDouble("ToEff"));
+								AllInfo.setUseEff(rs.getDouble("UseEff"));
+								AllInfo.setDouble(rs.getInt("DoubleTime"));
+								AllInfo.setFieldGoal(rs.getInt("FieldGoal"));
+								AllInfo.setTotalFieldGoal(rs
+										.getInt("TotalFieldGoal"));
+								AllInfo.setThreeGoal(rs.getInt("ThreeGoal"));
+								AllInfo.setTotalThreeGoal(rs
+										.getInt("TotalThreeGoal"));
+								AllInfo.setFT(rs.getInt("FT"));
+								AllInfo.setTotalFT(rs.getInt("TotalFT"));
+								list.add(AllInfo);
+							}
+						}
+					
 					}
-				}
+					
+					
+
+				
 			} else {
 				if (union.equals("null")) {
 					while (rs.next()) {
@@ -644,25 +988,111 @@ public class PlayerTableLink {
 							list.add(AllInfo);
 						}
 					}
-				} else if (union.equals("E")) {
+				} 	else if (union.equals("Southeast")) {
+						while (rs.next()) {
+							PlayerDataPO AllInfo = new PlayerDataPO();
+							if (rs.getString("position").contains(position)) {
+							if ((rs.getString("TeamName").equals("ATL"))
+								//|| (rs.getString("TeamName").equals("BKN"))
+								|| (rs.getString("TeamName").equals("CHA"))
+								//|| (rs.getString("TeamName").equals("CHI"))
+								//|| (rs.getString("TeamName").equals("CLE"))
+								//|| (rs.getString("TeamName").equals("DET"))
+								//|| (rs.getString("TeamName").equals("IND"))
+								|| (rs.getString("TeamName").equals("MIA"))
+								//|| (rs.getString("TeamName").equals("MIL"))
+								//|| (rs.getString("TeamName").equals("NYK"))
+								|| (rs.getString("TeamName").equals("ORL"))
+								//|| (rs.getString("TeamName").equals("PHI"))
+								//|| (rs.getString("TeamName").equals("TOR"))
+								|| (rs.getString("TeamName").equals("WAS"))) {
+
+							AllInfo.setName(rs.getString("Name"));
+							AllInfo.setNumber(rs.getString("Number"));
+							AllInfo.setPosition(rs.getString("position"));
+							AllInfo.setHeight(rs.getString("Height"));
+							AllInfo.setWeight(rs.getDouble("Weight"));
+							AllInfo.setBirth(rs.getString("Birth"));
+							AllInfo.setAge(rs.getInt("Age"));
+							AllInfo.setExp(rs.getInt("Exp"));
+							AllInfo.setSchool(rs.getString("School"));
+							AllInfo.setTeamName(rs.getString("TeamName"));
+							AllInfo.setGP(rs.getInt("GP"));
+							AllInfo.setGS(rs.getInt("GS"));
+							AllInfo.setBackboard(rs.getInt("backboard"));
+							AllInfo.setBPG(rs.getDouble("BPG"));
+							AllInfo.setAssist(rs.getInt("assist"));
+							AllInfo.setAPG(rs.getDouble("APG"));
+							AllInfo.setMinutesOnField(rs
+									.getDouble("MinutesOnField"));
+							AllInfo.setMPG(rs.getDouble("MPG"));
+							AllInfo.setFieldGoalPercentage(rs
+									.getDouble("FieldGoalPercentage"));
+							AllInfo.setThreePGPercentage(rs
+									.getDouble("ThreePGPercentage"));
+							AllInfo.setFTPercentage(rs
+									.getDouble("FTPercentage"));
+							AllInfo.setOff(rs.getInt("Off"));
+							AllInfo.setOffPG(rs.getDouble("OffPG"));// off
+							AllInfo.setDef(rs.getInt("Def"));
+							AllInfo.setDefPG(rs.getDouble("DefPG"));// def
+							AllInfo.setSteal(rs.getInt("Steal"));
+							AllInfo.setStealPG(rs.getDouble("StealPG"));
+							AllInfo.setRejection(rs.getInt("Rejection"));
+							AllInfo.setRPG(rs.getDouble("RPG"));
+							AllInfo.setTo(rs.getInt("ToMiss"));
+							AllInfo.setToPG(rs.getDouble("ToMissPG"));
+							AllInfo.setFoul(rs.getInt("foul"));
+							AllInfo.setFoulPG(rs.getDouble("foulPG"));
+							AllInfo.setPTS(rs.getInt("PTS"));
+							AllInfo.setPPG(rs.getDouble("PPG"));
+							AllInfo.setEff(rs.getDouble("Eff"));
+							AllInfo.setGmsc(rs.getDouble("Gmsc"));
+							AllInfo.setTruePercentage(rs
+									.getDouble("TruePercentage"));
+							AllInfo.setShootEff(rs.getDouble("ShootEff"));
+							AllInfo.setBackboardEff(rs
+									.getDouble("BackboardEff"));
+							AllInfo.setOffBEff(rs.getDouble("OffBEff"));
+							AllInfo.setDefBEff(rs.getDouble("DefBEff"));
+							AllInfo.setAssitEff(rs.getDouble("AssitEff"));
+							AllInfo.setStealEff(rs.getDouble("StealEff"));// steal
+							AllInfo.setRejectionEff(rs
+									.getDouble("RejectionEff"));
+							AllInfo.setToEff(rs.getDouble("ToEff"));
+							AllInfo.setUseEff(rs.getDouble("UseEff"));
+							AllInfo.setDouble(rs.getInt("DoubleTime"));
+							AllInfo.setFieldGoal(rs.getInt("FieldGoal"));
+							AllInfo.setTotalFieldGoal(rs
+									.getInt("TotalFieldGoal"));
+							AllInfo.setThreeGoal(rs.getInt("ThreeGoal"));
+							AllInfo.setTotalThreeGoal(rs
+									.getInt("TotalThreeGoal"));
+							AllInfo.setFT(rs.getInt("FT"));
+							AllInfo.setTotalFT(rs.getInt("TotalFT"));
+							list.add(AllInfo);
+							}
+						}
+					}
+				} 
+				else if (union.equals("Central")) {
 					while (rs.next()) {
 						PlayerDataPO AllInfo = new PlayerDataPO();
-						
-						if (((rs.getString("TeamName").equals("ATL"))
-								|| (rs.getString("TeamName").equals("BKN"))
-								|| (rs.getString("TeamName").equals("CHA"))
-								|| (rs.getString("TeamName").equals("CHI"))
+						if (rs.getString("position").contains(position)) {
+						if (//(rs.getString("TeamName").equals("ATL"))
+								//|| (rs.getString("TeamName").equals("BKN"))
+								// (rs.getString("TeamName").equals("CHA"))
+								 (rs.getString("TeamName").equals("CHI"))
 								|| (rs.getString("TeamName").equals("CLE"))
 								|| (rs.getString("TeamName").equals("DET"))
 								|| (rs.getString("TeamName").equals("IND"))
-								|| (rs.getString("TeamName").equals("MIA"))
-								|| (rs.getString("TeamName").equals("MIL"))
-								|| (rs.getString("TeamName").equals("NYK"))
-								|| (rs.getString("TeamName").equals("ORL"))
-								|| (rs.getString("TeamName").equals("PHI"))
-								|| (rs.getString("TeamName").equals("TOR"))
-								|| (rs.getString("TeamName").equals("WAS")))
-								&&(rs.getString("position").contains(position))) {
+								//|| (rs.getString("TeamName").equals("MIA"))
+								|| (rs.getString("TeamName").equals("MIL")))
+								//|| (rs.getString("TeamName").equals("NYK"))
+								//|| (rs.getString("TeamName").equals("ORL"))
+								//|| (rs.getString("TeamName").equals("PHI"))
+								//|| (rs.getString("TeamName").equals("TOR"))
+								//|| (rs.getString("TeamName").equals("WAS"))) {
 
 							AllInfo.setName(rs.getString("Name"));
 							AllInfo.setNumber(rs.getString("Number"));
@@ -730,26 +1160,25 @@ public class PlayerTableLink {
 							list.add(AllInfo);
 						}
 					}
-				} else if (union.equals("W")) {
+					}
+				else if (union.equals("Atlantic")) {
 					while (rs.next()) {
 						PlayerDataPO AllInfo = new PlayerDataPO();
-
-						if (((!rs.getString("TeamName").equals("ATL"))
-								&& (!rs.getString("TeamName").equals("BKN"))
-								&& (!rs.getString("TeamName").equals("CHA"))
-								&& (!rs.getString("TeamName").equals("CHI"))
-								&& (!rs.getString("TeamName").equals("CLE"))
-								&& (!rs.getString("TeamName").equals("DET"))
-								&& (!rs.getString("TeamName").equals("IND"))
-								&& (!rs.getString("TeamName").equals("MIA"))
-								&& (!rs.getString("TeamName").equals("MIL"))
-								&& (!rs.getString("TeamName").equals("NYK"))
-								&& (!rs.getString("TeamName").equals("ORL"))
-								&& (!rs.getString("TeamName").equals("PHI"))
-								&& (!rs.getString("TeamName").equals("TOR"))
-								&& (!rs.getString("TeamName").equals("WAS"))
-								&& (!rs.getString("TeamName").equals("null")))
-								&&(rs.getString("position").contains(position))) {
+						if (rs.getString("position").contains(position)) {
+						if (//(rs.getString("TeamName").equals("ATL"))
+								(rs.getString("TeamName").equals("BKN"))
+								|| (rs.getString("TeamName").equals("BOS"))
+								// (rs.getString("TeamName").equals("CHI"))
+								//|| (rs.getString("TeamName").equals("CLE"))
+								//|| (rs.getString("TeamName").equals("DET"))
+								//|| (rs.getString("TeamName").equals("IND"))
+								//|| (rs.getString("TeamName").equals("MIA"))
+								//|| (rs.getString("TeamName").equals("MIL")))
+								|| (rs.getString("TeamName").equals("NYK"))
+								//|| (rs.getString("TeamName").equals("ORL"))
+								|| (rs.getString("TeamName").equals("PHI"))
+								|| (rs.getString("TeamName").equals("TOR")))
+								//|| (rs.getString("TeamName").equals("WAS"))) {
 
 							AllInfo.setName(rs.getString("Name"));
 							AllInfo.setNumber(rs.getString("Number"));
@@ -817,7 +1246,265 @@ public class PlayerTableLink {
 							list.add(AllInfo);
 						}
 					}
-				}
+					}
+				else if (union.equals("Southwest")) {
+					while (rs.next()) {
+						PlayerDataPO AllInfo = new PlayerDataPO();
+						if (rs.getString("position").contains(position)) {
+						if (//(rs.getString("TeamName").equals("ATL"))
+								(rs.getString("TeamName").equals("DAL"))
+								|| (rs.getString("TeamName").equals("HOU"))
+								// (rs.getString("TeamName").equals("CHI"))
+								//|| (rs.getString("TeamName").equals("CLE"))
+								//|| (rs.getString("TeamName").equals("DET"))
+								//|| (rs.getString("TeamName").equals("IND"))
+								//|| (rs.getString("TeamName").equals("MIA"))
+								//|| (rs.getString("TeamName").equals("MIL")))
+								|| (rs.getString("TeamName").equals("MEM"))
+								//|| (rs.getString("TeamName").equals("ORL"))
+								|| (rs.getString("TeamName").equals("NOP"))
+								|| (rs.getString("TeamName").equals("SAS")))
+								//|| (rs.getString("TeamName").equals("WAS"))) {
+
+							AllInfo.setName(rs.getString("Name"));
+							AllInfo.setNumber(rs.getString("Number"));
+							AllInfo.setPosition(rs.getString("position"));
+							AllInfo.setHeight(rs.getString("Height"));
+							AllInfo.setWeight(rs.getDouble("Weight"));
+							AllInfo.setBirth(rs.getString("Birth"));
+							AllInfo.setAge(rs.getInt("Age"));
+							AllInfo.setExp(rs.getInt("Exp"));
+							AllInfo.setSchool(rs.getString("School"));
+							AllInfo.setTeamName(rs.getString("TeamName"));
+							AllInfo.setGP(rs.getInt("GP"));
+							AllInfo.setGS(rs.getInt("GS"));
+							AllInfo.setBackboard(rs.getInt("backboard"));
+							AllInfo.setBPG(rs.getDouble("BPG"));
+							AllInfo.setAssist(rs.getInt("assist"));
+							AllInfo.setAPG(rs.getDouble("APG"));
+							AllInfo.setMinutesOnField(rs
+									.getDouble("MinutesOnField"));
+							AllInfo.setMPG(rs.getDouble("MPG"));
+							AllInfo.setFieldGoalPercentage(rs
+									.getDouble("FieldGoalPercentage"));
+							AllInfo.setThreePGPercentage(rs
+									.getDouble("ThreePGPercentage"));
+							AllInfo.setFTPercentage(rs
+									.getDouble("FTPercentage"));
+							AllInfo.setOff(rs.getInt("Off"));
+							AllInfo.setOffPG(rs.getDouble("OffPG"));// off
+							AllInfo.setDef(rs.getInt("Def"));
+							AllInfo.setDefPG(rs.getDouble("DefPG"));// def
+							AllInfo.setSteal(rs.getInt("Steal"));
+							AllInfo.setStealPG(rs.getDouble("StealPG"));
+							AllInfo.setRejection(rs.getInt("Rejection"));
+							AllInfo.setRPG(rs.getDouble("RPG"));
+							AllInfo.setTo(rs.getInt("ToMiss"));
+							AllInfo.setToPG(rs.getDouble("ToMissPG"));
+							AllInfo.setFoul(rs.getInt("foul"));
+							AllInfo.setFoulPG(rs.getDouble("foulPG"));
+							AllInfo.setPTS(rs.getInt("PTS"));
+							AllInfo.setPPG(rs.getDouble("PPG"));
+							AllInfo.setEff(rs.getDouble("Eff"));
+							AllInfo.setGmsc(rs.getDouble("Gmsc"));
+							AllInfo.setTruePercentage(rs
+									.getDouble("TruePercentage"));
+							AllInfo.setShootEff(rs.getDouble("ShootEff"));
+							AllInfo.setBackboardEff(rs
+									.getDouble("BackboardEff"));
+							AllInfo.setOffBEff(rs.getDouble("OffBEff"));
+							AllInfo.setDefBEff(rs.getDouble("DefBEff"));
+							AllInfo.setAssitEff(rs.getDouble("AssitEff"));
+							AllInfo.setStealEff(rs.getDouble("StealEff"));// steal
+							AllInfo.setRejectionEff(rs
+									.getDouble("RejectionEff"));
+							AllInfo.setToEff(rs.getDouble("ToEff"));
+							AllInfo.setUseEff(rs.getDouble("UseEff"));
+							AllInfo.setDouble(rs.getInt("DoubleTime"));
+							AllInfo.setFieldGoal(rs.getInt("FieldGoal"));
+							AllInfo.setTotalFieldGoal(rs
+									.getInt("TotalFieldGoal"));
+							AllInfo.setThreeGoal(rs.getInt("ThreeGoal"));
+							AllInfo.setTotalThreeGoal(rs
+									.getInt("TotalThreeGoal"));
+							AllInfo.setFT(rs.getInt("FT"));
+							AllInfo.setTotalFT(rs.getInt("TotalFT"));
+							list.add(AllInfo);
+						}
+					}
+					}
+				else if (union.equals("Northwest")) {
+					while (rs.next()) {
+						PlayerDataPO AllInfo = new PlayerDataPO();
+						if (rs.getString("position").contains(position)) {
+						if (//(rs.getString("TeamName").equals("ATL"))
+								(rs.getString("TeamName").equals("DEN"))
+								|| (rs.getString("TeamName").equals("MIN"))
+								// (rs.getString("TeamName").equals("CHI"))
+								//|| (rs.getString("TeamName").equals("CLE"))
+								//|| (rs.getString("TeamName").equals("DET"))
+								//|| (rs.getString("TeamName").equals("IND"))
+								//|| (rs.getString("TeamName").equals("MIA"))
+								//|| (rs.getString("TeamName").equals("MIL")))
+								|| (rs.getString("TeamName").equals("OKC"))
+								//|| (rs.getString("TeamName").equals("ORL"))
+								|| (rs.getString("TeamName").equals("POR"))
+								|| (rs.getString("TeamName").equals("UTA")))
+								//|| (rs.getString("TeamName").equals("WAS"))) {
+
+							AllInfo.setName(rs.getString("Name"));
+							AllInfo.setNumber(rs.getString("Number"));
+							AllInfo.setPosition(rs.getString("position"));
+							AllInfo.setHeight(rs.getString("Height"));
+							AllInfo.setWeight(rs.getDouble("Weight"));
+							AllInfo.setBirth(rs.getString("Birth"));
+							AllInfo.setAge(rs.getInt("Age"));
+							AllInfo.setExp(rs.getInt("Exp"));
+							AllInfo.setSchool(rs.getString("School"));
+							AllInfo.setTeamName(rs.getString("TeamName"));
+							AllInfo.setGP(rs.getInt("GP"));
+							AllInfo.setGS(rs.getInt("GS"));
+							AllInfo.setBackboard(rs.getInt("backboard"));
+							AllInfo.setBPG(rs.getDouble("BPG"));
+							AllInfo.setAssist(rs.getInt("assist"));
+							AllInfo.setAPG(rs.getDouble("APG"));
+							AllInfo.setMinutesOnField(rs
+									.getDouble("MinutesOnField"));
+							AllInfo.setMPG(rs.getDouble("MPG"));
+							AllInfo.setFieldGoalPercentage(rs
+									.getDouble("FieldGoalPercentage"));
+							AllInfo.setThreePGPercentage(rs
+									.getDouble("ThreePGPercentage"));
+							AllInfo.setFTPercentage(rs
+									.getDouble("FTPercentage"));
+							AllInfo.setOff(rs.getInt("Off"));
+							AllInfo.setOffPG(rs.getDouble("OffPG"));// off
+							AllInfo.setDef(rs.getInt("Def"));
+							AllInfo.setDefPG(rs.getDouble("DefPG"));// def
+							AllInfo.setSteal(rs.getInt("Steal"));
+							AllInfo.setStealPG(rs.getDouble("StealPG"));
+							AllInfo.setRejection(rs.getInt("Rejection"));
+							AllInfo.setRPG(rs.getDouble("RPG"));
+							AllInfo.setTo(rs.getInt("ToMiss"));
+							AllInfo.setToPG(rs.getDouble("ToMissPG"));
+							AllInfo.setFoul(rs.getInt("foul"));
+							AllInfo.setFoulPG(rs.getDouble("foulPG"));
+							AllInfo.setPTS(rs.getInt("PTS"));
+							AllInfo.setPPG(rs.getDouble("PPG"));
+							AllInfo.setEff(rs.getDouble("Eff"));
+							AllInfo.setGmsc(rs.getDouble("Gmsc"));
+							AllInfo.setTruePercentage(rs
+									.getDouble("TruePercentage"));
+							AllInfo.setShootEff(rs.getDouble("ShootEff"));
+							AllInfo.setBackboardEff(rs
+									.getDouble("BackboardEff"));
+							AllInfo.setOffBEff(rs.getDouble("OffBEff"));
+							AllInfo.setDefBEff(rs.getDouble("DefBEff"));
+							AllInfo.setAssitEff(rs.getDouble("AssitEff"));
+							AllInfo.setStealEff(rs.getDouble("StealEff"));// steal
+							AllInfo.setRejectionEff(rs
+									.getDouble("RejectionEff"));
+							AllInfo.setToEff(rs.getDouble("ToEff"));
+							AllInfo.setUseEff(rs.getDouble("UseEff"));
+							AllInfo.setDouble(rs.getInt("DoubleTime"));
+							AllInfo.setFieldGoal(rs.getInt("FieldGoal"));
+							AllInfo.setTotalFieldGoal(rs
+									.getInt("TotalFieldGoal"));
+							AllInfo.setThreeGoal(rs.getInt("ThreeGoal"));
+							AllInfo.setTotalThreeGoal(rs
+									.getInt("TotalThreeGoal"));
+							AllInfo.setFT(rs.getInt("FT"));
+							AllInfo.setTotalFT(rs.getInt("TotalFT"));
+							list.add(AllInfo);
+						}
+					}
+					}
+				else if (union.equals("Pacific")) {
+					while (rs.next()) {
+						PlayerDataPO AllInfo = new PlayerDataPO();
+						if (rs.getString("position").contains(position)) {
+						if (//(rs.getString("TeamName").equals("ATL"))
+								(rs.getString("TeamName").equals("GSW"))
+								|| (rs.getString("TeamName").equals("LAC"))
+								// (rs.getString("TeamName").equals("CHI"))
+								//|| (rs.getString("TeamName").equals("CLE"))
+								//|| (rs.getString("TeamName").equals("DET"))
+								//|| (rs.getString("TeamName").equals("IND"))
+								//|| (rs.getString("TeamName").equals("MIA"))
+								//|| (rs.getString("TeamName").equals("MIL")))
+								|| (rs.getString("TeamName").equals("LAL"))
+								//|| (rs.getString("TeamName").equals("ORL"))
+								|| (rs.getString("TeamName").equals("PHX"))
+								|| (rs.getString("TeamName").equals("SAC")))
+								//|| (rs.getString("TeamName").equals("WAS"))) {
+
+							AllInfo.setName(rs.getString("Name"));
+							AllInfo.setNumber(rs.getString("Number"));
+							AllInfo.setPosition(rs.getString("position"));
+							AllInfo.setHeight(rs.getString("Height"));
+							AllInfo.setWeight(rs.getDouble("Weight"));
+							AllInfo.setBirth(rs.getString("Birth"));
+							AllInfo.setAge(rs.getInt("Age"));
+							AllInfo.setExp(rs.getInt("Exp"));
+							AllInfo.setSchool(rs.getString("School"));
+							AllInfo.setTeamName(rs.getString("TeamName"));
+							AllInfo.setGP(rs.getInt("GP"));
+							AllInfo.setGS(rs.getInt("GS"));
+							AllInfo.setBackboard(rs.getInt("backboard"));
+							AllInfo.setBPG(rs.getDouble("BPG"));
+							AllInfo.setAssist(rs.getInt("assist"));
+							AllInfo.setAPG(rs.getDouble("APG"));
+							AllInfo.setMinutesOnField(rs
+									.getDouble("MinutesOnField"));
+							AllInfo.setMPG(rs.getDouble("MPG"));
+							AllInfo.setFieldGoalPercentage(rs
+									.getDouble("FieldGoalPercentage"));
+							AllInfo.setThreePGPercentage(rs
+									.getDouble("ThreePGPercentage"));
+							AllInfo.setFTPercentage(rs
+									.getDouble("FTPercentage"));
+							AllInfo.setOff(rs.getInt("Off"));
+							AllInfo.setOffPG(rs.getDouble("OffPG"));// off
+							AllInfo.setDef(rs.getInt("Def"));
+							AllInfo.setDefPG(rs.getDouble("DefPG"));// def
+							AllInfo.setSteal(rs.getInt("Steal"));
+							AllInfo.setStealPG(rs.getDouble("StealPG"));
+							AllInfo.setRejection(rs.getInt("Rejection"));
+							AllInfo.setRPG(rs.getDouble("RPG"));
+							AllInfo.setTo(rs.getInt("ToMiss"));
+							AllInfo.setToPG(rs.getDouble("ToMissPG"));
+							AllInfo.setFoul(rs.getInt("foul"));
+							AllInfo.setFoulPG(rs.getDouble("foulPG"));
+							AllInfo.setPTS(rs.getInt("PTS"));
+							AllInfo.setPPG(rs.getDouble("PPG"));
+							AllInfo.setEff(rs.getDouble("Eff"));
+							AllInfo.setGmsc(rs.getDouble("Gmsc"));
+							AllInfo.setTruePercentage(rs
+									.getDouble("TruePercentage"));
+							AllInfo.setShootEff(rs.getDouble("ShootEff"));
+							AllInfo.setBackboardEff(rs
+									.getDouble("BackboardEff"));
+							AllInfo.setOffBEff(rs.getDouble("OffBEff"));
+							AllInfo.setDefBEff(rs.getDouble("DefBEff"));
+							AllInfo.setAssitEff(rs.getDouble("AssitEff"));
+							AllInfo.setStealEff(rs.getDouble("StealEff"));// steal
+							AllInfo.setRejectionEff(rs
+									.getDouble("RejectionEff"));
+							AllInfo.setToEff(rs.getDouble("ToEff"));
+							AllInfo.setUseEff(rs.getDouble("UseEff"));
+							AllInfo.setDouble(rs.getInt("DoubleTime"));
+							AllInfo.setFieldGoal(rs.getInt("FieldGoal"));
+							AllInfo.setTotalFieldGoal(rs
+									.getInt("TotalFieldGoal"));
+							AllInfo.setThreeGoal(rs.getInt("ThreeGoal"));
+							AllInfo.setTotalThreeGoal(rs
+									.getInt("TotalThreeGoal"));
+							AllInfo.setFT(rs.getInt("FT"));
+							AllInfo.setTotalFT(rs.getInt("TotalFT"));
+							list.add(AllInfo);
+						}
+					}
+					}
 			}
 				
 			
