@@ -462,7 +462,7 @@ public class TeamDataPO implements Serializable {
 
 	public void setShootEff(double shootEff) {
 		BigDecimal bg = new BigDecimal(shootEff);
-		ShootEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		ShootEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getTPEff() {
@@ -471,7 +471,7 @@ public class TeamDataPO implements Serializable {
 
 	public void setTPEff(double tPEff) {
 		BigDecimal bg = new BigDecimal(tPEff);
-		TPEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		TPEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getFTEff() {
@@ -480,7 +480,7 @@ public class TeamDataPO implements Serializable {
 
 	public void setFTEff(double fTEff) {
 		BigDecimal bg = new BigDecimal(fTEff);
-		FTEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		FTEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getWR() {
@@ -489,7 +489,7 @@ public class TeamDataPO implements Serializable {
 
 	public void setWR(double wR) {
 		BigDecimal bg = new BigDecimal(wR);
-		WR = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		WR = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getOff() {
@@ -534,7 +534,7 @@ public class TeamDataPO implements Serializable {
 
 	public void setOffEff(double offEff) {
 		BigDecimal bg = new BigDecimal(offEff);
-		OffEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		OffEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getDefEff() {
@@ -543,7 +543,7 @@ public class TeamDataPO implements Serializable {
 
 	public void setDefEff(double defEff) {
 		BigDecimal bg = new BigDecimal(defEff);
-		DefEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		DefEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getBackBoardEff() {
@@ -552,7 +552,7 @@ public class TeamDataPO implements Serializable {
 
 	public void setBackBoardEff(double backBoardEff) {
 		BigDecimal bg = new BigDecimal(backBoardEff);
-		BackBoardEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		BackBoardEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getOffBackBoardEff() {
@@ -561,7 +561,7 @@ public class TeamDataPO implements Serializable {
 
 	public void setOffBackBoardEff(double offbackBoardEff) {
 		BigDecimal bg = new BigDecimal(offbackBoardEff);
-		OffBackBoardEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		OffBackBoardEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getDefBackBoardEff() {
@@ -570,7 +570,7 @@ public class TeamDataPO implements Serializable {
 
 	public void setDefBackBoardEff(double defbackBoardEff) {
 		BigDecimal bg = new BigDecimal(defbackBoardEff);
-		DefBackBoardEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		DefBackBoardEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getStealEff() {
@@ -579,7 +579,7 @@ public class TeamDataPO implements Serializable {
 
 	public void setStealEff(double stealEff) {
 		BigDecimal bg = new BigDecimal(stealEff);
-		StealEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		StealEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getAssistEff() {
@@ -588,7 +588,7 @@ public class TeamDataPO implements Serializable {
 
 	public void setAssistEff(double assistEff) {
 		BigDecimal bg = new BigDecimal(assistEff);
-		AssistEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		AssistEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	/**

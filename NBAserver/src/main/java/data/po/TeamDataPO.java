@@ -9,103 +9,99 @@ public class TeamDataPO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	String Name;//队名
-	String ShortName; //缩写
-	String City;//城市
-	String EorW;//东西部
-	String area;//分区
-	String mainposition;//场馆
-	String players;  //球员
-	
-	int buildyear;//年份
-	
-	double MatchNumber;//比赛场数
-	
-	double WinMatch; //胜场数
-	
-	int ShootNumber;//投篮数
-	double ShootNumberPG;//场均投篮
-	
-	double ShootEffNumber;//投篮命中数
-	double ShootEffNumberPG;//场均
-	
-	int TPNumber;//三分出手数
-	double TPNumberPG;//场均
-	
-	double TPEffNumber;//三分命中数
-	double TPEffNumberPG;//场均
-	
-	double FTEffNumber;//罚球命中数
-	double FTEffNumberPG;//场均
-	
-	int FTNumber;//罚球出手数
-	double FTNumberPG;//场均
-	
-	double OffBackBoard;//进攻篮板
-	double OffBackBoardPG;//场均
-	
-	double DefBackBoard;//防守篮板
-	double DefBackBoradPG;//场均
-	
-	double OtherDefBoard;//对手后场篮板
-	double OtherOffBoard;//对手前场篮板
-	
-	int BackBoard;//篮板数
-	double BackBoardPG;//场均
-	
-	int AssitNumber;//助攻数
+	String Name;// 队名
+	String ShortName; // 缩写
+	String City;// 城市
+	String EorW;// 东西部
+	String area;// 分区
+	String mainposition;// 场馆
+	String players; // 球员，以英文分号隔开 形如 xxx;xxx;xxx;。。。;
+
+	int buildyear;// 年份
+
+	double MatchNumber;// 比赛场数
+
+	double WinMatch; // 胜场数
+
+	int ShootNumber;// 投篮数
+	double ShootNumberPG;// 场均投篮
+
+	double ShootEffNumber;// 投篮命中数
+	double ShootEffNumberPG;// 场均
+
+	int TPNumber;// 三分出手数
+	double TPNumberPG;// 场均
+
+	double TPEffNumber;// 三分命中数
+	double TPEffNumberPG;// 场均
+
+	double FTEffNumber;// 罚球命中数
+	double FTEffNumberPG;// 场均
+
+	int FTNumber;// 罚球出手数
+	double FTNumberPG;// 场均
+
+	double OffBackBoard;// 进攻篮板
+	double OffBackBoardPG;// 场均
+
+	double DefBackBoard;// 防守篮板
+	double DefBackBoradPG;// 场均
+
+	double OtherDefBoard;// 对手后场篮板
+	double OtherOffBoard;// 对手前场篮板
+
+	int BackBoard;// 篮板数
+	double BackBoardPG;// 场均
+
+	int AssitNumber;// 助攻数
 	double AssitNumberPG;
-	
-	int StealNumber;//抢断数
+
+	int StealNumber;// 抢断数
 	double StealNumberPG;
-	
-	int Rejection;//盖帽数，
+
+	int Rejection;// 盖帽数，
 	double RejectionPG;
-	
-	int To;//失误数
+
+	int To;// 失误数
 	double ToPG;
-	
-	int Foul;//犯规数，
+
+	int Foul;// 犯规数，
 	double FoulPG;
-	
-	int PTS;//比赛得分，
+
+	int PTS;// 比赛得分，
 	double PPG;
-	
-	double LPS;//比赛失分
-	double LPG;//场均失分
-	
-	
 
-	double ShootEff;//投篮命中率，
-	
-	double TPEff;//三分命中率，
-	
-	double FTEff;//罚球命中率，
-	
-	double WR;//胜率，
-	
-	double Off;//进攻回合，
+	double LPS;// 比赛失分
+	double LPG;// 场均失分
+
+	double ShootEff;// 投篮命中率，
+
+	double TPEff;// 三分命中率，
+
+	double FTEff;// 罚球命中率，
+
+	double WR;// 胜率，
+
+	double Off;// 进攻回合，
 	double OffPG;
-	
-	double Def;//防守回合，
-	double DefPG;
-	
-	double OffEff;//进攻效率，
-	
-	double DefEff;//防守效率，
-	
-	double OffBackBoardEff;//进攻篮板效率，
-	
-	double BackBoardEff;//篮板效率，
-	
-	double DefBackBoardEff;//防守篮板效率，
-	
-	double StealEff;//抢断效率，
-	
-	double AssistEff;//助攻率
 
-	
-	
+	double Def;// 防守回合，
+	double DefPG;
+
+	double OffEff;// 进攻效率，
+
+	double DefEff;// 防守效率，
+
+	double OffBackBoardEff;// 进攻篮板效率，
+
+	double BackBoardEff;// 篮板效率，
+
+	double DefBackBoardEff;// 防守篮板效率，
+
+	double StealEff;// 抢断效率，
+
+	double AssistEff;// 助攻率
+
 	public double getLPS() {
 		return LPS;
 	}
@@ -467,7 +463,7 @@ public class TeamDataPO implements Serializable{
 
 	public void setShootEff(double shootEff) {
 		BigDecimal bg = new BigDecimal(shootEff);
-		ShootEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		ShootEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getTPEff() {
@@ -476,7 +472,7 @@ public class TeamDataPO implements Serializable{
 
 	public void setTPEff(double tPEff) {
 		BigDecimal bg = new BigDecimal(tPEff);
-		TPEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		TPEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getFTEff() {
@@ -485,7 +481,7 @@ public class TeamDataPO implements Serializable{
 
 	public void setFTEff(double fTEff) {
 		BigDecimal bg = new BigDecimal(fTEff);
-		FTEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		FTEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getWR() {
@@ -494,7 +490,7 @@ public class TeamDataPO implements Serializable{
 
 	public void setWR(double wR) {
 		BigDecimal bg = new BigDecimal(wR);
-		WR = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		WR = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getOff() {
@@ -539,7 +535,7 @@ public class TeamDataPO implements Serializable{
 
 	public void setOffEff(double offEff) {
 		BigDecimal bg = new BigDecimal(offEff);
-		OffEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		OffEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getDefEff() {
@@ -548,7 +544,7 @@ public class TeamDataPO implements Serializable{
 
 	public void setDefEff(double defEff) {
 		BigDecimal bg = new BigDecimal(defEff);
-		DefEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		DefEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getBackBoardEff() {
@@ -557,7 +553,7 @@ public class TeamDataPO implements Serializable{
 
 	public void setBackBoardEff(double backBoardEff) {
 		BigDecimal bg = new BigDecimal(backBoardEff);
-		BackBoardEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		BackBoardEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getOffBackBoardEff() {
@@ -566,7 +562,7 @@ public class TeamDataPO implements Serializable{
 
 	public void setOffBackBoardEff(double offbackBoardEff) {
 		BigDecimal bg = new BigDecimal(offbackBoardEff);
-		OffBackBoardEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		OffBackBoardEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getDefBackBoardEff() {
@@ -575,7 +571,7 @@ public class TeamDataPO implements Serializable{
 
 	public void setDefBackBoardEff(double defbackBoardEff) {
 		BigDecimal bg = new BigDecimal(defbackBoardEff);
-		DefBackBoardEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		DefBackBoardEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getStealEff() {
@@ -584,7 +580,7 @@ public class TeamDataPO implements Serializable{
 
 	public void setStealEff(double stealEff) {
 		BigDecimal bg = new BigDecimal(stealEff);
-		StealEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		StealEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public double getAssistEff() {
@@ -593,7 +589,7 @@ public class TeamDataPO implements Serializable{
 
 	public void setAssistEff(double assistEff) {
 		BigDecimal bg = new BigDecimal(assistEff);
-		AssistEff = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		AssistEff = bg.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	/**
@@ -627,5 +623,4 @@ public class TeamDataPO implements Serializable{
 		BigDecimal bg = new BigDecimal(otherOffBoard);
 		OtherOffBoard = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
-
 }

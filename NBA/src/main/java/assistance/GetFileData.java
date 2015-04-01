@@ -131,36 +131,70 @@ public class GetFileData {
 			res.setSecond_pts(data.split(";")[1]);
 			res.setThird_pts(data.split(";")[2]);
 			res.setForth_pts(data.split(";")[3]);
-			
-			data = br.readLine();
+			if(data.length()>25){                               //判断是否存在加时
+				res.setFifth_pts(data.split(";")[4]);
+			}
+			else{
+				res.setFifth_pts("null");
+			}
+			if(data.length()>31){
+				res.setSixth_pts(data.split(";")[5]);
+			}
+			else{
+				res.setSixth_pts("null");
+			}
+			if(data.length()>37){
+				res.setSeventh_pts(data.split(";")[6]);
+			}
+			else{
+				res.setSeventh_pts("null");
+			}
 			data = br.readLine();  //跳过两行数据
 			while((data=br.readLine()).contains(";")){
 				String[] detail=data.split(";");
+				res.setShootEff1(res.getShootEff1()+Integer.parseInt(detail[3]));
 				res.setShoot1(res.getShoot1()+Integer.parseInt(detail[4]));
 				res.setLostSH1(res.getLostSH1()+Integer.parseInt(detail[4])-Integer.parseInt(detail[3]));
+				res.setTPShootEff1(res.getTPShootEff1()+Integer.parseInt(detail[5]));
+				res.setTPShoot1(res.getTPShoot1()+Integer.parseInt(detail[6]));
+				res.setFTShootEff1(res.getFTShootEff1()+Integer.parseInt(detail[7]));
 			    res.setFT1(res.getFT1()+Integer.parseInt(detail[8]));
 			    res.setTeam1Off(res.getTeam1Off()+Integer.parseInt(detail[9]));
 			    res.setTeam1Def(res.getTeam1Def()+Integer.parseInt(detail[10]));
+			    res.setTeam1bank(res.getTeam1bank()+Integer.parseInt(detail[11]));
+			    res.setAss1(res.getAss1()+Integer.parseInt(detail[12]));
+			    res.setSteal1(res.getSteal1()+Integer.parseInt(detail[13]));
+			    res.setRejection1(res.getRejection1()+Integer.parseInt(detail[14]));
 			    res.setTo1(res.getTo1()+Integer.parseInt(detail[15]));
+			    res.setFoul1(res.getFoul1()+Integer.parseInt(detail[16]));
 			}
-			
-			data=br.readLine();
+			 data=br.readLine();
 			while(data!=null){
 				
 				String[] detail=data.split(";");
+				res.setShootEff2(res.getShootEff2()+Integer.parseInt(detail[3]));
 				res.setShoot2(res.getShoot2()+Integer.parseInt(detail[4]));
 				res.setLostSH2(res.getLostSH2()+Integer.parseInt(detail[4])-Integer.parseInt(detail[3]));
+				res.setTPShootEff2(res.getTPShootEff2()+Integer.parseInt(detail[5]));
+				res.setTPShoot2(res.getTPShoot2()+Integer.parseInt(detail[6]));
+				res.setFTShootEff2(res.getFTShootEff2()+Integer.parseInt(detail[7]));
 			    res.setFT2(res.getFT2()+Integer.parseInt(detail[8]));
 			    res.setTeam2Off(res.getTeam2Off()+Integer.parseInt(detail[9]));
 			    res.setTeam2Def(res.getTeam2Def()+Integer.parseInt(detail[10]));
+			    res.setTeam2bank(res.getTeam2bank()+Integer.parseInt(detail[11]));
+			    res.setAss2(res.getAss2()+Integer.parseInt(detail[12]));
+			    res.setSteal2(res.getSteal2()+Integer.parseInt(detail[13]));
+			    res.setRejection2(res.getRejection2()+Integer.parseInt(detail[14]));
 			    res.setTo2(res.getTo2()+Integer.parseInt(detail[15]));
-			    data=br.readLine();
-			    
+			    res.setFoul2(res.getFoul2()+Integer.parseInt(detail[16]));
+			    data = br.readLine();
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+
 		return res;
 	}
 

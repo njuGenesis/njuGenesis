@@ -2,7 +2,6 @@ package dataBaseLink;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class TableClear {
@@ -34,5 +33,11 @@ public class TableClear {
 			e.printStackTrace();
 			
 		}
+	}
+	
+	public static void main(String[] args) {
+		TableClear c = new TableClear();
+		c.clear("team");
+		c.clear("matchinfo");
 	}
 }
