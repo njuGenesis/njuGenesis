@@ -23,6 +23,8 @@ public class TeamDataImpl extends UnicastRemoteObject implements TeamDataService
 	public boolean judge() throws RemoteException{
 		return pl.judge();
 	}
+
+	
 	public void addInfo(TeamDataPO p) throws RemoteException{
 		pl.addInfo(p);
 	}
@@ -45,5 +47,6 @@ public class TeamDataImpl extends UnicastRemoteObject implements TeamDataService
 	public TeamDataPO GetBySN(String shortname) throws RemoteException {
 		return pl.getBySN(shortname);
 	}
-
+	
+	
 }
