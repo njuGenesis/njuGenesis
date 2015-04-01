@@ -23,6 +23,8 @@ public class PagingTableModel extends AbstractTableModel{
 	protected int pageOffset;  //当前页数
 
 	public TableData[] data;  //表格数据
+	
+	
 
 	public PagingTableModel(TableData[] data){
 		this(10,data);
@@ -178,7 +180,7 @@ public class PagingTableModel extends AbstractTableModel{
 	public static JScrollPane createPagingScrollPaneForTable(JTable jt,JButton up,JButton down) {  
 		JScrollPane jsp = new JScrollPane(jt);  
 		TableModel tmodel = jt.getModel();  
-
+		
 		// Don't choke if this is called on a regular table . . .  
 		if (!(tmodel instanceof PagingTableModel)) {  
 			return jsp;  
@@ -260,10 +262,99 @@ public class PagingTableModel extends AbstractTableModel{
 			}  
 		});  
 	}
+	
+	public void setButton(JButton up,JButton down){
+		JButton upButton = up;  
+		upButton.setEnabled(false); // starts off at 0, so can't go up  
+		JButton downButton = down;  
+//		System.out.println("总页数"+this.getPageCount());
+		if (this.getPageCount() <= 1) {  
+			downButton.setEnabled(false); // One page...can't scroll down  
+		}  
+
+		for(int i=0;i<upButton.getActionListeners().length;i++){
+			upButton.removeActionListener(upButton.getActionListeners()[i]);
+		}
+		upButton.addActionListener(new UpListener(up,down));  
+
+		for(int i=0;i<downButton.getActionListeners().length;i++){
+			downButton.removeActionListener(downButton.getActionListeners()[i]);
+		}
+		downButton.addActionListener(new DownListener(up,down));  
+	}
+	
+	public void checkButton(JButton up,JButton down){
+		if (this.getPageOffset() == (this.getPageCount() - 1)) {  
+			down.setEnabled(false);  
+		}else{
+			down.setEnabled(true);  
+		}
+		
+		if (PagingTableModel.this.getPageOffset() == 0) {  
+			up.setEnabled(false);  
+		}else{
+			up.setEnabled(true);  
+		}
+	}
 
 
+	class DownListener implements ActionListener{
+		
+		JButton up;
+		JButton down;
+		
+		public DownListener(JButton up,JButton down){
+			this.up = up;
+			this.down = down;
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			PagingTableModel.this.pageDown();  
+			
+//			System.out.println("当前"+PagingTableModel.this.getPageOffset()+"总"+PagingTableModel.this.getPageCount());
+
+			// If we hit the bottom of the data, disable the down button.  
+			if (PagingTableModel.this.getPageOffset() == (PagingTableModel.this.getPageCount() - 1)) {  
+				down.setEnabled(false);  
+			}  
+			up.setEnabled(true);  
+		}
+		
+	}
+
+	class UpListener implements ActionListener{
+		
+		JButton up;
+		JButton down;
+		
+		public UpListener(JButton up,JButton down){
+			this.up = up;
+			this.down = down;
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			PagingTableModel.this.pageUp();  
+			
+//			System.out.println("当前"+PagingTableModel.this.getPageOffset());
+			
+			// If we hit the top of the data, disable the up button.  
+			if (PagingTableModel.this.getPageOffset() == 0) {  
+				up.setEnabled(false);  
+			}  
+			down.setEnabled(true); 
+		}
+		
+	}
+	
+	
 
 }
+
+
+
+
+
+
 
 
 class ArrowIcon implements Icon {  

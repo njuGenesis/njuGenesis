@@ -37,7 +37,7 @@ public class PlayerStatsPanel extends ContentPanel{
 	public JComboBox<String> dataType;
 
 	public String[] positionItem = {"全部位置","后卫","前锋","中锋"}; 
-	public String[] leagueItem = {"全部联盟","东部","西部"};
+	public String[] leagueItem = {"全部联盟","东-大西洋分区","东-中央分区","东-东南分区","西-西北分区","西-太平洋分区","西-西南分区"};
 //	public String[] statsItem = {"得分","篮板","助攻","得分/篮板/助攻","盖帽","抢断","犯规","失误","分钟","效率","投篮","三分","罚球","两双"};
 	public String[] dataTypeItem = {"场均","总数"};
 
@@ -100,8 +100,10 @@ public class PlayerStatsPanel extends ContentPanel{
 
 		panel.add(jsp);
 
-		title = new JLabel("球员数据");
-		title.setBounds(40, 25, 100, 20);
+		title = new JLabel("球员数据    【点击表头可进行降序/升序    点击球员或球队可跳转至相关页面】");
+		title.setForeground(Color.white);
+		title.setFont(new Font("微软雅黑",1,13));
+		title.setBounds(40, 25, 500, 20);
 		panel.add(title);
 
 		position = new GComboBox(positionItem);
@@ -143,15 +145,15 @@ public class PlayerStatsPanel extends ContentPanel{
 
 	//----------总数据----------
 	private TableData[] getPlayerDataAll(PlayerDataPO[] po){
-		String[] head = {"序号","姓名","球队","参赛","先发","篮板","助攻","在场时间","投篮%","三分%",
-				"罚球%","进攻","防守","抢断","盖帽","失误","犯规","得分","效率","GmSc效率",
-				"真实命中%","投篮效率","篮板%","进攻篮板%","防守篮板%","助攻%","抢断%","盖帽%","失误%","使用%"};
+		String[] head = {"序号","姓名","球队","参赛","先发","在场时间","得分","篮板","助攻","投篮命中率","三分命中率",
+				"罚球命中率","两双","进攻","防守","抢断","盖帽","失误","犯规","效率","GmSc效率",
+				"真实命中率","投篮效率","篮板率","进攻篮板率","防守篮板率","助攻率","抢断率","盖帽率","失误率","使用率"};
 		TableData[] data = new TableData[po.length];
 		for(int i=0;i<po.length;i++){
 			String[] row = {String.valueOf(i+1),po[i].getName(),po[i].getTeamName(),String.valueOf(po[i].getGP()),String.valueOf(po[i].getGS()),
-					String.valueOf(po[i].getBackboard()),String.valueOf(po[i].getAssist()),String.valueOf(po[i].getMinutesOnField()),String.valueOf(po[i].getFieldGoalPercentage()),String.valueOf(po[i].getThreePGPercentage()),
-					String.valueOf(po[i].getFTPercentage()),String.valueOf(po[i].getOff()),String.valueOf(po[i].getDef()),String.valueOf(po[i].getSteal()),String.valueOf(po[i].getRejection()),
-					String.valueOf(po[i].getTo()),String.valueOf(po[i].getFoul()),String.valueOf(po[i].getPTS()),String.valueOf(po[i].getEff()),String.valueOf(po[i].getGmsc()),
+					String.valueOf(po[i].getMinutesOnField()),String.valueOf(po[i].getPTS()),String.valueOf(po[i].getBackboard()),String.valueOf(po[i].getAssist()),String.valueOf(po[i].getFieldGoalPercentage()),String.valueOf(po[i].getThreePGPercentage()),
+					String.valueOf(po[i].getFTPercentage()),String.valueOf(po[i].getDouble()),String.valueOf(po[i].getOff()),String.valueOf(po[i].getDef()),String.valueOf(po[i].getSteal()),String.valueOf(po[i].getRejection()),
+					String.valueOf(po[i].getTo()),String.valueOf(po[i].getFoul()),String.valueOf(po[i].getEff()),String.valueOf(po[i].getGmsc()),
 					String.valueOf(po[i].getTruePercentage()),String.valueOf(po[i].getShootEff()),String.valueOf(po[i].getBackboardEff()),String.valueOf(po[i].getOffBEff()),String.valueOf(po[i].getDefBEff()),
 					String.valueOf(po[i].getAssitEff()),String.valueOf(po[i].getStealEff()),String.valueOf(po[i].getRejectionEff()),String.valueOf(po[i].getToEff()),String.valueOf(po[i].getUseEff())
 			};
@@ -163,15 +165,15 @@ public class PlayerStatsPanel extends ContentPanel{
 
 	//----------场均数据----------
 	private TableData[] getPlayerDataAvg(PlayerDataPO[] po){
-		String[] head = {"序号","姓名","球队","参赛","先发","篮板","助攻","在场时间","投篮%","三分%",
-				"罚球%","进攻","防守","抢断","盖帽","失误","犯规","得分","效率","GmSc效率",
-				"真实命中%","投篮效率","篮板%","进攻篮板%","防守篮板%","助攻%","抢断%","盖帽%","失误%","使用%"};
+		String[] head = {"序号","姓名","球队","参赛","先发","在场时间","得分","篮板","助攻","投篮命中率","三分命中率",
+				"罚球命中率","两双","进攻","防守","抢断","盖帽","失误","犯规","效率","GmSc效率",
+				"真实命中率","投篮效率","篮板率","进攻篮板率","防守篮板率","助攻率","抢断率","盖帽率","失误率","使用率"};
 		TableData[] data = new TableData[po.length];
 		for(int i=0;i<po.length;i++){
 			String[] row = {String.valueOf(i+1),po[i].getName(),po[i].getTeamName(),String.valueOf(po[i].getGP()),String.valueOf(po[i].getGS()),
-					String.valueOf(po[i].getBPG()),String.valueOf(po[i].getAPG()),String.valueOf(po[i].getMinutesOnField()),String.valueOf(po[i].getFieldGoalPercentage()),String.valueOf(po[i].getThreePGPercentage()),
-					String.valueOf(po[i].getFTPercentage()),String.valueOf(po[i].getOffPG()),String.valueOf(po[i].getDefPG()),String.valueOf(po[i].getStealPG()),String.valueOf(po[i].getRPG()),
-					String.valueOf(po[i].getToPG()),String.valueOf(po[i].getFoulPG()),String.valueOf(po[i].getPPG()),String.valueOf(po[i].getEff()),String.valueOf(po[i].getGmsc()),
+					String.valueOf(po[i].getMinutesOnField()),String.valueOf(po[i].getPPG()),String.valueOf(po[i].getBPG()),String.valueOf(po[i].getAPG()),String.valueOf(po[i].getFieldGoalPercentage()),String.valueOf(po[i].getThreePGPercentage()),
+					String.valueOf(po[i].getFTPercentage()),String.valueOf(po[i].getDouble()),String.valueOf(po[i].getOffPG()),String.valueOf(po[i].getDefPG()),String.valueOf(po[i].getStealPG()),String.valueOf(po[i].getRPG()),
+					String.valueOf(po[i].getToPG()),String.valueOf(po[i].getFoulPG()),String.valueOf(po[i].getEff()),String.valueOf(po[i].getGmsc()),
 					String.valueOf(po[i].getTruePercentage()),String.valueOf(po[i].getShootEff()),String.valueOf(po[i].getBackboardEff()),String.valueOf(po[i].getOffBEff()),String.valueOf(po[i].getDefBEff()),
 					String.valueOf(po[i].getAssitEff()),String.valueOf(po[i].getStealEff()),String.valueOf(po[i].getRejectionEff()),String.valueOf(po[i].getToEff()),String.valueOf(po[i].getUseEff())
 			};
@@ -192,12 +194,19 @@ public class PlayerStatsPanel extends ContentPanel{
 			return "null";
 		}
 	}
-	
 	private String changeUnStr(String chinese){
-		if(chinese=="东部"){
-			return "E";
-		}else if(chinese=="西部"){
-			return "W";
+		if(chinese=="东-大西洋分区"){
+			return "Atlantic";
+		}else if(chinese=="东-中央分区"){
+			return "Central";
+		}else if(chinese=="东-东南分区"){
+			return "Southeast";
+		}else if(chinese=="西-西北分区"){
+			return "Northwest";
+		}else if(chinese=="西-太平洋分区"){
+			return "Pacific";
+		}else if(chinese=="西-西南分区"){
+			return "Southwest";
 		}else{
 			return "null";
 		}
@@ -243,7 +252,9 @@ public class PlayerStatsPanel extends ContentPanel{
 			table.setModel(tm);
 			table.fitTableColumns(table);
 	
-			PagingTableModel.setPagingButton(table, left, right);
+//			PagingTableModel.setPagingButton(table, left, right);
+			tm.setButton(left, right);
+			tm.checkButton(left, right);
 			page.setText(String.valueOf(tm.getPageOffset()+1));
 			
 			table.getColumnModel().getColumn(1).setCellRenderer(new NameRenderer());

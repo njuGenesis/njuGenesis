@@ -1,5 +1,6 @@
 package presentation.contenui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -95,8 +96,10 @@ public class TeamStatsPanel extends ContentPanel{
 
 		panel.add(jsp);
 
-		title = new JLabel("球队数据");
-		title.setBounds(40, 25, 100, 20);
+		title = new JLabel("球队数据    【点击表头可进行降序/升序    点击球队可跳转至相关页面】");
+		title.setForeground(Color.white);
+		title.setFont(new Font("微软雅黑",1,13));
+		title.setBounds(40, 25, 500, 20);
 		panel.add(title);
 
 
@@ -211,7 +214,9 @@ public class TeamStatsPanel extends ContentPanel{
 				table.setModel(tm);
 				table.fitTableColumns(table);
 				
-				PagingTableModel.setPagingButton(table, left, right);
+//				PagingTableModel.setPagingButton(table, left, right);
+				tm.setButton(left, right);
+				tm.checkButton(left, right);
 				page.setText(String.valueOf(tm.getPageOffset()+1));
 				
 				table.getColumnModel().getColumn(1).setCellRenderer(new NameRenderer());

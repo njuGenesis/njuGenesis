@@ -146,18 +146,22 @@ class HeaderListener implements MouseListener{
 				sortingCol = tableColumn;
 			}
 
-			//重新设置翻页按钮
-			PagingTableModel.setPagingButton(GTable.this, pageUp, pageDown);
-
 			//列宽自适应
 			if(fit){
 				fitTableColumns(GTable.this);
-				GTable.this.repaint();
+//				GTable.this.repaint();
 			}
 
-			//更改页数
+			
 			model = (PagingTableModel)GTable.this.getModel();
+			
+			//重新设置翻页按钮
+//			PagingTableModel.setPagingButton(GTable.this, pageUp, pageDown);
+			model.setButton(pageUp, pageDown);
+			model.checkButton(pageUp, pageDown);
+			//更改页数
 			page.setText(String.valueOf(model.getPageOffset()+1));
+			
 
 			MainUI.getMainFrame().repaint();
 		}

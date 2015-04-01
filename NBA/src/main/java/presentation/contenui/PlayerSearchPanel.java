@@ -1,5 +1,6 @@
 package presentation.contenui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -110,8 +111,10 @@ public class PlayerSearchPanel extends ContentPanel{
 		
 		
 
-		title = new JLabel("球员列表");
-		title.setBounds(40, 25, 100, 20);
+		title = new JLabel("球员列表    【点击表头可进行降序/升序    点击球员或球队可跳转至相关页面】");
+		title.setForeground(Color.white);
+		title.setFont(new Font("微软雅黑",1,13));
+		title.setBounds(40, 25, 500, 20);
 		panel.add(title);
 
 		position = new GComboBox(positionItem);
@@ -240,7 +243,9 @@ public class PlayerSearchPanel extends ContentPanel{
 
 			table.setModel(tm);
 			
-			PagingTableModel.setPagingButton(table, left, right);
+//			PagingTableModel.setPagingButton(table, left, right);
+			tm.setButton(left, right);
+			tm.checkButton(left, right);
 			page.setText(String.valueOf(tm.getPageOffset()+1));
 			
 			table.getColumnModel().getColumn(1).setCellRenderer(new NameRenderer());
