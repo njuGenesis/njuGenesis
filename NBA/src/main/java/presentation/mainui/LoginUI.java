@@ -1,6 +1,7 @@
 package presentation.mainui;
 
 import java.awt.Container;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -118,11 +119,11 @@ public class LoginUI extends JFrame implements Runnable {
 		Point idTextSize = new Point(128, 40);
 		Point pwTextSize = new Point(128, 40);
 		Point userLoginButtonSize = new Point(113, 34);
-		Point visitorLoginButtonSize = new Point(113, 34);
+		Point visitorLoginButtonSize = new Point(80, 80);
 		Point loginButtonSize = new Point(34, 34);
 		Point registerButtonSize = new Point(34, 34);
 		Point backButtonSize = new Point(34, 34);
-		Point closeButtonSize = new Point(113, 34);
+		Point closeButtonSize = new Point(32, 32);
 
 		Point basketLabelLocation = new Point(487, 60);
 		Point blueLabelLocation = new Point(487, 0);
@@ -134,11 +135,11 @@ public class LoginUI extends JFrame implements Runnable {
 		Point idTextLocation = new Point(568, idLabelLocation.y);
 		Point pwTextLocation = new Point(568, idLabelLocation.y+idLabelSize.y+ySpace);
 		Point userLoginButtonLocation = new Point(560, 301);
-		Point visitorLoginButtonLocation = new Point(userLoginButtonLocation.x, userLoginButtonLocation.y+userLoginButtonSize.y+ySpace);
+		Point visitorLoginButtonLocation = new Point(userLoginButtonLocation.x+16, userLoginButtonLocation.y);
 		Point loginButtonLocation = new Point(522, 178);
 		Point registerButtonLocation = new Point(loginButtonLocation.x+loginButtonSize.x+xSpace, loginButtonLocation.y);
 		Point backButtonLocation = new Point(loginButtonLocation.x+2*loginButtonSize.x+2*xSpace, loginButtonLocation.y);
-		Point closeButtonLocation = new Point(userLoginButtonLocation.x, userLoginButtonLocation.y+3*userLoginButtonSize.y+3*ySpace);
+		Point closeButtonLocation = new Point(userLoginButtonLocation.x+40, userLoginButtonLocation.y+3*userLoginButtonSize.y+3*ySpace);
 
 		label_blue = new GLabel("img/LoginUI/NBAblue.png", blueLabelLocation, blueLabelSize, newCase, false);
 		label_red =new GLabel("img/LoginUI/NBAred.png", redLabelLocation, redLabelSize, newCase, false);
@@ -148,8 +149,8 @@ public class LoginUI extends JFrame implements Runnable {
 		label_id = new GLabel("img/LoginUI/textID.png", idLabelLocation, idLabelSize, newCase, false);
 		label_password = new GLabel("img/LoginUI/textPW.png", pwLabelLocation, pwLabelSize, newCase, false);
 		label_Genesis = new GLabel("img/LoginUI/Genesis.png", GenesisLabelLocation, GenesisLabelSize, newCase, false);
-		userLogin = new GButton("img/LoginUI/userLogin.png", userLoginButtonLocation, userLoginButtonSize, newCase, false);
-		visitorLogin = new GButton("img/LoginUI/visitorLogin.png", visitorLoginButtonLocation, visitorLoginButtonSize, newCase, false);
+		//userLogin = new GButton("img/LoginUI/userLogin.png", userLoginButtonLocation, userLoginButtonSize, newCase, false);
+		visitorLogin = new GButton("img/LoginUI/LoginBig.png", visitorLoginButtonLocation, visitorLoginButtonSize, newCase, false);
 		login = new GButton("img/LoginUI/login.png", loginButtonLocation, loginButtonSize, newCase, false);
 		register = new GButton("img/LoginUI/register.png", registerButtonLocation, registerButtonSize, newCase, false);
 		back = new GButton("img/LoginUI/back.png", backButtonLocation, backButtonSize, newCase, false);
@@ -157,7 +158,7 @@ public class LoginUI extends JFrame implements Runnable {
 		id = new GTextField(idTextLocation, idTextSize, newCase, false);
 		pw = new GPasswordField(pwTextLocation, pwTextSize, newCase, false);
 
-		userLogin.addMouseListener(new MouseAdapter() {
+		/*userLogin.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				state = State.USERLOGIN;
 				threadRun();
@@ -168,17 +169,17 @@ public class LoginUI extends JFrame implements Runnable {
 			public void mouseEntered(MouseEvent e) {
 				userLogin.setIcon(new ImageIcon("img/LoginUI/userLoginAct.png"));
 			}
-		});
+		});*/
 		visitorLogin.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				state = State.VISITERLOGIN;
 				threadRun();
 			}
 			public void mouseExited(MouseEvent e) {
-				visitorLogin.setIcon(new ImageIcon("img/LoginUI/visitorLogin.png"));
+				visitorLogin.setIcon(new ImageIcon("img/LoginUI/LoginBig.png"));
 			}
 			public void mouseEntered(MouseEvent e) {
-				visitorLogin.setIcon(new ImageIcon("img/LoginUI/visitorLoginAct.png"));
+				visitorLogin.setIcon(new ImageIcon("img/LoginUI/LoginBigAction.png"));
 			}
 		});
 		login.addMouseListener(new MouseAdapter() {
@@ -219,10 +220,11 @@ public class LoginUI extends JFrame implements Runnable {
 				threadRun();
 			}
 			public void mouseExited(MouseEvent e) {
-				close.setIcon(new ImageIcon("img/LoginUI/close.png"));
+				//close.setIcon(new ImageIcon("img/LoginUI/close.png"));
 			}
 			public void mouseEntered(MouseEvent e) {
-				close.setIcon(new ImageIcon("img/LoginUI/closeAct.png"));
+				close.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				//close.setIcon(new ImageIcon("img/LoginUI/closeAct.png"));
 			}
 		});
 	}
@@ -279,7 +281,7 @@ public class LoginUI extends JFrame implements Runnable {
 			label_red.setLocation(y=label_red.getLocation().x, 0);
 			label_background.setVisible(true);
 			label_basket.setVisible(true);
-			userLogin.setVisible(true);
+			//userLogin.setVisible(true);
 			visitorLogin.setVisible(true);
 			label_backgroundS.setVisible(true);
 			close.setVisible(true);
@@ -393,7 +395,7 @@ public class LoginUI extends JFrame implements Runnable {
 			register.setLocation(smallButtonLocation1st.x+smallButtonSize.x+xSpace, z);
 			back.setLocation(smallButtonLocation1st.x+2*smallButtonSize.x+2*xSpace, z);
 			
-			userLogin.setLocation(butonLocation1st.x, p=butonLocation1st.y);
+			//userLogin.setLocation(butonLocation1st.x, p=butonLocation1st.y);
 			
 			visitorLogin.setLocation(butonLocation1st.x, q=butonLocation1st.y+buttonSize.y+ySpace);
 			
@@ -401,7 +403,7 @@ public class LoginUI extends JFrame implements Runnable {
 				x++;
 				y++;
 				z++;
-				p++;
+				//p++;
 				q++;
 				label_id.setLocation(inputLocaton1st.x, x);
 				id.setLocation(568, x);
@@ -413,7 +415,7 @@ public class LoginUI extends JFrame implements Runnable {
 				register.setLocation(smallButtonLocation1st.x+smallButtonSize.x+xSpace, z);
 				back.setLocation(smallButtonLocation1st.x+2*smallButtonSize.x+2*xSpace, z);
 				
-				userLogin.setLocation(butonLocation1st.x, p);
+				//userLogin.setLocation(butonLocation1st.x, p);
 				
 				visitorLogin.setLocation(butonLocation1st.x, q);
 				
@@ -439,7 +441,7 @@ public class LoginUI extends JFrame implements Runnable {
 			register.setLocation(smallButtonLocation1st.x+smallButtonSize.x+xSpace, z);
 			back.setLocation(smallButtonLocation1st.x+2*smallButtonSize.x+2*xSpace, z);
 			
-			userLogin.setLocation(butonLocation1st.x, p=butonLocation1st.y+move);
+			//userLogin.setLocation(butonLocation1st.x, p=butonLocation1st.y+move);
 			
 			visitorLogin.setLocation(butonLocation1st.x, q=butonLocation1st.y+buttonSize.y+ySpace+move);
 			
@@ -447,7 +449,7 @@ public class LoginUI extends JFrame implements Runnable {
 				x--;
 				y--;
 				z--;
-				p--;
+				//p--;
 				q--;
 				label_id.setLocation(inputLocaton1st.x, x);
 				id.setLocation(568, x);
@@ -459,7 +461,7 @@ public class LoginUI extends JFrame implements Runnable {
 				register.setLocation(smallButtonLocation1st.x+smallButtonSize.x+xSpace, z);
 				back.setLocation(smallButtonLocation1st.x+2*smallButtonSize.x+2*xSpace, z);
 				
-				userLogin.setLocation(butonLocation1st.x, p);
+				//userLogin.setLocation(butonLocation1st.x, p);
 				
 				visitorLogin.setLocation(butonLocation1st.x, q);
 				
@@ -488,7 +490,7 @@ public class LoginUI extends JFrame implements Runnable {
 			
 			label_background.setVisible(false);
 			label_basket.setVisible(false);
-			userLogin.setVisible(false);
+			//userLogin.setVisible(false);
 			visitorLogin.setVisible(false);
 			close.setVisible(false);
 			label_backgroundS.setVisible(false);

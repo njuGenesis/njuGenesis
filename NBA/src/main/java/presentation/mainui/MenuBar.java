@@ -20,19 +20,19 @@ public class MenuBar {
 	private JButton bt1;  //HOME
 	private JButton bt2;  //TEAM
 	private JButton bt3;  //PLAYER
-	private JButton bt4;  //RANKING
-	private JButton bt5;  //STATS
+	//private JButton bt4;  //RANKING
+	private JButton bt4;  //STATS
 	
 	private JButton playerStats;
 	private JButton teamStats;
 	private JPanel statsPanel;
 	
-	private JButton[] btArray = {bt1,bt2,bt3,bt4,bt5};
+	private JButton[] btArray = {bt1,bt2,bt3,bt4};
 
 	private ArrayList<ImageIcon> icons = new ArrayList<ImageIcon>();
 	private ArrayList<ImageIcon> iconsEnter = new ArrayList<ImageIcon>();
 
-	private MouseListener[] listenerArray = {new HomeListener(),new TeamListener(),new PlayerListener(),new RankingListener(),new StatsListener()};
+	private MouseListener[] listenerArray = {new HomeListener(),new TeamListener(),new PlayerListener(),new StatsListener()};
 
 	private int btWidth = 120;
 	private int btHeight = 40;
@@ -47,9 +47,9 @@ public class MenuBar {
 		String imgAdd = "img/menubt/menuBt";
 		String postfix = ".png";
 		String postfix2 = "Enter.png";
-		String[] menuItem = {"Home","Team","Player","Ranking","Stats"};
+		String[] menuItem = {"Home","Team","Player","Stats"};
 		
-		for(int i=0;i<5;i++){
+		for(int i=0;i<4;i++){
 			ImageIcon icon = new ImageIcon(imgAdd+menuItem[i]+postfix);
 			icons.add(icon);
 			
@@ -78,7 +78,7 @@ public class MenuBar {
 		
 		//创建子菜单
 		statsPanel = new JPanel();
-		statsPanel.setBounds(65, 370, 120, 80);
+		statsPanel.setBounds(65, 320, 120, 80);
 		statsPanel.setLayout(null);
 		statsPanel.setOpaque(false);
 		
@@ -201,7 +201,7 @@ public class MenuBar {
 
 	}
 
-	class RankingListener implements MouseListener{
+	/*class RankingListener implements MouseListener{
 
 		public void mouseClicked(MouseEvent e) {
 			// TODO Auto-generated method stub
@@ -227,7 +227,7 @@ public class MenuBar {
 		}
 
 
-	}
+	}*/
 
 	class StatsListener implements MouseListener{
 
@@ -238,14 +238,14 @@ public class MenuBar {
 
 		public void mouseEntered(MouseEvent e) {
 			JButton button = (JButton)e.getSource();
-			button.setIcon(iconsEnter.get(4));
+			button.setIcon(iconsEnter.get(3));
 			
 //			statsPanel.setVisible(true);
 		}
 
 		public void mouseExited(MouseEvent e) {
 			JButton button = (JButton)e.getSource();
-			button.setIcon(icons.get(4));
+			button.setIcon(icons.get(3));
 			
 //			statsPanel.setVisible(false);
 		}
