@@ -59,7 +59,7 @@ public class Loading extends JFrame implements Runnable{
 		Point movingLocation = new Point(22, 0);
 		
 		moving = new GLabel("img/Loading/Moving.png", movingLocation, movingSize, newCase, true);
-		loading = new GLabel("img/Loading/Loading.png", loadingLocation, loadingSize, newCase, true);
+		loading = new GLabel("img/Loading/Loading2.png", loadingLocation, loadingSize, newCase, true);
 		
 		MouseAdapter mouseListener = new MouseAdapter(){
 
