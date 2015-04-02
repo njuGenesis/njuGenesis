@@ -20,6 +20,7 @@ import presentation.component.NameCellEditor;
 import presentation.component.NameRenderer;
 import presentation.component.TeamShortCellEditor;
 import presentation.mainui.MainUI;
+import assistance.NewFont;
 import bussinesslogic.player.PlayerLogic;
 import data.po.PlayerDataPO;
 
@@ -85,13 +86,19 @@ public class PlayerStatsPanel extends ContentPanel{
 				}
 			}
 		};  
-		table = new GTable(model,left,right,page);
+		table = new GTable(model,left,right,page,true,0);
 
-		table.getColumnModel().getColumn(1).setCellRenderer(new NameRenderer());
-		table.getColumnModel().getColumn(1).setCellEditor(new NameCellEditor());
+		table.setRenderer(1, new NameRenderer());
+		table.setEditor(1, new NameCellEditor());
 		
-		table.getColumnModel().getColumn(2).setCellRenderer(new NameRenderer());
-		table.getColumnModel().getColumn(2).setCellEditor(new TeamShortCellEditor());
+		table.setRenderer(2, new NameRenderer());
+		table.setEditor(2, new TeamShortCellEditor());
+		
+//		table.getColumnModel().getColumn(1).setCellRenderer(new NameRenderer());
+//		table.getColumnModel().getColumn(1).setCellEditor(new NameCellEditor());
+//		
+//		table.getColumnModel().getColumn(2).setCellRenderer(new NameRenderer());
+//		table.getColumnModel().getColumn(2).setCellEditor(new TeamShortCellEditor());
 		
 		// Use our own custom scrollpane.  
 		jsp = PagingTableModel.createPagingScrollPaneForTable(table,left,right);  
@@ -108,31 +115,18 @@ public class PlayerStatsPanel extends ContentPanel{
 
 		position = new GComboBox(positionItem);
 		position.setBounds(45, 63, 120, 30);
-		//        position.setUI(new BasicComboBoxUI() {
-		//            public void installUI(JComponent comboBox) {
-		//                super.installUI(comboBox);
-		//                listBox.setForeground(Color.WHITE);
-		//                listBox.setSelectionBackground(new Color(0,0,0,0));
-		//                listBox.setSelectionForeground(Color.BLACK);
-		//            }
-		//             
-		//            /**
-		//             * 该方法返回右边的按钮
-		//             */
-		//            protected JButton createArrowButton() {
-		//                return super.createArrowButton();
-		//            }
-		//        });
+		position.setFont(NewFont.ComboBoxFont);
 		panel.add(position);
 
 		league = new GComboBox(leagueItem);
 		league.setBounds(205, 63, 120, 30);
 		league.setBackground(new Color(250,250,250));
-		//        league.setOpaque(false);
+		league.setFont(NewFont.ComboBoxFont);
 		panel.add(league);
 
 		dataType = new GComboBox(dataTypeItem);
 		dataType.setBounds(365, 63, 120, 30);
+		dataType.setFont(NewFont.ComboBoxFont);
 		panel.add(dataType);
 
 		submit = UIUtil.getSelectButton();
@@ -150,7 +144,7 @@ public class PlayerStatsPanel extends ContentPanel{
 				"真实命中率","投篮效率","篮板率","进攻篮板率","防守篮板率","助攻率","抢断率","盖帽率","失误率","使用率"};
 		TableData[] data = new TableData[po.length];
 		for(int i=0;i<po.length;i++){
-			String[] row = {String.valueOf(i+1),po[i].getName(),po[i].getTeamName(),String.valueOf(po[i].getGP()),String.valueOf(po[i].getGS()),
+			String[] row = {String.valueOf(i+1),po[i].getName(),TableUtility.getChTeam(po[i].getTeamName()),String.valueOf(po[i].getGP()),String.valueOf(po[i].getGS()),
 					String.valueOf(po[i].getMinutesOnField()),String.valueOf(po[i].getPTS()),String.valueOf(po[i].getBackboard()),String.valueOf(po[i].getAssist()),String.valueOf(po[i].getFieldGoalPercentage()),String.valueOf(po[i].getThreePGPercentage()),
 					String.valueOf(po[i].getFTPercentage()),String.valueOf(po[i].getDouble()),String.valueOf(po[i].getOff()),String.valueOf(po[i].getDef()),String.valueOf(po[i].getSteal()),String.valueOf(po[i].getRejection()),
 					String.valueOf(po[i].getTo()),String.valueOf(po[i].getFoul()),String.valueOf(po[i].getEff()),String.valueOf(po[i].getGmsc()),
@@ -170,7 +164,7 @@ public class PlayerStatsPanel extends ContentPanel{
 				"真实命中率","投篮效率","篮板率","进攻篮板率","防守篮板率","助攻率","抢断率","盖帽率","失误率","使用率"};
 		TableData[] data = new TableData[po.length];
 		for(int i=0;i<po.length;i++){
-			String[] row = {String.valueOf(i+1),po[i].getName(),po[i].getTeamName(),String.valueOf(po[i].getGP()),String.valueOf(po[i].getGS()),
+			String[] row = {String.valueOf(i+1),po[i].getName(),TableUtility.getChTeam(po[i].getTeamName()),String.valueOf(po[i].getGP()),String.valueOf(po[i].getGS()),
 					String.valueOf(po[i].getMinutesOnField()),String.valueOf(po[i].getPPG()),String.valueOf(po[i].getBPG()),String.valueOf(po[i].getAPG()),String.valueOf(po[i].getFieldGoalPercentage()),String.valueOf(po[i].getThreePGPercentage()),
 					String.valueOf(po[i].getFTPercentage()),String.valueOf(po[i].getDouble()),String.valueOf(po[i].getOffPG()),String.valueOf(po[i].getDefPG()),String.valueOf(po[i].getStealPG()),String.valueOf(po[i].getRPG()),
 					String.valueOf(po[i].getToPG()),String.valueOf(po[i].getFoulPG()),String.valueOf(po[i].getEff()),String.valueOf(po[i].getGmsc()),
@@ -225,7 +219,7 @@ public class PlayerStatsPanel extends ContentPanel{
 			String leag = league.getSelectedItem().toString();
 			String type = dataType.getSelectedItem().toString();
 			
-			PlayerDataPO[] po = logic.getSelect(changePosStr(pos), changeUnStr(leag));
+			PlayerDataPO[] po = logic.getSelect(TableUtility.getChPosition(pos), changeUnStr(leag));
 			PagingTableModel tm;
 			if(isAverageData(type)){
 				tm = new PagingTableModel(getPlayerDataAvg(po)){

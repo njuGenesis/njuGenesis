@@ -50,80 +50,211 @@ public class TableUtility {
 	}
 	
 	private static String transPosition(String en){
-		if(en=="G"){
+		if(en.equals("G")){
 			return "后卫";
-		}else if(en=="F"){
+		}else if(en.equals("F")){
 			return "前锋";
-		}else if(en=="C"){
+		}else if(en.equals("C")){
 			return "中锋";
+		}else if(en.equals("后卫")){
+			return "G";
+		}else if(en.equals("中锋")){
+			return "C";
+		}else if(en.equals("前锋")){
+			return "F";
 		}else{
-			return "~~~";
+			return "null";
 		}
 	}
 	
 	public static String getChTeam(String en){
 		String ch;
-		if(en=="SAS"){
+		if(en.equals("SAS")){
 			ch = "圣安东尼奥马刺";
-		}else if(en=="MEM"){
+		}else if(en.equals("MEM")){
 			ch = "孟菲斯灰熊";
-		}else if(en=="HOU"){
+		}else if(en.equals("HOU")){
 			ch = "休斯顿火箭";
-		}else if(en=="DAL"){
+		}else if(en.equals("DAL")){
 			ch = "达拉斯小牛";
-		}else if(en=="NOP"){
+		}else if(en.equals("NOP")){
 			ch = "新奥尔良鹈鹕";
-		}else if(en=="SAC"){
+		}else if(en.equals("SAC")){
 			ch = "萨克拉门托国王";
-		}else if(en=="PHX"){
+		}else if(en.equals("PHX")){
 			ch = "菲尼克斯太阳";
-		}else if(en=="GSW"){
+		}else if(en.equals("GSW")){
 			ch = "金州勇士";
-		}else if(en=="LAC"){
+		}else if(en.equals("LAC")){
 			ch = "洛杉矶快船";
-		}else if(en=="MIN"){
+		}else if(en.equals("LAL")){
+			ch = "洛杉矶湖人";
+		}else if(en.equals("MIN")){
 			ch = "明尼苏达森林狼";
-		}else if(en=="DEN"){
+		}else if(en.equals("UTA")){
 			ch = "犹他爵士";
-		}else if(en=="POR"){
+		}else if(en.equals("POR")){
 			ch = "波特兰开拓者";
-		}else if(en=="OTC"){
+		}else if(en.equals("OKC")){
 			ch = "俄克拉荷马城雷霆";
-		}else if(en=="MIA"){
+		}else if(en.equals("DEN")){
+			ch = "丹佛掘金";
+		}else if(en.equals("MIA")){
 			ch = "迈阿密热火";
-		}else if(en=="ORL"){
+		}else if(en.equals("ORL")){
 			ch = "奥兰多魔术";
-		}else if(en=="ATL"){
+		}else if(en.equals("ATL")){
 			ch = "亚特兰大老鹰";
-		}else if(en=="WAS"){
+		}else if(en.equals("WAS")){
 			ch = "华盛顿奇才";
-		}else if(en=="CHA"){
+		}else if(en.equals("CHA")){
 			ch = "夏洛特黄蜂";
-		}else if(en=="DET"){
+		}else if(en.equals("DET")){
 			ch = "底特律活塞";
-		}else if(en=="IND"){
+		}else if(en.equals("IND")){
 			ch = "印第安纳步行者";
-		}else if(en=="CLE"){
+		}else if(en.equals("CLE")){
 			ch = "克利夫兰骑士";
-		}else if(en=="CHI"){
+		}else if(en.equals("CHI")){
 			ch = "芝加哥公牛";
-		}else if(en=="MIL"){
+		}else if(en.equals("MIL")){
 			ch = "密尔沃基雄鹿";
-		}else if(en=="NYN"){
+		}else if(en.equals("NYK")){
 			ch = "纽约尼克斯";
-		}else if(en=="PHI"){
+		}else if(en.equals("PHI")){
 			ch = "费城76人";
-		}else if(en=="CEL"){
+		}else if(en.equals("BOS")){
 			ch = "波士顿凯尔特人";
-		}else if(en=="BKN"){
+		}else if(en.equals("BKN")){
 			ch = "布鲁克林篮网";
-		}else if(en=="TOR"){
+		}else if(en.equals("TOR")){
+			ch = "多伦多猛龙";
+		}else if(en.equals("null")){
+			ch = "无";
+		}else if(en.equals("圣安东尼奥马刺")){
+			ch = "SAS";
+		}else if(en.equals("孟菲斯灰熊")){
+			ch = "MEM";
+		}else if(en.equals("休斯顿火箭")){
+			ch = "HOU";
+		}else if(en.equals("达拉斯小牛")){
+			ch = "DAL";
+		}else if(en.equals("新奥尔良鹈鹕")){
+			ch = "NOP";
+		}else if(en.equals("萨克拉门托国王")){
+			ch = "SAC";
+		}else if(en.equals("菲尼克斯太阳")){
+			ch = "PHX";
+		}else if(en.equals("金州勇士")){
+			ch = "GSW";
+		}else if(en.equals("洛杉矶快船")){
+			ch = "LAC";
+		}else if(en.equals("洛杉矶湖人")){
+			ch = "LAL";
+		}else if(en.equals("明尼苏达森林狼")){
+			ch = "MIN";
+		}else if(en.equals("犹他爵士")){
+			ch = "UTA";
+		}else if(en.equals("波特兰开拓者")){
+			ch = "POR";
+		}else if(en.equals("俄克拉荷马城雷霆")){
+			ch = "OKC";
+		}else if(en.equals("丹佛掘金")){
+			ch = "DEN";
+		}else if(en.equals("迈阿密热火")){
+			ch = "MIA";
+		}else if(en.equals("奥兰多魔术")){
+			ch = "ORL";
+		}else if(en.equals("亚特兰大老鹰")){
+			ch = "ATL";
+		}else if(en.equals("华盛顿奇才")){
+			ch = "WAS";
+		}else if(en.equals("夏洛特黄蜂")){
+			ch = "CHA";
+		}else if(en.equals("底特律活塞")){
+			ch = "DET";
+		}else if(en.equals("印第安纳步行者")){
+			ch = "IND";
+		}else if(en.equals("克利夫兰骑士")){
+			ch = "CLE";
+		}else if(en.equals("芝加哥公牛")){
+			ch = "CHI";
+		}else if(en.equals("密尔沃基雄鹿")){
+			ch = "MIL";
+		}else if(en.equals("纽约尼克斯")){
+			ch = "NYK";
+		}else if(en.equals("费城76人")){
+			ch = "PHI";
+		}else if(en.equals("波士顿凯尔特人")){
+			ch = "BOS";
+		}else if(en.equals("布鲁克林篮网")){
+			ch = "BKN";
+		}else if(en.equals("多伦多猛龙")){
+			ch = "TOR";
+		}else if(en.equals("Spurs")){
+			ch = "圣安东尼奥马刺";
+		}else if(en.equals("Grizzlies")){
+			ch = "孟菲斯灰熊";
+		}else if(en.equals("Rockets")){
+			ch = "休斯顿火箭";
+		}else if(en.equals("Mavericks")){
+			ch = "达拉斯小牛";
+		}else if(en.equals("Pelicans")){
+			ch = "新奥尔良鹈鹕";
+		}else if(en.equals("Kings")){
+			ch = "萨克拉门托国王";
+		}else if(en.equals("Suns")){
+			ch = "菲尼克斯太阳";
+		}else if(en.equals("Warriors")){
+			ch = "金州勇士";
+		}else if(en.equals("Clippers")){
+			ch = "洛杉矶快船";
+		}else if(en.equals("Lakers")){
+			ch = "洛杉矶湖人";
+		}else if(en.equals("Timberwolves")){
+			ch = "明尼苏达森林狼";
+		}else if(en.equals("Jazz")){
+			ch = "犹他爵士";
+		}else if(en.equals("Trail Blazers")){
+			ch = "波特兰开拓者";
+		}else if(en.equals("Thunder")){
+			ch = "俄克拉荷马城雷霆";
+		}else if(en.equals("Nuggets")){
+			ch = "丹佛掘金";
+		}else if(en.equals("Heat")){
+			ch = "迈阿密热火";
+		}else if(en.equals("Magic")){
+			ch = "奥兰多魔术";
+		}else if(en.equals("Hawks")){
+			ch = "亚特兰大老鹰";
+		}else if(en.equals("Wizards")){
+			ch = "华盛顿奇才";
+		}else if(en.equals("Hornets")){
+			ch = "夏洛特黄蜂";
+		}else if(en.equals("Pistons")){
+			ch = "底特律活塞";
+		}else if(en.equals("Pacers")){
+			ch = "印第安纳步行者";
+		}else if(en.equals("Cavaliers")){
+			ch = "克利夫兰骑士";
+		}else if(en.equals("Bulls")){
+			ch = "芝加哥公牛";
+		}else if(en.equals("Bucks")){
+			ch = "密尔沃基雄鹿";
+		}else if(en.equals("Knicks")){
+			ch = "纽约尼克斯";
+		}else if(en.equals("76ers")){
+			ch = "费城76人";
+		}else if(en.equals("Celtics")){
+			ch = "波士顿凯尔特人";
+		}else if(en.equals("Nets")){
+			ch = "布鲁克林篮网";
+		}else if(en.equals("Raptors")){
 			ch = "多伦多猛龙";
 		}else{
-			ch = "!!!";
+			ch = "null";
 		}
-		System.out.println(ch);
-		return en+" "+ch;
+		return ch;
 	}
 	
 

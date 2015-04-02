@@ -9,6 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicArrowButton;
 
+import assistance.NewFont;
+
 public class UIUtil {
 
 	public static ImageIcon defaultComboBoxArrowIcon = new ImageIcon("img/icon/donwBt.png");
@@ -42,7 +44,8 @@ public class UIUtil {
 		});
 		bt.setBorder(BorderFactory.createLineBorder(nbaBlue));
 		bt.setContentAreaFilled(false);
-		bt.setForeground(nbaBlue);
+//		bt.setForeground(nbaBlue);
+		bt.setFont(NewFont.ButtonFont);
 		
 		return bt;
 	}

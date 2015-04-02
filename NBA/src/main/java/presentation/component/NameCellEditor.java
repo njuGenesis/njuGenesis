@@ -21,7 +21,7 @@ public class NameCellEditor extends DefaultCellEditor{
 
 	private JPanel panel;  
 
-	private JButton button;  
+	private NothingButton button;  
 	
 	private ContentController con = new ContentController();
 
@@ -41,7 +41,7 @@ public class NameCellEditor extends DefaultCellEditor{
 
 
 	private void initButton(){  
-		this.button = new JButton();  
+		this.button = new NothingButton();  
 
 		// 设置按钮的大小及位置。   
 		this.button.setBounds(0, 0, 150, 32);  

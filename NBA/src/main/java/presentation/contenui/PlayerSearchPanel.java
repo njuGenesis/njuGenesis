@@ -11,6 +11,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -26,6 +27,7 @@ import presentation.component.NameCellEditor;
 import presentation.component.NameRenderer;
 import presentation.component.TeamShortCellEditor;
 import presentation.mainui.MainUI;
+import assistance.NewFont;
 import bussinesslogic.player.PlayerLogic;
 import data.po.PlayerDataPO;
 
@@ -88,14 +90,20 @@ public class PlayerSearchPanel extends ContentPanel{
 			}
 		};  
 		table = new GTable(model,left,right,page,false); 
-		
+
 		//球员和球队名可点击，设置不同的renderer和editor
-		table.getColumnModel().getColumn(1).setCellRenderer(new NameRenderer());
-		table.getColumnModel().getColumn(1).setCellEditor(new NameCellEditor());
+		table.setRenderer(1, new NameRenderer());
+		table.setEditor(1, new NameCellEditor());
 		
-		table.getColumnModel().getColumn(2).setCellRenderer(new NameRenderer());
-		table.getColumnModel().getColumn(2).setCellEditor(new TeamShortCellEditor());
+		table.setRenderer(2, new NameRenderer());
+		table.setEditor(2, new TeamShortCellEditor());
 		
+//		table.getColumnModel().getColumn(1).setCellRenderer(new NameRenderer());
+//		table.getColumnModel().getColumn(1).setCellEditor(new NameCellEditor());
+//
+//		table.getColumnModel().getColumn(2).setCellRenderer(new NameRenderer());
+//		table.getColumnModel().getColumn(2).setCellEditor(new TeamShortCellEditor());
+
 
 		MouseListener[] m = table.getTableHeader().getMouseListeners();
 		for(int i=0;i<m.length;i++){
@@ -108,17 +116,19 @@ public class PlayerSearchPanel extends ContentPanel{
 		TableUtility.setTabelPanel(jsp);
 
 		panel.add(jsp);
-		
-		
+
+
 
 		title = new JLabel("球员列表    【点击表头可进行降序/升序    点击球员或球队可跳转至相关页面】");
 		title.setForeground(Color.white);
-		title.setFont(new Font("微软雅黑",1,13));
+//		title.setFont(new Font("微软雅黑",1,13));
+		title.setFont(NewFont.getTableTitleFont());
 		title.setBounds(40, 25, 500, 20);
 		panel.add(title);
 
 		position = new GComboBox(positionItem);
-		position.setBounds(45, 93, 120, 30);
+		position.setBounds(45, 63, 120, 30);
+		position.setFont(NewFont.ComboBoxFont);
 		panel.add(position);
 
 		submit = UIUtil.getSelectButton();
@@ -127,9 +137,12 @@ public class PlayerSearchPanel extends ContentPanel{
 		panel.add(submit);
 
 		nameSearch = new JTextField("根据姓名搜索");
-		nameSearch.setBounds(220, 93, 240, 30);
+		nameSearch.setBorder(BorderFactory.createLineBorder(UIUtil.nbaBlue));
+		nameSearch.setFont(NewFont.ComboBoxFont);
+		nameSearch.setOpaque(false);
+		nameSearch.setBounds(220, 63, 240, 30);
 		nameSearch.addFocusListener(new NameListener());
-		//		panel.add(nameSearch);
+		panel.add(nameSearch);
 
 
 		ButtonGroup bg = new ButtonGroup();
@@ -141,7 +154,7 @@ public class PlayerSearchPanel extends ContentPanel{
 			//			bt.setFont(new Font("微软雅黑",0,8));
 			initials[i] = bt;
 			bg.add(bt);
-			panel.add(bt);
+			//			panel.add(bt);
 		}
 
 
@@ -153,24 +166,12 @@ public class PlayerSearchPanel extends ContentPanel{
 		for(int i=0;i<po.length;i++){
 			//			String[] row = {String.valueOf(i+1),po[i].getName(),TableUtility.getChTeam(po[i].getTeamName()),TableUtility.getChPosition(po[i].getPosition()),
 			//					po[i].getHeight(),String.valueOf(po[i].getWeight()),String.valueOf(po[i].getExp())};
-			String[] row = {String.valueOf(i+1),po[i].getName(),po[i].getTeamName(),po[i].getPosition(),
+			String[] row = {String.valueOf(i+1),po[i].getName(),TableUtility.getChTeam(po[i].getTeamName()),TableUtility.getChPosition(po[i].getPosition()),
 					po[i].getHeight(),String.valueOf(po[i].getWeight()),String.valueOf(po[i].getExp())};
 			data[i] = new TableData(head,row);
 		}
 
 		return data;
-	}
-
-	private String changePosStr(String chinese){
-		if(chinese=="前锋"){
-			return "F";
-		}else if(chinese=="中锋"){
-			return "C";
-		}else if(chinese=="后卫"){
-			return "G";
-		}else{
-			return "null";
-		}
 	}
 
 
@@ -185,13 +186,13 @@ public class PlayerSearchPanel extends ContentPanel{
 		}
 
 		private void showDefault(){
-			if(nameSearch.getText()==""){
+			if(nameSearch.getText().equals("")){
 				nameSearch.setText("根据姓名搜索");
 			}
 		}
 
 		private void clearDefault(){
-			if(nameSearch.getText()=="根据姓名搜索"){
+			if(nameSearch.getText().equals("根据姓名搜索")){
 				nameSearch.setText("");
 			}
 		}
@@ -210,10 +211,10 @@ public class PlayerSearchPanel extends ContentPanel{
 				PagingTableModel tm = new PagingTableModel(TableData.getInitials(model.data, bt.letter, 1));
 
 				table.setModel(tm);
-				
+
 				PagingTableModel.setPagingButton(table, left, right);
 				page.setText(String.valueOf(tm.getPageOffset()+1));
-				
+
 				table.repaint();
 				MainUI.getMainFrame().repaint();
 
@@ -229,8 +230,14 @@ public class PlayerSearchPanel extends ContentPanel{
 
 		public void mouseClicked(MouseEvent arg0) {
 			String pos = position.getSelectedItem().toString();
+			String name = nameSearch.getText().trim();
 
-			PlayerDataPO[] po = logic.getSelect(changePosStr(pos),"null");
+			PlayerDataPO[] po;
+			if(name.equals("根据姓名搜索")){
+				po = logic.getAllSearch("", TableUtility.getChPosition(pos), "null");
+			}else{
+				po = logic.getAllSearch(name, TableUtility.getChPosition(pos), "null");
+			}
 			PagingTableModel tm = new PagingTableModel(getPlayerData(po)){
 				public boolean isCellEditable(int row, int column){
 					if(column==1 || column==2){
@@ -242,41 +249,35 @@ public class PlayerSearchPanel extends ContentPanel{
 			};
 
 			table.setModel(tm);
-			
-//			PagingTableModel.setPagingButton(table, left, right);
+
+			//			PagingTableModel.setPagingButton(table, left, right);
 			tm.setButton(left, right);
 			tm.checkButton(left, right);
 			page.setText(String.valueOf(tm.getPageOffset()+1));
-			
+
 			table.getColumnModel().getColumn(1).setCellRenderer(new NameRenderer());
 			table.getColumnModel().getColumn(1).setCellEditor(new NameCellEditor());
-			
+
 			table.getColumnModel().getColumn(2).setCellRenderer(new NameRenderer());
 			table.getColumnModel().getColumn(2).setCellEditor(new TeamShortCellEditor());
-			
+
 			table.repaint();
 			
+			nameSearch.setText("根据姓名搜索");
+
 			MainUI.getMainFrame().repaint();
 		}
 
 		public void mouseEntered(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-
 		}
 
 		public void mouseExited(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-
 		}
 
 		public void mousePressed(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-
 		}
 
 		public void mouseReleased(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-
 		}
 
 	}

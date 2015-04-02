@@ -17,7 +17,7 @@ public class NameRenderer extends MyCellRenderer{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private JButton button;
+	private NothingButton button;
 	private JPanel panel;
 
 	public NameRenderer(){
@@ -30,7 +30,7 @@ public class NameRenderer extends MyCellRenderer{
 	
 	private void initButton()
     {
-        this.button = new JButton();
+        this.button = new NothingButton();
 
         // 设置按钮的大小
         this.button.setBounds(0,0,150,32);

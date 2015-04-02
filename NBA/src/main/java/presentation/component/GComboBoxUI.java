@@ -11,6 +11,7 @@ import java.awt.RenderingHints;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -32,6 +33,7 @@ public class GComboBoxUI extends BasicComboBoxUI{
 	protected JButton createArrowButton() {
 		arrow = new JButton();
 		arrow.setSize(30, 30);
+		arrow.setLocation(90, 0);
 		//	  arrow.setIcon(XUtil.defaultComboBoxArrowIcon);
 		arrow.setIcon(UIUtil.defaultComboBoxArrowIcon);
 		arrow.setRolloverEnabled(true);

@@ -36,7 +36,7 @@ public class PagingTableModel extends AbstractTableModel{
 	}
 
 	public int getColumnCount() {
-		if(data[0]!=null){
+		if(data.length!=0){
 			return data[0].getColumnCount();
 		}else{
 			return 30;
@@ -44,7 +44,7 @@ public class PagingTableModel extends AbstractTableModel{
 	}
 
 	public String getColumnName(int col) {  
-		if(data[0]!=null){
+		if(data.length!=0){
 			return data[0].getColumnName(col);
 		}else{
 			return "";
@@ -63,11 +63,6 @@ public class PagingTableModel extends AbstractTableModel{
 	public Object getValueAt(int row, int col) {
 		int realRow = row + (pageOffset * pageSize);  
 		return data[realRow].getValueAt(col);
-		//		try{
-		//			return data[realRow].getValueAt(col);
-		//		}catch(Exception ex){
-		//			return "";
-		//		}
 
 	}
 

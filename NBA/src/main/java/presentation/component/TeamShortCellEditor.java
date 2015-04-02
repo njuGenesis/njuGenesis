@@ -11,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import presentation.contenui.ContentController;
+import presentation.contenui.TableUtility;
 import bussinesslogic.team.TeamLogic;
 import data.po.TeamDataPO;
 
@@ -56,7 +57,7 @@ public class TeamShortCellEditor extends DefaultCellEditor{
 				TeamShortCellEditor.this.fireEditingCanceled();  
 
 				TeamLogic l = new TeamLogic();
-				TeamDataPO po = l.GetBySN(TeamShortCellEditor.this.button.getText());
+				TeamDataPO po = l.GetBySN(TableUtility.getChTeam(TeamShortCellEditor.this.button.getText()));
 
 				con.changeToTeamDetails(po);
 			}  

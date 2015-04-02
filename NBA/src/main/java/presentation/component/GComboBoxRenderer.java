@@ -30,7 +30,7 @@ public class GComboBoxRenderer implements ListCellRenderer{
 		list.setSelectionBackground(new Color(250,250,250));
 		list.setBorder(null);
 //		renderer.setFont(XUtil.defaultComboBoxFont);
-		renderer.setHorizontalAlignment(JLabel.CENTER);
+		renderer.setHorizontalAlignment(JLabel.LEFT);
 		return renderer;
 	}
 

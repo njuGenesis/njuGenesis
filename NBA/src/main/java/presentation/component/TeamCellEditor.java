@@ -11,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import presentation.contenui.ContentController;
+import presentation.contenui.TableUtility;
 import bussinesslogic.team.TeamLogic;
 import data.po.TeamDataPO;
 
@@ -23,7 +24,7 @@ public class TeamCellEditor extends DefaultCellEditor{
 
 	private JPanel panel;  
 
-	private JButton button;  
+	private NothingButton button;  
 
 	private ContentController con = new ContentController();
 
@@ -43,7 +44,7 @@ public class TeamCellEditor extends DefaultCellEditor{
 
 
 	private void initButton(){  
-		this.button = new JButton();  
+		this.button = new NothingButton();  
 
 		// 设置按钮的大小及位置。   
 		this.button.setBounds(0, 0, 150, 32);  
@@ -57,8 +58,16 @@ public class TeamCellEditor extends DefaultCellEditor{
 				TeamCellEditor.this.fireEditingCanceled();  
 
 				TeamLogic l = new TeamLogic();
-				TeamDataPO po = l.GetInfo(TeamCellEditor.this.button.getText());
-
+				String str = TeamCellEditor.this.button.getText();
+				TeamDataPO po;
+				if(str.contains("Trail")){
+					po = l.GetInfo("Trail Blazers");
+				}else{
+					int i = str.indexOf(" ");
+					po = l.GetInfo(str.substring(0, i));
+				}
+				
+				
 				con.changeToTeamDetails(po);
 			}  
 		});  

@@ -27,6 +27,12 @@ public class NewFont {
 
 
 	public static Font menuFont;
+	
+	public static Font TableTitleFont = new Font("微软雅黑",1,13);
+	
+	public static Font ComboBoxFont = new Font("微软雅黑",0,12);
+	
+	public static Font ButtonFont = new Font("微软雅黑",0,14);
 
 	public static void initFont(){
 		try {
@@ -47,19 +53,20 @@ public class NewFont {
 		light = light.deriveFont(Font.BOLD, 20);
 	}
 
-	private static Font getTableTitleFont(){
+	public static Font getTableTitleFont(){
 		java.io.File file = new java.io.File(fontpath + "hb.ttf");
 
 		if (!file.exists()) {
 			System.out.println("file not found");
-			return new Font("微软雅黑",1,14);
+			return new Font("微软雅黑",1,13);
 		}
 
 
+		Font nf = new Font("微软雅黑",1,13);
 		try {
 			java.io.FileInputStream fi = new java.io.FileInputStream(file);
 			java.io.BufferedInputStream fb = new java.io.BufferedInputStream(fi);
-			Font nf = Font.createFont(Font.TRUETYPE_FONT, fb);
+			nf = Font.createFont(Font.TRUETYPE_FONT, fb);
 			nf = nf.deriveFont(Font.BOLD, 10);
 			System.out.println(nf.getFontName());
 			System.out.println(nf.getSize());
@@ -68,7 +75,7 @@ public class NewFont {
 			System.out.println(e.getMessage());
 		}
 
-		return null;
+		return nf;
 	}
 
 
